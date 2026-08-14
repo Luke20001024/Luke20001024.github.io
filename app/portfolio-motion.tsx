@@ -324,13 +324,13 @@ export default function PortfolioMotion({ previews }: { previews: Preview[] }) {
                 <div>
                   <small>之前</small>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/assets/search-generic-ad.png" alt="通用狗零食广告" />
+                  <img src="/assets/search-generic-ad.webp" alt="通用狗零食广告" />
                 </div>
                 <i aria-hidden="true">→</i>
                 <div>
                   <small>之后</small>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/assets/search-personalized-ad.png" alt="宠物训练场景广告" />
+                  <img src="/assets/search-personalized-ad.webp" alt="宠物训练场景广告" />
                 </div>
               </div>
             ) : preview.id === "evaluation" ? (

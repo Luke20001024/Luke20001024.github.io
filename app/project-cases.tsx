@@ -84,7 +84,7 @@ function AigcPositionPhone({ after = false }: { after?: boolean }) {
         <div className="portfolio-aigc-ad-crop">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={after ? "/assets/search-personalized-ad.png" : "/assets/search-generic-ad.png"}
+            src={after ? "/assets/search-personalized-ad.webp" : "/assets/search-generic-ad.webp"}
             alt={after ? "狗、人与EcoKind商品同场的训练场景素材" : "EcoKind狗零食通用商品素材"}
           />
         </div>
@@ -107,7 +107,7 @@ function AigcPositionPhone({ after = false }: { after?: boolean }) {
   return (
     <a
       className={`portfolio-aigc-phone-preview-trigger ${after ? "after" : "before"}`}
-      href={after ? "/assets/search-personalized-ad.png" : "/assets/search-generic-ad.png"}
+      href={after ? "/assets/search-personalized-ad.webp" : "/assets/search-generic-ad.webp"}
       target="_blank"
       rel="noreferrer"
       aria-label={`${after ? "个性化素材位于Top 1" : "通用素材位于Top 4"}，悬停或聚焦可查看素材大图，点击可打开原图`}
@@ -131,7 +131,7 @@ function AigcPositionPhone({ after = false }: { after?: boolean }) {
       <div className={`portfolio-aigc-ad-visual portfolio-aigc-material-preview ${after ? "personalized" : "generic"}`} aria-hidden="true">
         <div className="portfolio-aigc-ad-crop">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={after ? "/assets/search-personalized-ad.png" : "/assets/search-generic-ad.png"} alt="" />
+          <img src={after ? "/assets/search-personalized-ad.webp" : "/assets/search-generic-ad.webp"} alt="" />
         </div>
       </div>
     </a>
@@ -337,7 +337,7 @@ function AigcCase() {
                 <small>06 / 图片分支</small>
                 <div className="aigc-image-result">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/assets/search-personalized-ad.png" alt="训练场景中的狗、人和商品" />
+                  <img src="/assets/search-personalized-ad.webp" alt="训练场景中的狗、人和商品" />
                   <div><b>生成个性化图片</b><p>狗、人宠互动与商品同场</p></div>
                 </div>
                 <div className="aigc-image-gate"><b>图片质量门</b><div className="aigc-gate-tags"><span>Query–Image冲突</span><span>文字拼写</span><span>商品主体一致</span><span>物理幻觉</span></div><p><b>通过 → 汇入候选</b><span>失败 → 废弃或阻断</span></p></div>
@@ -358,11 +358,11 @@ function AigcCase() {
                 <div className="aigc-candidate-pair">
                   <div>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/assets/search-generic-ad.png" alt="原始图文候选" /><span>原始版本</span>
+                    <img src="/assets/search-generic-ad.webp" alt="原始图文候选" /><span>原始版本</span>
                   </div>
                   <div>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/assets/search-personalized-ad.png" alt="个性化图文候选" /><span>个性化版本</span>
+                    <img src="/assets/search-personalized-ad.webp" alt="个性化图文候选" /><span>个性化版本</span>
                   </div>
                 </div>
               </article>
@@ -424,9 +424,9 @@ function SearchCase() {
             <header><div><small>案例对照</small><h5 id="portfolio-search-case-title">搜索词：gym headphones</h5></div><p>从内容混排，变成能帮助选择的结果卡</p></header>
             <div className="portfolio-search-board-body">
               <div className="portfolio-search-phone-pair">
-                <figure><figcaption><small>普通结果</small><b>选择标准由用户自己整理</b></figcaption><PhoneShot src="/assets/ai-search-standard.png" alt="gym headphones普通搜索结果" /></figure>
+                <figure><figcaption><small>普通结果</small><b>选择标准由用户自己整理</b></figcaption><PhoneShot src="/assets/ai-search-standard.webp" alt="gym headphones普通搜索结果" /></figure>
                 <div className="portfolio-search-arrow" aria-hidden="true"><span>信息组织</span><i /></div>
-                <figure><figcaption><small>AI结果卡</small><b>先给选择维度，再给候选理由</b></figcaption><PhoneShot src="/assets/ai-search-agentic.png" alt="gym headphones AI搜索结果卡" /></figure>
+                <figure><figcaption><small>AI结果卡</small><b>先给选择维度，再给候选理由</b></figcaption><PhoneShot src="/assets/ai-search-agentic.webp" alt="gym headphones AI搜索结果卡" /></figure>
               </div>
             </div>
           </section>

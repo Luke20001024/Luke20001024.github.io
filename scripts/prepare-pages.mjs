@@ -4,13 +4,13 @@ import { resolve } from "node:path";
 const siteRoot = resolve("dist/client");
 const assetsRoot = resolve(siteRoot, "assets");
 const publicAssets = new Set([
-  "ai-search-agentic.png",
-  "ai-search-standard.png",
+  "ai-search-agentic.webp",
+  "ai-search-standard.webp",
   "dark-noise.png",
   "memento-dashboard.png",
   "paper-noise.png",
-  "search-generic-ad.png",
-  "search-personalized-ad.png",
+  "search-generic-ad.webp",
+  "search-personalized-ad.webp",
   "yiyang-particle-portrait-transparent-v1.webp",
 ]);
 

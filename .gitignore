@@ -58,11 +58,11 @@ yarn-error.log*
 
 # Keep the public repository limited to assets used by the live portfolio.
 /public/assets/*
-!/public/assets/ai-search-agentic.png
-!/public/assets/ai-search-standard.png
+!/public/assets/ai-search-agentic.webp
+!/public/assets/ai-search-standard.webp
 !/public/assets/dark-noise.png
 !/public/assets/memento-dashboard.png
 !/public/assets/paper-noise.png
-!/public/assets/search-generic-ad.png
-!/public/assets/search-personalized-ad.png
+!/public/assets/search-generic-ad.webp
+!/public/assets/search-personalized-ad.webp
 !/public/assets/yiyang-particle-portrait-transparent-v1.webp

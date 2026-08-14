@@ -258,9 +258,10 @@ test("keeps the reference-led composition and interaction wired in", async () =>
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
     access(new URL("../public/assets/yiyang-particle-portrait-transparent-v1.webp", import.meta.url)),
-    access(new URL("../public/assets/search-generic-ad.png", import.meta.url)),
-    access(new URL("../public/assets/search-personalized-ad.png", import.meta.url)),
-    access(new URL("../public/assets/ai-search-agentic.png", import.meta.url)),
+    access(new URL("../public/assets/search-generic-ad.webp", import.meta.url)),
+    access(new URL("../public/assets/search-personalized-ad.webp", import.meta.url)),
+    access(new URL("../public/assets/ai-search-standard.webp", import.meta.url)),
+    access(new URL("../public/assets/ai-search-agentic.webp", import.meta.url)),
     access(new URL("../public/assets/memento-dashboard.png", import.meta.url)),
     access(new URL("../public/demos/memento-v089-demo.html", import.meta.url)),
   ]);
@@ -301,14 +302,14 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.doesNotMatch(page, /resume\.pdf|简历 PDF|>RESUME</);
   assert.doesNotMatch(page, /不是|而是|不只是|不止是/);
   for (const asset of [
-    "search-personalized-ad.png",
-    "ai-search-agentic.png",
+    "search-personalized-ad.webp",
+    "ai-search-agentic.webp",
     "memento-dashboard.png",
   ]) {
     assert.match(projectSource, new RegExp(asset.replace(".", "\\.")));
   }
-  assert.match(page, /id: "aigc"[\s\S]*?preview: "\/assets\/search-personalized-ad\.png"/);
-  assert.match(page, /id: "search"[\s\S]*?preview: "\/assets\/ai-search-agentic\.png"/);
+  assert.match(page, /id: "aigc"[\s\S]*?preview: "\/assets\/search-personalized-ad\.webp"/);
+  assert.match(page, /id: "search"[\s\S]*?preview: "\/assets\/ai-search-agentic\.webp"/);
   assert.match(page, /id: "evaluation"[\s\S]*?preview: null/);
   assert.match(page, /id: "memento"[\s\S]*?preview: "\/assets\/memento-dashboard\.png"/);
   assert.match(page, /focus: "搜索意图 → 个性化表达"/);
@@ -344,9 +345,9 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(motion, /pointerenter/);
   assert.match(motion, /project-evidence-item\[data-project-preview\]/);
   assert.doesNotMatch(motion, /<figcaption>\{preview\.title\}<\/figcaption>/);
-  assert.match(motion, /search-generic-ad\.png/);
-  assert.match(motion, /search-personalized-ad\.png/);
-  assert.match(motion, /preview\.id === "aigc"[\s\S]*?search-generic-ad\.png[\s\S]*?search-personalized-ad\.png/);
+  assert.match(motion, /search-generic-ad\.webp/);
+  assert.match(motion, /search-personalized-ad\.webp/);
+  assert.match(motion, /preview\.id === "aigc"[\s\S]*?search-generic-ad\.webp[\s\S]*?search-personalized-ad\.webp/);
   assert.match(motion, /preview\.id === "evaluation"[\s\S]*?project-preview-quality-workflow/);
   assert.match(motion, /质量治理闭环/);
   assert.match(motion, /标准定义/);

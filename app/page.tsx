@@ -13,7 +13,7 @@ const projects = [
     result: "Advv +23.16% · CTR2 +11.13% · CVR +25.39%",
     directModules: "context intent action evaluation",
     supportModules: "",
-    preview: "/assets/search-personalized-ad.png",
+    preview: "/assets/search-personalized-ad.webp",
     previewAlt: "AIGC个性化生成案例",
   },
   {
@@ -26,7 +26,7 @@ const projects = [
     result: "人工评估Good Case 83% · 结构有效率96%",
     directModules: "context intent action evaluation",
     supportModules: "",
-    preview: "/assets/ai-search-agentic.png",
+    preview: "/assets/ai-search-agentic.webp",
     previewAlt: "AI Search 结构化结果卡案例",
   },
   {
