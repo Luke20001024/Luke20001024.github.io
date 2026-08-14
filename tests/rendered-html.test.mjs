@@ -54,7 +54,7 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.match(heroVisualHtml, /SELECTED WORK[\s\S]*?四项 AI 产品实践/);
   assert.doesNotMatch(heroVisualHtml, /EVIDENCE|10\+ 项策略上线 · 8 万\+ 样本评测/);
   assert.match(heroVisualHtml, /<h1[^>]*>[\s\S]*?让 <em>AI<\/em> 持续创造[\s\S]*?真实的用户价值[\s\S]*?<\/h1>/);
-  assert.match(heroVisualHtml, /class="hero-identity[^"]*"[^>]*>[\s\S]*?AI 产品经理[\s\S]*?AI 应用 · 质量治理 · 规模化落地[\s\S]*?关注 AI Native/);
+  assert.match(heroVisualHtml, /class="hero-identity[^"]*"[^>]*>[\s\S]*?史翼洋 \/ Luke Shi[\s\S]*?浙江大学硕士 · 2027 届 · AI 产品经理[\s\S]*?AI 应用 · 质量治理 · 规模化落地 · 关注 AI Native/);
   assert.doesNotMatch(heroVisualHtml, /hero-meta|hero-lede|hero-goal|portrait-seal|目标方向/);
   assert.match(html, /教育与实习/);
   assert.match(html, /浙江大学/);
@@ -129,10 +129,13 @@ test("server-renders the complete first-delivery narrative", async () => {
     assert.match(html, new RegExp(copy.replace("/", "\\/")));
   }
   assert.match(html, /data-feedback-from="memory"[^>]*data-feedback-to="context"/);
-  assert.match(html, /项目背后的产品检查轴/);
+  assert.match(html, /我做 AI 产品时反复检查的六个问题/);
   assert.match(html, /class="project-zone"[^>]*data-theme="light"/);
   assert.match(html, /<section class="project-zone"[^>]*><div class="project-evidence-band">/);
-  assert.match(html, /<figcaption class="agent-map-caption" id="agent-map-caption"><span>项目背后的产品检查轴<\/span><\/figcaption>/);
+  assert.match(html, /<figcaption class="agent-map-caption" id="agent-map-caption"><span>我做 AI 产品时反复检查的六个问题<\/span><\/figcaption>/);
+  for (const resultLabel of ["实验结果", "首版离线人工评估", "评测规模与执行产能", "当前完成状态"]) {
+    assert.match(html, new RegExp(`<span>${resultLabel}<\\/span>`));
+  }
   assert.doesNotMatch(html, /项目先呈现结果与关键链路|项目先行 · 思路随后|先看项目结果与链路|长期 Context 与当前 Context 共同形成理解|悬停项目，对应环节亮起/);
   assert.doesNotMatch(html, /SELECTED PRACTICE|AGENT WORK MODEL|MY WORKING MODEL|FOUR PRACTICES/);
 
@@ -169,6 +172,17 @@ test("server-renders the complete first-delivery narrative", async () => {
     assert.match(html, new RegExp(`>${number}(?:<!-- -->)?<`));
     assert.equal((html.match(new RegExp(`id="project-${id}"`, "g")) ?? []).length, 1);
   }
+  assert.equal((html.match(/<dl class="project-evidence-meta">/g) ?? []).length, 4);
+  for (const projectMeta of [
+    "字节跳动 · TikTok GMPT Ads Core",
+    "搜索个性化产品侧负责人",
+    "AI 卡生成能力与评估体系建设",
+    "生成质量与评测负责人",
+    "个人独立项目 · 持续构建",
+    "产品定义、系统设计与 AI 辅助实现",
+  ]) {
+    assert.match(html, new RegExp(projectMeta));
+  }
   assert.doesNotMatch(html, /data-project-anchor=/);
   assert.match(html, /data-project-evidence="search"[^>]*data-direct-modules="context intent action evaluation"[^>]*data-support-modules=""/);
   assert.match(html, /data-project-evidence="aigc"[^>]*data-direct-modules="context intent action evaluation"[^>]*data-support-modules=""/);
@@ -180,7 +194,8 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.doesNotMatch(html, /data-project-evidence="evaluation"[^>]*data-direct-modules="[^"]*memory/);
   assert.doesNotMatch(html, /data-project-evidence="memento"[^>]*data-direct-modules="[^"]*(?:intent|evaluation|trust)/);
   for (const fact of [
-    "人工评估Good Case 83%",
+    "首版离线人工评估",
+    "Good Case 83%",
     "结构有效率96%",
     "Advv +23.16%",
     "累计评测 8 万+",
@@ -286,6 +301,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(page, /className="agent-linear-axis"/);
   assert.match(projectCases, /className="project-evidence-band"/);
   assert.match(projectCases, /project-evidence-item/);
+  assert.match(projectCases, /className="project-evidence-meta"/);
   assert.doesNotMatch(page, /process-head-note|project-evidence-head/);
   assert.match(page, /data-agent-module="context"/);
   assert.match(page, /data-feedback-from="memory"/);
@@ -421,6 +437,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(styles, /\.project-evidence-band\s*\{/);
   assert.match(styles, /\.project-evidence-item\s*\{/);
   assert.match(styles, /\.project-evidence-result\s*\{/);
+  assert.match(styles, /\.project-evidence-meta\s*\{/);
   assert.match(caseStyles, /\.portfolio-case-study\s*\{/);
   assert.match(caseStyles, /--case-accent:\s*#2f6b4b/i);
   assert.match(caseStyles, /--case-accent:\s*#315f9b/i);

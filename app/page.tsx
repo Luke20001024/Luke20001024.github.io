@@ -8,8 +8,12 @@ const projects = [
     number: "01",
     title: "AIGC个性化生成",
     focus: "搜索意图 → 个性化表达",
+    purpose: "理解搜索意图背后的需求，动态表达商品或服务为什么能够承接这一意图",
+    context: "字节跳动 · TikTok GMPT Ads Core",
+    role: "搜索个性化产品侧负责人",
     coverage: "当前 Context · 意图 · 行动 · 评测",
     statement: "意图识别 → 服务判断 → 图文生成 → 质量准出 → 素材优选",
+    resultLabel: "实验结果",
     result: "Advv +23.16% · CTR2 +11.13% · CVR +25.39%",
     directModules: "context intent action evaluation",
     supportModules: "",
@@ -21,9 +25,13 @@ const projects = [
     number: "02",
     title: "AI Search",
     focus: "复杂意图 → 决策框架",
+    purpose: "组织分散的商品与内容事实，形成帮助用户理解、比较和继续决策的 AI 结果卡",
+    context: "字节跳动 · TikTok GMPT Ads Core",
+    role: "AI 卡生成能力与评估体系建设",
     coverage: "当前 Context · 意图 · 行动 · 评测",
     statement: "任务识别 → 事实召回 → 信息组织 → 质量准出",
-    result: "人工评估Good Case 83% · 结构有效率96%",
+    resultLabel: "首版离线人工评估",
+    result: "Good Case 83% · 结构有效率96%",
     directModules: "context intent action evaluation",
     supportModules: "",
     preview: "/assets/ai-search-agentic.webp",
@@ -34,8 +42,12 @@ const projects = [
     number: "03",
     title: "质量评测与规模化",
     focus: "不确定性 → 质量边界",
+    purpose: "把评测做成 AI 产品的动态 PRD，将模型的不确定性转化为牵引策略迭代的引擎",
+    context: "字节跳动 · TikTok GMPT Ads Core",
+    role: "生成质量与评测负责人",
     coverage: "评测",
     statement: "标准定义 → 事前准入 → 线上巡检 → 归因反哺",
+    resultLabel: "评测规模与执行产能",
     result: "累计评测 8 万+ · 日产能 200 → 10,000",
     directModules: "evaluation",
     supportModules: "context action",
@@ -47,12 +59,15 @@ const projects = [
     number: "04",
     title: "Memento",
     focus: "碎片 → Context",
+    purpose: "将分散在不同时间与场景中的零散事实组织起来，形成持续更新的个性化理解系统",
+    context: "个人独立项目 · 持续构建",
+    role: "产品定义、系统设计与 AI 辅助实现",
     coverage: "长期 / 当前 Context · 用户校准（实验）· 记忆",
     statement: "原窗口记录 → 本地事实 → 用户授权Context",
+    resultLabel: "当前完成状态",
     result: "独立构建 · 已形成记录闭环",
     directModules: "context memory",
     supportModules: "trust",
-    status: "独立项目 · 持续构建",
     preview: "/assets/memento-dashboard.png",
     previewAlt: "Memento记录与回看Dashboard",
   },
@@ -99,11 +114,11 @@ export default function Home() {
 
                 <ParticlePortrait />
 
-          <div className="hero-identity reveal" aria-label="个人身份与方向">
-            <span className="hero-identity-label" aria-hidden="true">ROLE · FOCUS</span>
-            <strong>AI 产品经理</strong>
-            <p>AI 应用 · 质量治理 · 规模化落地</p>
-            <small>关注 AI Native</small>
+          <div className="hero-identity reveal" aria-label="史翼洋的个人身份与方向">
+            <span className="hero-identity-label" aria-hidden="true">PROFILE · FOCUS</span>
+            <strong>史翼洋 / Luke Shi</strong>
+            <p>浙江大学硕士 · 2027 届 · AI 产品经理</p>
+            <small>AI 应用 · 质量治理 · 规模化落地 · 关注 AI Native</small>
           </div>
 
           <div className="hero-cta-row reveal">
@@ -177,13 +192,17 @@ export default function Home() {
                 <p className="chapter-label chapter-label-dark">01 · 核心项目</p>
                 <h2 id="process-title">四项 AI 产品实践</h2>
               </div>
+              <div className="process-thesis">
+                <strong>把 AI 能力变成可用、可判断、可持续迭代的产品结果</strong>
+                <p>我在四个场景中持续处理四类 AI 产品问题：如何理解意图并动态表达服务价值，如何组织信息帮助用户决策，如何通过评测牵引策略迭代，以及如何利用 Context 形成持续的个性化理解</p>
+              </div>
             </div>
 
             <div className="work-model-shell">
               <ProjectCaseShell projects={projects}>
                 <figure className="agent-zone" aria-labelledby="agent-map-caption">
                 <figcaption className="agent-map-caption" id="agent-map-caption">
-                  <span>项目背后的产品检查轴</span>
+                  <span>我做 AI 产品时反复检查的六个问题</span>
                 </figcaption>
 
                 <div className="agent-linear-model" aria-label="从 Context 到长期记忆的 Agent 产品检查轴线">

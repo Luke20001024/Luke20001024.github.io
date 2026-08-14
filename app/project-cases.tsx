@@ -8,12 +8,15 @@ export type PortfolioProject = {
   number: string;
   title: string;
   focus: string;
+  purpose: string;
+  context: string;
+  role: string;
   coverage: string;
   statement: string;
+  resultLabel: string;
   result: string;
   directModules: string;
   supportModules: string;
-  status?: string;
   preview: string | null;
   previewAlt: string;
 };
@@ -39,11 +42,18 @@ function ProjectEvidence({ project }: { project: PortfolioProject }) {
         <b>{project.focus}</b>
       </header>
       <h3>{project.title}</h3>
-      <strong className="project-evidence-result">{project.result}</strong>
+      <p className="project-evidence-purpose">{project.purpose}</p>
+      <dl className="project-evidence-meta">
+        <div><dt>项目背景</dt><dd>{project.context}</dd></div>
+        <div><dt>我的角色</dt><dd>{project.role}</dd></div>
+      </dl>
+      <div className="project-evidence-outcome">
+        <span>{project.resultLabel}</span>
+        <strong className="project-evidence-result">{project.result}</strong>
+      </div>
       <p className="project-evidence-route">{project.statement}</p>
       <footer>
         <span className="project-evidence-coverage">{project.coverage}</span>
-        {project.status ? <span className="project-status">{project.status}</span> : null}
       </footer>
       <a
         className="project-case-open"
