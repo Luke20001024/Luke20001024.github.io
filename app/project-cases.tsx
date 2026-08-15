@@ -9,8 +9,6 @@ export type PortfolioProject = {
   title: string;
   focus: string;
   purpose: string;
-  context: string;
-  role: string;
   coverage: string;
   statement: string;
   resultLabel: string;
@@ -43,10 +41,6 @@ function ProjectEvidence({ project }: { project: PortfolioProject }) {
       </header>
       <h3>{project.title}</h3>
       <p className="project-evidence-purpose">{project.purpose}</p>
-      <dl className="project-evidence-meta">
-        <div><dt>项目背景</dt><dd>{project.context}</dd></div>
-        <div><dt>我的角色</dt><dd>{project.role}</dd></div>
-      </dl>
       <div className="project-evidence-outcome">
         <span>{project.resultLabel}</span>
         <strong className="project-evidence-result">{project.result}</strong>
@@ -412,22 +406,24 @@ function SearchCase() {
       number="02"
       eyebrow="AI SEARCH"
       title="AI搜索结果卡"
-      titleNote={<blockquote className="portfolio-case-title-note">面对“该怎么选”这类复杂搜索，先判断是否需要AI承接，再用可验证的商品与广告事实组织选择标准、候选与理由，最后通过质量评测决定是否准出</blockquote>}
+      titleNote={<blockquote className="portfolio-case-title-note">面对“该怎么选”这类复杂搜索，先理解Query与意图，召回能承接需求的商品与事实，再由Planner规划、Writer生成，最后通过评测决定是否准出</blockquote>}
     >
       <section className="portfolio-method-section portfolio-search-method" aria-labelledby="portfolio-search-how-title">
         <header className="portfolio-method-section-head">
-          <div><small>怎么做</small><h4 id="portfolio-search-how-title">从复杂搜索任务，到能帮助选择的AI结果卡</h4></div>
-          <p>任务适配 → 事实召回与Planner组织 → Judge准出</p>
+          <div><small>怎么做</small><h4 id="portfolio-search-how-title">从复杂Query，到经过准出的AI结果卡</h4></div>
+          <p>理解需求 → 召回供给 → 组织表达 → 评测准出</p>
         </header>
         <div className="portfolio-method-overview">
           <section className="portfolio-search-chain" aria-labelledby="portfolio-search-chain-title">
-            <header><small>AI结果卡产品链</small><h5 id="portfolio-search-chain-title">先判断任务，再组织事实，最后决定是否准出</h5></header>
+            <header><small>AI结果卡产品链</small><h5 id="portfolio-search-chain-title">先理解需求，再组织结果，最后决定是否准出</h5></header>
             <div className="portfolio-search-chain-flow">
-              <article><span>任务适配</span><b>判断是否需要AI承接</b><p>事实查询和简单找商品不强行出卡，需要比较与选择的任务才进入下游</p><small>进入｜决策型与探索型搜索任务</small></article>
-              <i aria-hidden="true">↓</i>
-              <article className="planner"><span>事实召回 + Planner</span><b>召回可验证事实，再组织选择框架</b><p>先从广告和商品信息中召回事实，再由Planner组织选择标准、候选顺序与推荐理由</p><small>产出｜结构化结果卡草案</small></article>
-              <i aria-hidden="true">↓</i>
-              <article className="judge"><span>Judge Model</span><b>评测后决定是否准出</b><p>检查事实准确、搜索相关、结构完整与风险边界，不满足则阻断</p><small>产出｜可展示候选 / 阻断</small></article>
+              <article className="understanding"><span>01 / 理解需求</span><b>Query清洗与意图理解</b><p>判断是否需要AI卡，并得到可用于召回的意图表达</p><small>产出｜标准化意图</small></article>
+              <i className="portfolio-search-chain-arrow" aria-hidden="true" />
+              <article className="recall"><span>02 / 召回供给</span><b>相关性召回</b><p>按意图召回能承接需求的商品与可验证事实</p><small>产出｜候选商品池</small></article>
+              <i className="portfolio-search-chain-arrow" aria-hidden="true" />
+              <article className="compose"><span>03 / 组织表达</span><b>Planner规划 · Writer生成</b><p>Planner决定用什么、怎么组织；Writer负责具体怎么写</p><small>产出｜结果卡草稿</small></article>
+              <i className="portfolio-search-chain-arrow" aria-hidden="true" />
+              <article className="judge"><span>04 / 评测准出</span><b>Judge Model</b><p>评测事实、相关性、结构与风险，不满足则阻断</p><small>产出｜可展示结果卡 / 阻断</small></article>
             </div>
           </section>
           <section className="portfolio-evidence-board portfolio-search-board" aria-labelledby="portfolio-search-case-title">
@@ -442,17 +438,47 @@ function SearchCase() {
           </section>
         </div>
       </section>
-      <DetailToggle open={detail} setOpen={setDetail} controls="portfolio-detail-search" title="展开这张AI卡的完整生成链路" route="任务圈选 → 事实召回 → Planner建卡 → Judge Model准出" />
+      <DetailToggle open={detail} setOpen={setDetail} controls="portfolio-detail-search" title="展开这张AI卡的完整生成链路" route="理解需求 → 召回供给 → 组织表达 → 评测准出" />
       <section className="portfolio-case-detail" id="portfolio-detail-search" aria-labelledby="portfolio-detail-search-title" tabIndex={-1} hidden={!detail}>
-        <header><div><small>完整执行链路 / 02</small><h4 id="portfolio-detail-search-title">从搜索任务，到一张可以展示的AI结果卡</h4></div><p>系统负责判断、组织和准出；用户选择是最终输出，不是第五个系统节点</p></header>
-        <section className="search-workbench" aria-label="gym headphones从搜索任务到AI结果卡的四步处理">
-          <div className="search-workbench-head"><div><strong>从搜索词到可展示结果卡</strong><small>案例重组 · 非逐请求日志</small></div><span>事实组织与质量准出<br />分开表达</span></div>
-          <div className="search-flow-row"><div className="search-flow-label"><small>01 / 任务适配</small><b>判断是否需要AI承接</b></div><div className="search-query-task"><div><strong>gym + headphones</strong><span>商品对象 + 健身场景</span></div><i aria-hidden="true">→</i><div><strong>运动场景下的耳机选择任务</strong><span>决策型与探索型搜索优先</span></div></div></div>
-          <div className="search-flow-row"><div className="search-flow-label"><small>02 / 商品事实</small><b>召回可验证事实</b></div><div className="search-product-facts"><article className="search-product-fact"><small>候选01 · 4.7 (64)</small><b>Jabra Elite Active 75t</b><span>长续航 · 良好音质</span></article><article className="search-product-fact"><small>候选02 · 4.7 (38)</small><b>M39 Wireless earbuds</b><span>防水 · 降噪</span></article><article className="search-product-fact"><small>候选03 · 4.6 (72)</small><b>Biaze Bass 15 Clip</b><span>开放式佩戴 · ENC音频</span></article></div></div>
-          <div className="search-flow-row"><div className="search-flow-label"><small>03 / 信息规划</small><b>组织选择框架</b></div><div className="search-planner-grid"><div className="search-planner-block"><b>先提出选择标准</b><div className="search-dimensions"><span>稳固佩戴</span><span>耐汗 / 防水</span><span>续航</span></div></div><div className="search-planner-block"><b>再决定卡片结构</b><p>一句话总结 → 三个候选 → 关键事实与适配理由</p></div></div></div>
-          <div className="search-flow-row"><div className="search-flow-label"><small>04 / 质量准出</small><b>判断是否出卡</b></div><div className="search-final-grid"><div className="search-judge"><div className="search-judge-grid"><span>事实准确</span><span>搜索相关</span><span>结构完整</span><span>风险红线</span></div><div className="search-serve-state"><span className="search-serve-pass">通过 → 进入候选</span><span className="search-serve-fail">失败 → 阻断</span></div></div><div className="search-answer-card"><small>信息规划输出</small><b>Gym Headphone Picks</b><p>选择标准 + 候选事实 + 推荐理由</p></div></div></div>
+        <header><div><small>完整执行链路 / 02</small><h4 id="portfolio-detail-search-title">一张AI结果卡，如何从Query走到准出</h4></div><p>理解需求 → 召回供给 → 组织表达 → 评测准出</p></header>
+        <section className="search-detail-pipeline" aria-label="gym headphones从原始Query到AI结果卡的完整处理链路">
+          <header className="search-detail-pipeline-head"><strong>上一阶段产出，成为下一阶段输入</strong><span>候选与文案均来自可验证的商品和广告事实</span></header>
+          <div className="search-detail-lanes">
+            <section className="search-detail-lane search-detail-understanding" aria-labelledby="search-detail-understanding-title">
+              <header><small>理解需求</small><h5 id="search-detail-understanding-title">Query清洗与意图理解</h5><p>判断是否需要AI卡，并得到可用于召回的意图表达</p></header>
+              <div className="search-detail-lane-body">
+                <article className="search-detail-node search-detail-query"><small>原始Query</small><b>gym headphones</b></article>
+                <div className="search-detail-down-arrow" aria-hidden="true"><i /></div>
+                <article className="search-detail-node search-detail-intent"><small>任务圈选 · Query清洗 · 意图理解</small><b>运动场景下的耳机选择需求</b><em>产出｜标准化意图</em></article>
+              </div>
+            </section>
+
+            <section className="search-detail-lane search-detail-recall" aria-labelledby="search-detail-recall-title">
+              <header><small>召回供给</small><h5 id="search-detail-recall-title">相关性召回</h5><p>按意图找到能承接需求的商品与事实</p></header>
+              <div className="search-detail-lane-body">
+                <article className="search-detail-node search-detail-recall-model"><small>召回候选</small><b>商品池 + 可验证事实</b><div className="search-detail-candidate-list"><span><b>Jabra Elite Active 75t</b><small>长续航 · 良好音质</small></span><span><b>M39 Wireless earbuds</b><small>防水 · 降噪</small></span><span><b>Biaze Bass 15 Clip</b><small>开放式佩戴 · ENC音频</small></span></div><em>产出｜候选商品池</em></article>
+              </div>
+            </section>
+
+            <section className="search-detail-lane search-detail-compose" aria-labelledby="search-detail-compose-title">
+              <header><small>组织表达</small><h5 id="search-detail-compose-title">Planner规划 · Writer生成</h5><p>把选品与结构规划、具体文案生成拆开</p></header>
+              <div className="search-detail-lane-body">
+                <article className="search-detail-node search-detail-planner"><small>Planner</small><b>选品与结构规划</b><blockquote>决定用什么、怎么组织</blockquote><p>确定进卡商品、选择维度、顺序与卡片结构</p></article>
+                <div className="search-detail-down-arrow" aria-hidden="true"><i /></div>
+                <article className="search-detail-node search-detail-writer"><small>Writer</small><b>卡片文字生成</b><blockquote>负责具体怎么写</blockquote><div className="search-writer-outputs"><span>卡片总结</span><span>逐商品解释</span></div></article>
+              </div>
+            </section>
+
+            <section className="search-detail-lane search-detail-gate" aria-labelledby="search-detail-gate-title">
+              <header><small>评测准出</small><h5 id="search-detail-gate-title">Judge Model</h5><p>对整张结果卡草稿做最终判断</p></header>
+              <div className="search-detail-lane-body">
+                <article className="search-detail-node search-detail-judge"><small>评测维度</small><b>事实、相关性、结构与风险</b><div className="search-judge-criteria"><span>事实准确</span><span>搜索相关</span><span>结构完整</span><span>风险边界</span></div></article>
+                <div className="search-detail-down-arrow" aria-hidden="true"><i /></div>
+                <div className="search-detail-gate-output"><article className="search-detail-pass"><small>通过 · 进入展示候选</small><b>总结 + 结构化推荐结果卡</b></article><article className="search-detail-block"><small>失败</small><b>阻断，不进入展示候选</b></article></div>
+              </div>
+            </section>
+          </div>
         </section>
-        <div className="search-user-output"><b>输出交还用户</b><span>结果卡提供选择标准、候选事实与适配理由，帮助用户缩小下一步选择</span><small>当前证据不证明已经缩短决策时间或带来线上商业增长</small></div>
         <DetailClose controls="portfolio-detail-search" setOpen={setDetail} />
       </section>
       <StructuredOutcome
@@ -465,7 +491,7 @@ function SearchCase() {
         evidenceTitle="首版离线人工评估"
         evidence={<><div className="portfolio-metrics two"><div><b>83%</b><span>Good Case</span></div><div><b>96%</b><span>结构有效率</span></div></div><p>用于解除首版开实验的质量阻塞，不归因到单张卡，也不等于线上决策效率或商业增量</p></>}
         roleTitle="AI卡生成能力与评估体系建设"
-        roleItems={["定义搜索任务圈选与事实边界", "设计卡片信息组织与生成策略", "推动Planner建卡与Judge Model准出", "用离线评估解除首版质量阻塞"]}
+        roleItems={["定义搜索任务圈选与事实边界", "设计卡片信息组织与生成策略", "设计Planner/Writer协作与Judge Model准出", "用离线评估解除首版质量阻塞"]}
       />
     </CaseFrame>
   );
@@ -518,9 +544,9 @@ function QualityCase() {
         <section className="quality-governance" aria-label="AI Search质量治理四阶段主链">
           <div className="quality-governance-head"><strong>一条能决定上线，也能牵引下一轮修改的质量闭环</strong><span>标准定义 → 事前准入 → 线上巡检 → 归因反哺</span></div>
           <div className="quality-governance-grid">
-            <article className="quality-governance-card"><small>01 / 先把规则写清</small><h5>把“好卡片”写成可执行规则</h5><div className="quality-governance-body"><b>判断什么</b><p>事实是否准确、是否回答搜索需求、卡片结构是否完整、是否触及风险红线</p></div><div className="quality-governance-output"><b>阶段产物</b><span>评测规则表 · 严重度口径 · 标注执行说明</span></div></article>
-            <article className="quality-governance-card"><small>02 / 上线前做决定</small><h5>在实验和推全前做分层判断</h5><div className="quality-governance-body"><b>怎样执行</b><p>按严重度与风险红线做分层准入，需要结合上下文的复杂判断由人工复核</p></div><div className="quality-governance-output"><b>阶段产物</b><span>通过 / 返工 / 阻断 · 决定实验或全量上线</span></div></article>
-            <article className="quality-governance-card"><small>03 / 上线后继续抽检</small><h5>持续监控已上线结果</h5><div className="quality-governance-body"><b>怎样执行</b><p>上线后持续抽检已推全策略，监控问题样本率并及时发现新增风险</p></div><div className="quality-governance-output"><b>阶段产物</b><span>线上问题样本 · 风险优先级</span></div></article>
+            <article className="quality-governance-card"><small>01 / 先把规则写清</small><h5>把“好卡片”写成可执行规则</h5><div className="quality-governance-body"><b>判断什么</b><p>把事实、相关性、结构与风险红线写成统一规则，形成跨策略人审可以共同执行的判断口径</p></div><div className="quality-governance-output"><b>阶段产物</b><span>评测规则表 · 严重度口径 · 标注执行说明</span></div></article>
+            <article className="quality-governance-card"><small>02 / 上线前做决定</small><h5>在实验和推全前做分层判断</h5><div className="quality-governance-body"><b>怎样执行</b><p>按统一口径与风险红线做分层准入，需要结合上下文的复杂判断由人工复核</p></div><div className="quality-governance-output"><b>阶段产物</b><span>通过 / 返工 / 阻断 · 决定实验或全量上线</span></div></article>
+            <article className="quality-governance-card"><small>03 / 上线后继续抽检</small><h5>持续监控已上线结果</h5><div className="quality-governance-body"><b>怎样执行</b><p>上线后持续抽检已推全策略，继续沉淀问题样本、风险与处理优先级</p></div><div className="quality-governance-output"><b>阶段产物</b><span>线上问题样本 · 风险优先级</span></div></article>
             <article className="quality-governance-card"><small>04 / 定位并重新送评</small><h5>把问题变成可验证的修改</h5><div className="quality-governance-body"><b>怎样回流</b><p>将问题定位到规则、模型或策略，完成修改后重新进入准入环节</p></div><div className="quality-governance-output"><b>阶段产物</b><span>规则 / 模型 / 策略变更项</span></div></article>
           </div>
           <div className="quality-governance-return"><span>问题变成修改项后，返回下一轮标准与准入</span></div>
@@ -529,7 +555,6 @@ function QualityCase() {
           <article><small>标准怎样持续更新</small><h5>争议样本与线上Bad Case共同推动口径迭代</h5><div className="portfolio-quality-track"><span>争议样本 / 线上Bad Case</span><i aria-hidden="true">→</i><span>确认新的判断边界</span><i aria-hidden="true">→</i><span>写回规则与执行说明</span><i aria-hidden="true">→</i><span>下一轮继续使用</span></div></article>
           <article><small>自动评审能力</small><h5>稳定规则进入自动送评、巡检与风险处置</h5><p>人审负责需要结合上下文的复杂判断，机审承担规模监控，结果继续反哺生成策略</p></article>
         </div>
-        <div className="portfolio-quality-scale"><header><b>跨策略人审执行底座</b><span>支撑10+项策略，不是AI Search单项目样本量，也不是机器产能</span></header><div className="portfolio-metrics three"><div><b>30+</b><span>统一执行标准的评测人员</span></div><div><b>200 → 10k</b><span>日评测能力</span></div><div><b>80k+</b><span>累计人审样本</span></div></div><p>三组数字说明跨策略评测执行规模，不能与上方AI Search单项目的P00/P0结果混为同一口径</p></div>
         <DetailClose controls="portfolio-detail-evaluation" setOpen={setDetail} />
       </section>
       <StructuredOutcome

@@ -172,17 +172,7 @@ test("server-renders the complete first-delivery narrative", async () => {
     assert.match(html, new RegExp(`>${number}(?:<!-- -->)?<`));
     assert.equal((html.match(new RegExp(`id="project-${id}"`, "g")) ?? []).length, 1);
   }
-  assert.equal((html.match(/<dl class="project-evidence-meta">/g) ?? []).length, 4);
-  for (const projectMeta of [
-    "字节跳动 · TikTok GMPT Ads Core",
-    "搜索个性化产品侧负责人",
-    "AI 卡生成能力与评估体系建设",
-    "生成质量与评测负责人",
-    "个人独立项目 · 持续构建",
-    "产品定义、系统设计与 AI 辅助实现",
-  ]) {
-    assert.match(html, new RegExp(projectMeta));
-  }
+  assert.doesNotMatch(html, /<dl class="project-evidence-meta">/);
   assert.doesNotMatch(html, /data-project-anchor=/);
   assert.match(html, /data-project-evidence="search"[^>]*data-direct-modules="context intent action evaluation"[^>]*data-support-modules=""/);
   assert.match(html, /data-project-evidence="aigc"[^>]*data-direct-modules="context intent action evaluation"[^>]*data-support-modules=""/);
@@ -223,9 +213,9 @@ test("server-renders the complete first-delivery narrative", async () => {
     "失败 → 废弃或阻断",
     "图片质检与Title支路分开",
     "Jabra Elite Active 75t",
-    "稳固佩戴",
-    "失败 → 阻断",
-    "输出交还用户",
+    "决定用什么、怎么组织",
+    "负责具体怎么写",
+    "不进入展示候选",
     "问题变成修改项后",
     "争议样本与线上Bad Case",
     "支撑10+项策略",
@@ -244,7 +234,7 @@ test("server-renders the complete first-delivery narrative", async () => {
   const mementoStart = html.indexOf('id="project-memento"');
   const mementoEnd = html.indexOf("</article>", mementoStart);
   assert.ok(mementoStart > -1 && mementoEnd > mementoStart);
-  assert.match(html.slice(mementoStart, mementoEnd), /独立项目 · 持续构建/);
+  assert.doesNotMatch(html.slice(mementoStart, mementoEnd), /独立项目 · 持续构建|产品定义、系统设计与 AI 辅助实现/);
   assert.match(html.slice(mementoStart, mementoEnd), /href="#portfolio-case-memento"/);
   assert.doesNotMatch(html, /href="\/documents\/resume\.pdf"/);
   assert.match(html, /href="mailto:Shiyiyang_Luke@163\.com"/);
@@ -301,7 +291,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(page, /className="agent-linear-axis"/);
   assert.match(projectCases, /className="project-evidence-band"/);
   assert.match(projectCases, /project-evidence-item/);
-  assert.match(projectCases, /className="project-evidence-meta"/);
+  assert.doesNotMatch(projectCases, /className="project-evidence-meta"/);
   assert.doesNotMatch(page, /process-head-note|project-evidence-head/);
   assert.match(page, /data-agent-module="context"/);
   assert.match(page, /data-feedback-from="memory"/);
@@ -331,7 +321,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(page, /focus: "搜索意图 → 个性化表达"/);
   assert.match(page, /statement: "意图识别 → 服务判断 → 图文生成 → 质量准出 → 素材优选"/);
   assert.match(page, /focus: "复杂意图 → 决策框架"/);
-  assert.match(page, /statement: "任务识别 → 事实召回 → 信息组织 → 质量准出"/);
+  assert.match(page, /statement: "Query理解 → 相关性召回 → Planner\/Writer编排 → Judge准出"/);
   assert.match(projectCases, /href=\{`#portfolio-case-\$\{project\.id\}`\}/);
   assert.doesNotMatch(projectCases, /openCase|setOpenCase|triggerRefs/);
   assert.doesNotMatch(projectCases, /hidden=\{openCase/);
@@ -349,9 +339,13 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(projectCases, /<CaseFrame\s+id="evaluation"/);
   assert.match(projectCases, /<CaseFrame\s+id="memento"/);
   assert.match(projectCases, /portfolio-search-chain-flow/);
-  assert.match(projectCases, /任务适配[\s\S]*Planner[\s\S]*Judge Model/);
+  assert.match(projectCases, /理解需求[\s\S]*召回供给[\s\S]*组织表达[\s\S]*评测准出/);
+  assert.equal((projectCases.match(/className="portfolio-search-chain-arrow"/g) ?? []).length, 3);
+  assert.match(projectCases, /search-detail-pipeline[\s\S]*Query清洗[\s\S]*相关性召回[\s\S]*Planner[\s\S]*Writer[\s\S]*Judge Model/);
   assert.match(projectCases, /portfolio-quality-cycle-map/);
   assert.match(projectCases, /标准与风险边界[\s\S]*事前评测与判断[\s\S]*线上抽检与发现[\s\S]*归因修改与重评/);
+  assert.equal((projectCases.match(/跨策略人审执行底座/g) ?? []).length, 1);
+  assert.doesNotMatch(projectCases, /className="portfolio-quality-scale"/);
   assert.match(projectCases, /portfolio-memento-public-route/);
   assert.match(projectCases, /portfolio-memento-review-branch/);
   assert.doesNotMatch(projectCases, /<MethodFlow\b/);
@@ -437,7 +431,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(styles, /\.project-evidence-band\s*\{/);
   assert.match(styles, /\.project-evidence-item\s*\{/);
   assert.match(styles, /\.project-evidence-result\s*\{/);
-  assert.match(styles, /\.project-evidence-meta\s*\{/);
+  assert.doesNotMatch(styles, /\.project-evidence-meta\s*\{/);
   assert.match(caseStyles, /\.portfolio-case-study\s*\{/);
   assert.match(caseStyles, /--case-accent:\s*#2f6b4b/i);
   assert.match(caseStyles, /--case-accent:\s*#315f9b/i);
