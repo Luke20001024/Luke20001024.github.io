@@ -133,7 +133,7 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.match(html, /class="project-zone"[^>]*data-theme="light"/);
   assert.match(html, /<section class="project-zone"[^>]*><div class="project-evidence-band">/);
   assert.match(html, /<figcaption class="agent-map-caption" id="agent-map-caption"><span>我做 AI 产品时反复检查的六个问题<\/span><\/figcaption>/);
-  for (const resultLabel of ["实验结果", "首版离线人工评估", "评测规模与执行产能", "当前完成状态"]) {
+  for (const resultLabel of ["实验结果", "离线人工评估", "评测规模 / 产能", "当前状态"]) {
     assert.match(html, new RegExp(`<span>${resultLabel}<\\/span>`));
   }
   assert.doesNotMatch(html, /项目先呈现结果与关键链路|项目先行 · 思路随后|先看项目结果与链路|长期 Context 与当前 Context 共同形成理解|悬停项目，对应环节亮起/);
@@ -173,6 +173,7 @@ test("server-renders the complete first-delivery narrative", async () => {
     assert.equal((html.match(new RegExp(`id="project-${id}"`, "g")) ?? []).length, 1);
   }
   assert.doesNotMatch(html, /<dl class="project-evidence-meta">/);
+  assert.doesNotMatch(html, /class="project-evidence-coverage"|<footer><span class="project-evidence-coverage"/);
   assert.doesNotMatch(html, /data-project-anchor=/);
   assert.match(html, /data-project-evidence="search"[^>]*data-direct-modules="context intent action evaluation"[^>]*data-support-modules=""/);
   assert.match(html, /data-project-evidence="aigc"[^>]*data-direct-modules="context intent action evaluation"[^>]*data-support-modules=""/);
@@ -184,7 +185,7 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.doesNotMatch(html, /data-project-evidence="evaluation"[^>]*data-direct-modules="[^"]*memory/);
   assert.doesNotMatch(html, /data-project-evidence="memento"[^>]*data-direct-modules="[^"]*(?:intent|evaluation|trust)/);
   for (const fact of [
-    "首版离线人工评估",
+    "离线人工评估",
     "Good Case 83%",
     "结构有效率96%",
     "Advv +23.16%",
@@ -198,6 +199,7 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.doesNotMatch(html, /href="\/documents\//);
   assert.doesNotMatch(html, /class="project-material-link"|项目材料 PDF/);
   assert.equal((html.match(/class="project-case-open"/g) ?? []).length, 4);
+  assert.equal((html.match(/<span>查看案例<\/span><i aria-hidden="true">↘<\/i>/g) ?? []).length, 4);
   assert.equal((html.match(/href="#portfolio-case-(?:aigc|search|evaluation|memento)"/g) ?? []).length, 4);
   assert.equal((html.match(/aria-label="查看(?:AIGC个性化生成|AI Search|质量评测与规模化|Memento)项目案例"/g) ?? []).length, 4);
   assert.equal((html.match(/class="portfolio-case-study portfolio-case-(?:aigc|search|evaluation|memento)"/g) ?? []).length, 4);
@@ -319,9 +321,9 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(page, /id: "evaluation"[\s\S]*?preview: null/);
   assert.match(page, /id: "memento"[\s\S]*?preview: "\/assets\/memento-dashboard\.png"/);
   assert.match(page, /focus: "搜索意图 → 个性化表达"/);
-  assert.match(page, /statement: "意图识别 → 服务判断 → 图文生成 → 质量准出 → 素材优选"/);
+  assert.match(page, /statement: "意图 → 服务判断 → 生成 → 准出 → 优选"/);
   assert.match(page, /focus: "复杂意图 → 决策框架"/);
-  assert.match(page, /statement: "Query理解 → 相关性召回 → Planner\/Writer编排 → Judge准出"/);
+  assert.match(page, /statement: "Query → 召回 → Planner\/Writer → Judge"/);
   assert.match(projectCases, /href=\{`#portfolio-case-\$\{project\.id\}`\}/);
   assert.doesNotMatch(projectCases, /openCase|setOpenCase|triggerRefs/);
   assert.doesNotMatch(projectCases, /hidden=\{openCase/);

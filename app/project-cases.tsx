@@ -9,7 +9,6 @@ export type PortfolioProject = {
   title: string;
   focus: string;
   purpose: string;
-  coverage: string;
   statement: string;
   resultLabel: string;
   result: string;
@@ -46,17 +45,14 @@ function ProjectEvidence({ project }: { project: PortfolioProject }) {
         <strong className="project-evidence-result">{project.result}</strong>
       </div>
       <p className="project-evidence-route">{project.statement}</p>
-      <footer>
-        <span className="project-evidence-coverage">{project.coverage}</span>
-      </footer>
       <a
         className="project-case-open"
         href={`#portfolio-case-${project.id}`}
         aria-label={`查看${project.title}项目案例`}
         data-cursor="hover"
       >
-        <span>查看项目案例</span>
-        <i aria-hidden="true">↓</i>
+        <span>查看案例</span>
+        <i aria-hidden="true">↘</i>
       </a>
     </article>
   );

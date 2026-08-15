@@ -112,8 +112,6 @@ em {
 .agent-linear-model,
 .agent-map-caption,
 .project-evidence-item header,
-.project-evidence-coverage,
-.project-evidence-item footer,
 .contact-meta,
 .contact-links span,
 .site-footer {
@@ -1365,9 +1363,9 @@ em {
 .project-evidence-item {
   display: flex;
   min-width: 0;
-  min-height: 230px;
+  min-height: 0;
   flex-direction: column;
-  padding: 16px 16px 14px;
+  padding: 14px 16px 16px;
   background: transparent;
   scroll-margin-top: 88px;
   transition: background-color .2s var(--ease), box-shadow .2s var(--ease);
@@ -1401,8 +1399,8 @@ em {
 }
 
 .project-evidence-item h3 {
-  min-height: 2em;
-  margin-top: 14px;
+  min-height: 1.1em;
+  margin-top: 10px;
   color: var(--ink);
   font-family: var(--display);
   font-size: 28px;
@@ -1418,18 +1416,16 @@ em {
 }
 
 .project-evidence-purpose {
-  min-height: 4.8em;
-  margin-top: 12px;
+  min-height: 3.2em;
+  margin-top: 10px;
   color: #332f2a;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .project-evidence-outcome {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid #d2cabf;
+  margin-top: 12px;
 }
 
 .project-evidence-outcome > span {
@@ -1455,29 +1451,10 @@ em {
 }
 
 .project-evidence-route {
-  margin-top: 12px;
+  margin-top: 8px;
   color: #5f584f;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 400;
-  line-height: 1.58;
-}
-
-.project-evidence-item footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: end;
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid #c8bfb2;
-  color: #6e665d;
-  font-size: 9px;
-  line-height: 1.45;
-}
-
-.project-evidence-coverage {
-  max-width: 68%;
-  color: #625b53;
   line-height: 1.45;
 }
 
@@ -2149,7 +2126,7 @@ em {
   }
 
   .project-evidence-item {
-    min-height: 238px;
+    min-height: 0;
     padding: 14px 12px 12px;
   }
 
@@ -2168,21 +2145,12 @@ em {
   }
 
   .project-evidence-purpose {
-    min-height: 6.2em;
+    min-height: 4.5em;
     font-size: 11px;
   }
 
   .project-evidence-route {
     font-size: 11px;
-  }
-
-  .project-evidence-item footer {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .project-evidence-item footer strong {
-    max-width: none;
   }
 
   .contact-grid {
