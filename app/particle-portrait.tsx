@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const PORTRAIT_SOURCE = "/assets/yiyang-particle-portrait-transparent-v1.webp";
+const PORTRAIT_SOURCE = "/assets/yiyang-particle-portrait-cobalt-engraving-v1-transparent.png";
 const MOTION_HOLD_MS = 100;
 const BURST_ENTER_MS = 650;
 const BURST_HOLD_MS = 900;
@@ -177,7 +177,7 @@ export default function ParticlePortrait() {
     const renderParticlePortrait = (scatterScale = 0, fullAmount = 0) => {
       context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
       context.clearRect(0, 0, canvasWidth, canvasHeight);
-      context.fillStyle = "#131210";
+      context.fillStyle = "#2b31e8";
       context.textAlign = "center";
       context.textBaseline = "middle";
 

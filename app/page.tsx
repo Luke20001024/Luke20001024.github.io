@@ -138,15 +138,15 @@ export default function Home() {
               <p>城市规划学 · 硕士</p>
             </article>
 
-            <ol className="career-internship-list" aria-label="三段实习经历">
-              <li data-internship-stage="didi-growth">
+            <ol className="career-internship-list" aria-label="三段实习经历，按时间倒序排列">
+              <li data-internship-stage="bytedance-ai">
                 <div className="career-tenure">
-                  <strong className="career-duration">约 4 个月</strong>
-                  <span className="career-dates"><time dateTime="2024-10">2024.10</time>—<time dateTime="2025-02">2025.02</time></span>
+                  <strong className="career-duration">约 12 个月</strong>
+                  <span className="career-dates"><time dateTime="2025-07">2025.07</time>—<time dateTime="2026-07">2026.07</time></span>
                 </div>
-                <h3 className="career-role">B 端增长产品</h3>
-                <strong className="career-company">滴滴出行 · 代驾事业部</strong>
-                <p>司机生态</p>
+                <h3 className="career-role">AI 产品经理</h3>
+                <strong className="career-company">字节跳动 · TikTok GMPT Ads Core</strong>
+                <p>搜索 × 多模态生成 × 广告</p>
               </li>
               <li data-internship-stage="didi-strategy">
                 <div className="career-tenure">
@@ -157,14 +157,14 @@ export default function Home() {
                 <strong className="career-company">滴滴出行 · 代驾事业部</strong>
                 <p>费用体验治理</p>
               </li>
-              <li data-internship-stage="bytedance-ai">
+              <li data-internship-stage="didi-growth">
                 <div className="career-tenure">
-                  <strong className="career-duration">约 12 个月</strong>
-                  <span className="career-dates"><time dateTime="2025-07">2025.07</time>—<time dateTime="2026-07">2026.07</time></span>
+                  <strong className="career-duration">约 4 个月</strong>
+                  <span className="career-dates"><time dateTime="2024-10">2024.10</time>—<time dateTime="2025-02">2025.02</time></span>
                 </div>
-                <h3 className="career-role">AI 产品经理</h3>
-                <strong className="career-company">字节跳动 · TikTok GMPT Ads Core</strong>
-                <p>搜索 × 多模态生成 × 广告</p>
+                <h3 className="career-role">B 端增长产品</h3>
+                <strong className="career-company">滴滴出行 · 代驾事业部</strong>
+                <p>司机生态</p>
               </li>
             </ol>
           </div>
@@ -172,10 +172,10 @@ export default function Home() {
 
       </section>
 
-      <section className="narrative-module system-module" id="system" data-section="system" data-theme="dark" aria-labelledby="process-title">
+      <section className="narrative-module system-module" id="system" data-section="system" data-theme="light" aria-labelledby="process-title">
         <article className="process-section" id="thesis">
           <div className="page-shell">
-            <div className="process-head reveal">
+            <div className="process-head reveal" data-theme="dark">
               <div>
                 <p className="chapter-label chapter-label-dark">01 · 核心项目</p>
                 <h2 id="process-title">四项 AI 产品实践</h2>
@@ -188,7 +188,7 @@ export default function Home() {
 
             <div className="work-model-shell">
               <ProjectCaseShell projects={projects}>
-                <figure className="agent-zone" aria-labelledby="agent-map-caption">
+                <figure className="agent-zone" data-theme="light" aria-labelledby="agent-map-caption">
                 <figcaption className="agent-map-caption" id="agent-map-caption">
                   <span>我做 AI 产品时反复检查的六个问题</span>
                 </figcaption>
@@ -271,6 +271,12 @@ export default function Home() {
             <div className="contact-links reveal-stagger">
               <a href="mailto:Shiyiyang_Luke@163.com" data-cursor="hover" data-magnetic>
                 <span>EMAIL</span><strong>Shiyiyang_Luke@163.com</strong><i>↗</i>
+              </a>
+              <a href="tel:+8618329134996" data-cursor="hover" data-magnetic>
+                <span>PHONE</span><strong>18329134996</strong><i>↗</i>
+              </a>
+              <a href="weixin://dl/chat?Luke001024" data-cursor="hover" data-magnetic>
+                <span>WECHAT</span><strong>Luke001024</strong><i>↗</i>
               </a>
             </div>
           </div>

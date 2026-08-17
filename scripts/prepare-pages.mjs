@@ -11,6 +11,7 @@ const publicAssets = new Set([
   "paper-noise.png",
   "search-generic-ad.webp",
   "search-personalized-ad.webp",
+  "yiyang-particle-portrait-cobalt-engraving-v1-transparent.png",
   "yiyang-particle-portrait-transparent-v1.webp",
 ]);
 

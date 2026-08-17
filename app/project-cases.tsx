@@ -636,17 +636,19 @@ function MementoCase() {
 export default function ProjectCaseShell({ projects, children }: ProjectCaseShellProps) {
   return (
     <div className="project-case-shell">
-      <section className="project-zone" id="work" data-theme="light" aria-label="四项核心项目">
-        <div className="project-evidence-band">
-          {projects.map((project) => (
-            <div className="project-evidence-slot" key={project.id}>
-              <ProjectEvidence project={project} />
-            </div>
-          ))}
-        </div>
-      </section>
-      {children}
-      <div className="project-cases" aria-label="四项完整项目案例">
+      <div className="project-overview-canvas" data-theme="dark">
+        <section className="project-zone" id="work" data-theme="light" aria-label="四项核心项目">
+          <div className="project-evidence-band">
+            {projects.map((project) => (
+              <div className="project-evidence-slot" key={project.id}>
+                <ProjectEvidence project={project} />
+              </div>
+            ))}
+          </div>
+        </section>
+        {children}
+      </div>
+      <div className="project-cases" data-theme="light" aria-label="四项完整项目案例">
         <AigcCase />
         <SearchCase />
         <QualityCase />

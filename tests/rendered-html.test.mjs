@@ -69,6 +69,10 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.match(html, /data-internship-stage="didi-growth">[\s\S]*?class="career-duration">约 4 个月<\/strong><span class="career-dates">/);
   assert.match(html, /data-internship-stage="didi-strategy">[\s\S]*?class="career-duration">约 4 个月<\/strong><span class="career-dates">/);
   assert.match(html, /data-internship-stage="bytedance-ai">[\s\S]*?class="career-duration">约 12 个月<\/strong><span class="career-dates">/);
+  const byteDanceIndex = html.indexOf('data-internship-stage="bytedance-ai"');
+  const didiStrategyIndex = html.indexOf('data-internship-stage="didi-strategy"');
+  const didiGrowthIndex = html.indexOf('data-internship-stage="didi-growth"');
+  assert.ok(byteDanceIndex < didiStrategyIndex && didiStrategyIndex < didiGrowthIndex);
   assert.match(html, /<h3 class="career-role">B 端增长产品<\/h3><strong class="career-company">滴滴出行 · 代驾事业部<\/strong><p>司机生态<\/p>/);
   assert.match(html, /<h3 class="career-role">C 端策略产品<\/h3><strong class="career-company">滴滴出行 · 代驾事业部<\/strong><p>费用体验治理<\/p>/);
   assert.match(html, /<h3 class="career-role">AI 产品经理<\/h3><strong class="career-company">字节跳动 · TikTok GMPT Ads Core<\/strong><p>搜索 × 多模态生成 × 广告<\/p>/);
@@ -240,10 +244,14 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.match(html.slice(mementoStart, mementoEnd), /href="#portfolio-case-memento"/);
   assert.doesNotMatch(html, /href="\/documents\/resume\.pdf"/);
   assert.match(html, /href="mailto:Shiyiyang_Luke@163\.com"/);
+  assert.match(html, /href="tel:\+8618329134996"/);
+  assert.match(html, /href="weixin:\/\/dl\/chat\?Luke001024"/);
+  assert.match(html, />18329134996</);
+  assert.match(html, />Luke001024</);
   assert.match(html, /data-particle-surface="hero"/);
   assert.equal((html.match(/<canvas\b/g) ?? []).length, 1);
   assert.equal((html.match(/data-particle-canvas/g) ?? []).length, 1);
-  assert.match(html, /yiyang-particle-portrait-transparent-v1\.webp/);
+  assert.match(html, /yiyang-particle-portrait-cobalt-engraving-v1-transparent\.png/);
   assert.doesNotMatch(html, /yiyang-editorial-portrait-v2\.webp/);
   assert.doesNotMatch(html, /data-particle-surface="lab"|data-particle-lab-controls|隔离调试|立体粒子参数|CLICK → PARTICLES/);
   assert.doesNotMatch(html, /portrait-seal/);
@@ -264,7 +272,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
-    access(new URL("../public/assets/yiyang-particle-portrait-transparent-v1.webp", import.meta.url)),
+    access(new URL("../public/assets/yiyang-particle-portrait-cobalt-engraving-v1-transparent.png", import.meta.url)),
     access(new URL("../public/assets/search-generic-ad.webp", import.meta.url)),
     access(new URL("../public/assets/search-personalized-ad.webp", import.meta.url)),
     access(new URL("../public/assets/ai-search-standard.webp", import.meta.url)),
@@ -383,7 +391,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(particlePortrait, /pointermove/);
   assert.match(particlePortrait, /prefers-reduced-motion/);
   assert.match(particlePortrait, /reducedMotionRef\.current \|\| !portraitReady/);
-  assert.match(particlePortrait, /yiyang-particle-portrait-transparent-v1\.webp/);
+  assert.match(particlePortrait, /yiyang-particle-portrait-cobalt-engraving-v1-transparent\.png/);
   assert.match(particlePortrait, /sourcePixels/);
   assert.match(particlePortrait, /MOTION_HOLD_MS = 100/);
   assert.match(particlePortrait, /pointer\.lastMovedAt/);
@@ -435,16 +443,17 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(styles, /\.project-evidence-result\s*\{/);
   assert.doesNotMatch(styles, /\.project-evidence-meta\s*\{/);
   assert.match(caseStyles, /\.portfolio-case-study\s*\{/);
-  assert.match(caseStyles, /--case-accent:\s*#2f6b4b/i);
-  assert.match(caseStyles, /--case-accent:\s*#315f9b/i);
-  assert.match(caseStyles, /--case-accent:\s*#a45a2a/i);
-  assert.match(caseStyles, /--case-accent:\s*#934333/i);
+  assert.match(caseStyles, /\.portfolio-case-aigc\s*\{[^}]*--case-accent:\s*#2b31e8/s);
+  assert.match(caseStyles, /\.portfolio-case-search\s*\{[^}]*--case-accent:\s*#2166b3/s);
+  assert.match(caseStyles, /\.portfolio-case-evaluation\s*\{[^}]*--case-accent:\s*#5a4cc4/s);
+  assert.match(caseStyles, /\.portfolio-case-memento\s*\{[^}]*--case-accent:\s*#26737f/s);
   assert.match(caseStyles, /\.portfolio-case-study:focus-visible\s*\{[^}]*outline:\s*3px solid var\(--case-accent\)/s);
   assert.doesNotMatch(caseStyles, /linear-gradient|radial-gradient|box-shadow/);
   assert.doesNotMatch(caseStyles, /100svh|100vh|position:\s*sticky/);
-  assert.match(styles, /\.agent-zone\s*\{[^}]*background:\s*#24211d/s);
+  assert.match(styles, /\.project-overview-canvas\s*\{[^}]*background:\s*var\(--home-blue\)/s);
+  assert.match(styles, /\.agent-zone\s*\{[^}]*background:\s*#fff/s);
   assert.match(styles, /project-evidence-item:is\(:hover, :focus-within\)[^}]*\.linear-stage\s*\{[^}]*opacity:\s*\.58/s);
-  assert.match(styles, /background-color:\s*rgba\(255, 62, 0, \.1\)/);
+  assert.match(styles, /background-color:\s*color-mix\(in srgb, var\(--home-blue\) 8%, transparent\)/);
   assert.doesNotMatch(styles, /\.project-evidence-head\s*\{|\.process-head-note\s*\{/);
   assert.match(styles, /data-projects~=/);
   assert.doesNotMatch(styles, /\.agent-model\s*\{|\.agent-input\s*\{|\.agent-context-core\s*\{|\.agent-action-steps\s*\{|\.agent-feedback-loop\s*\{/);
