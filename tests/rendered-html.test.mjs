@@ -251,7 +251,7 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.match(html, /data-particle-surface="hero"/);
   assert.equal((html.match(/<canvas\b/g) ?? []).length, 1);
   assert.equal((html.match(/data-particle-canvas/g) ?? []).length, 1);
-  assert.match(html, /yiyang-particle-portrait-cobalt-engraving-v1-transparent\.png/);
+  assert.match(html, /yiyang-particle-portrait-cobalt-engraving-v1-transparent\.webp/);
   assert.doesNotMatch(html, /yiyang-editorial-portrait-v2\.webp/);
   assert.doesNotMatch(html, /data-particle-surface="lab"|data-particle-lab-controls|隔离调试|立体粒子参数|CLICK → PARTICLES/);
   assert.doesNotMatch(html, /portrait-seal/);
@@ -272,7 +272,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
-    access(new URL("../public/assets/yiyang-particle-portrait-cobalt-engraving-v1-transparent.png", import.meta.url)),
+    access(new URL("../public/assets/yiyang-particle-portrait-cobalt-engraving-v1-transparent.webp", import.meta.url)),
     access(new URL("../public/assets/search-generic-ad.webp", import.meta.url)),
     access(new URL("../public/assets/search-personalized-ad.webp", import.meta.url)),
     access(new URL("../public/assets/ai-search-standard.webp", import.meta.url)),
@@ -391,7 +391,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(particlePortrait, /pointermove/);
   assert.match(particlePortrait, /prefers-reduced-motion/);
   assert.match(particlePortrait, /reducedMotionRef\.current \|\| !portraitReady/);
-  assert.match(particlePortrait, /yiyang-particle-portrait-cobalt-engraving-v1-transparent\.png/);
+  assert.match(particlePortrait, /yiyang-particle-portrait-cobalt-engraving-v1-transparent\.webp/);
   assert.match(particlePortrait, /sourcePixels/);
   assert.match(particlePortrait, /MOTION_HOLD_MS = 100/);
   assert.match(particlePortrait, /pointer\.lastMovedAt/);

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const PORTRAIT_SOURCE = "/assets/yiyang-particle-portrait-cobalt-engraving-v1-transparent.png";
+const PORTRAIT_SOURCE = "/assets/yiyang-particle-portrait-cobalt-engraving-v1-transparent.webp";
 const MOTION_HOLD_MS = 100;
 const BURST_ENTER_MS = 650;
 const BURST_HOLD_MS = 900;
