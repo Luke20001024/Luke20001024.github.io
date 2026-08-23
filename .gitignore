@@ -62,8 +62,15 @@ yarn-error.log*
 !/public/assets/ai-search-standard.webp
 !/public/assets/dark-noise.png
 !/public/assets/memento-dashboard.png
+!/public/assets/memento-cognitive-home.webp
+!/public/assets/memento-cognitive-home-user-shot-20260823.png
+!/public/assets/memento-value-triptych-master-v1.png
 !/public/assets/paper-noise.png
 !/public/assets/search-generic-ad.webp
 !/public/assets/search-personalized-ad.webp
 !/public/assets/yiyang-particle-portrait-cobalt-engraving-v1-transparent.webp
 !/public/assets/yiyang-particle-portrait-transparent-v1.webp
+
+# Memento target pages remain local until their standalone GitHub URLs are ready.
+/public/memento/
+/public/demos/memento-cognitive-home.html

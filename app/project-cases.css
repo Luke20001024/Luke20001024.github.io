@@ -39,8 +39,8 @@
 }
 
 .project-evidence-memento {
-  --project-color: #26737f;
-  --project-tint: #eef7f8;
+  --project-color: #4f7f9d;
+  --project-tint: #edf4f8;
 }
 
 .project-evidence-item {
@@ -155,13 +155,15 @@
 }
 
 .portfolio-case-memento {
-  --case-paper: #f8fcfc;
-  --case-accent: #26737f;
-  --case-tint: #eef7f8;
-  --case-deep: #174750;
-  --case-soft: #72a8af;
-  --case-muted: #63787c;
-  --case-line: #cbe0e2;
+  --case-paper: #f7fafd;
+  --case-surface: #ffffff;
+  --case-ink: #20394b;
+  --case-accent: #4f7f9d;
+  --case-tint: #edf4f8;
+  --case-deep: #20394b;
+  --case-soft: #9ab4c5;
+  --case-muted: #627386;
+  --case-line: #d1dde7;
 }
 
 .portfolio-case-study:is(.portfolio-case-search, .portfolio-case-evaluation, .portfolio-case-memento) .portfolio-case-title {
@@ -3691,9 +3693,2683 @@
   }
 }
 
+.portfolio-case-memento .memento-case-overview {
+  display: grid;
+  grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr);
+  gap: 34px;
+  align-items: stretch;
+  margin-top: 30px;
+  border-top: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-overview-copy {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0 28px 30px;
+}
+
+.portfolio-case-memento .memento-overview-copy header small,
+.portfolio-case-memento .memento-three-layer small,
+.portfolio-case-memento .memento-detail-problem header small,
+.portfolio-case-memento .memento-live-demo header small,
+.portfolio-case-memento .memento-formation > header small,
+.portfolio-case-memento .memento-trust-status header small,
+.portfolio-case-memento .memento-role header small {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.portfolio-case-memento .memento-overview-copy h4 {
+  max-width: 430px;
+  margin-top: 10px;
+  font-family: var(--display);
+  font-size: clamp(29px, 2.5vw, 38px);
+  font-weight: 450;
+  line-height: 1.14;
+}
+
+.portfolio-case-memento .memento-overview-copy > p {
+  max-width: 430px;
+  margin-top: 20px;
+  color: var(--case-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.portfolio-case-memento .memento-overview-copy dl {
+  margin-top: 24px;
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-overview-copy dl div {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-overview-copy dt {
+  color: var(--case-accent);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.portfolio-case-memento .memento-overview-copy dd {
+  color: var(--case-deep);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.portfolio-case-memento .memento-inline-link,
+.portfolio-case-memento .memento-live-demo footer a,
+.portfolio-case-memento .memento-detail-actions a {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  width: fit-content;
+  color: var(--case-accent);
+  font-size: 12px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.portfolio-case-memento .memento-inline-link {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.portfolio-case-memento .memento-inline-link::after,
+.portfolio-case-memento .memento-live-demo footer a::after,
+.portfolio-case-memento .memento-detail-actions a::after {
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transition: width 180ms ease;
+}
+
+.portfolio-case-memento .memento-inline-link:is(:hover, :focus-visible)::after,
+.portfolio-case-memento .memento-live-demo footer a:is(:hover, :focus-visible)::after,
+.portfolio-case-memento .memento-detail-actions a:is(:hover, :focus-visible)::after {
+  width: 34px;
+}
+
+.portfolio-case-memento .memento-product-figure {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-width: 0;
+  margin: 0;
+  border-left: 1px solid var(--case-line);
+  background: #e7e3d9;
+}
+
+.portfolio-case-memento .memento-product-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.portfolio-case-memento .memento-product-figure figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 15px;
+  border-top: 1px solid var(--case-line);
+  background: var(--case-paper);
+}
+
+.portfolio-case-memento .memento-product-figure figcaption span,
+.portfolio-case-memento .memento-product-figure figcaption b {
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.portfolio-case-memento .memento-product-figure figcaption span {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  letter-spacing: .08em;
+}
+
+.portfolio-case-memento .memento-product-figure figcaption b {
+  color: var(--case-muted);
+  font-weight: 650;
+  text-align: right;
+}
+
+.portfolio-case-memento .memento-three-layer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 18px;
+  border-top: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+  background: color-mix(in srgb, var(--case-surface) 80%, var(--case-tint) 20%);
+}
+
+.portfolio-case-memento .memento-three-layer article {
+  min-height: 176px;
+  padding: 24px 26px 26px;
+}
+
+.portfolio-case-memento .memento-three-layer article + article {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-three-layer h5 {
+  margin-top: 25px;
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.portfolio-case-memento .memento-three-layer p {
+  margin-top: 10px;
+  color: var(--case-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.portfolio-case-memento .memento-preview-status {
+  margin: 14px 0 20px;
+  padding: 12px 15px;
+  border-left: 3px solid var(--case-accent);
+  background: var(--case-tint);
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.portfolio-case-memento .memento-preview-status b {
+  margin-right: 10px;
+  color: var(--case-deep);
+}
+
+.portfolio-case-memento .portfolio-case-detail {
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-detail-problem {
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  margin-top: 24px;
+  border-top: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-detail-problem > header {
+  padding: 26px;
+  border-right: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-detail-problem h5,
+.portfolio-case-memento .memento-live-demo h5,
+.portfolio-case-memento .memento-formation > header h5,
+.portfolio-case-memento .memento-trust-status h5,
+.portfolio-case-memento .memento-role h5 {
+  margin-top: 9px;
+  font-family: var(--display);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.portfolio-case-memento .memento-source-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-column: 2;
+}
+
+.portfolio-case-memento .memento-source-strip span {
+  display: flex;
+  min-height: 106px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px;
+}
+
+.portfolio-case-memento .memento-source-strip span + span {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-source-strip b {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.portfolio-case-memento .memento-source-strip small {
+  margin-top: 7px;
+  color: var(--case-muted);
+  font-size: 10px;
+}
+
+.portfolio-case-memento .memento-detail-problem blockquote {
+  grid-column: 2;
+  margin: 0;
+  padding: 22px 24px;
+  border-top: 1px solid var(--case-line);
+  color: var(--case-deep);
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.portfolio-case-memento .memento-live-demo,
+.portfolio-case-memento .memento-formation,
+.portfolio-case-memento .memento-role {
+  margin-top: 32px;
+}
+
+.portfolio-case-memento .memento-live-demo > header,
+.portfolio-case-memento .memento-formation > header,
+.portfolio-case-memento .memento-role > header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, .58fr);
+  gap: 30px;
+  align-items: end;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-live-demo > header p {
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.portfolio-case-memento .memento-live-frame {
+  position: relative;
+  min-height: 690px;
+  overflow: hidden;
+  border-right: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+  border-left: 1px solid var(--case-line);
+  background-color: #e7e3d9;
+  background-image: url("/assets/memento-cognitive-home.webp");
+  background-position: top center;
+  background-size: cover;
+}
+
+.portfolio-case-memento .memento-live-frame iframe {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #f4f0e7;
+}
+
+.portfolio-case-memento .memento-live-loading {
+  position: absolute;
+  z-index: 0;
+  top: 18px;
+  left: 18px;
+  padding: 7px 9px;
+  background: var(--case-surface);
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  transition: opacity 160ms ease;
+}
+
+.portfolio-case-memento .memento-live-frame.is-loaded .memento-live-loading {
+  opacity: 0;
+}
+
+.portfolio-case-memento .memento-live-demo footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 12px 0;
+  color: var(--case-muted);
+  font-size: 11px;
+}
+
+.portfolio-case-memento .memento-formation > header {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.portfolio-case-memento .memento-trace {
+  display: grid;
+  grid-template-columns: minmax(240px, .8fr) 34px minmax(280px, 1.05fr) 34px minmax(260px, .95fr);
+  align-items: stretch;
+  margin-top: 18px;
+}
+
+.portfolio-case-memento .memento-trace-source {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-trace-source article {
+  padding: 18px;
+}
+
+.portfolio-case-memento .memento-trace-source article + article {
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-trace small {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .08em;
+}
+
+.portfolio-case-memento .memento-trace p {
+  margin-top: 9px;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.portfolio-case-memento .memento-trace-arrow {
+  display: grid;
+  place-items: center;
+  color: var(--case-accent);
+  font-size: 20px;
+}
+
+.portfolio-case-memento .memento-trace-theme,
+.portfolio-case-memento .memento-trace-insight {
+  padding: 22px;
+  border: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-trace-theme {
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-trace-insight {
+  border-color: var(--case-accent);
+  background: var(--case-paper);
+}
+
+.portfolio-case-memento .memento-trace h6 {
+  margin-top: 10px;
+  font-family: var(--display);
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.portfolio-case-memento .memento-trace-theme b,
+.portfolio-case-memento .memento-trace-theme > span {
+  display: block;
+}
+
+.portfolio-case-memento .memento-trace-theme b {
+  margin-top: 16px;
+  color: var(--case-accent);
+  font-size: 10px;
+}
+
+.portfolio-case-memento .memento-trace-theme > span {
+  margin-top: 5px;
+  color: var(--case-muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.portfolio-case-memento .memento-trust-status {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(310px, .85fr);
+  margin-top: 34px;
+  border-top: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-boundaries,
+.portfolio-case-memento .memento-delivery-state {
+  padding: 26px;
+}
+
+.portfolio-case-memento .memento-delivery-state {
+  border-left: 1px solid var(--case-line);
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-boundaries ol,
+.portfolio-case-memento .memento-delivery-state dl {
+  margin-top: 22px;
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-boundaries li,
+.portfolio-case-memento .memento-delivery-state dl div {
+  display: grid;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-boundaries li {
+  grid-template-columns: 84px minmax(0, 1fr);
+}
+
+.portfolio-case-memento .memento-delivery-state dl div {
+  grid-template-columns: 106px minmax(0, 1fr);
+}
+
+.portfolio-case-memento .memento-boundaries li::marker {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 9px;
+}
+
+.portfolio-case-memento .memento-boundaries b,
+.portfolio-case-memento .memento-delivery-state dt {
+  color: var(--case-deep);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.portfolio-case-memento .memento-boundaries span,
+.portfolio-case-memento .memento-delivery-state dd {
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.portfolio-case-memento .memento-role {
+  display: grid;
+  grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr);
+  border-top: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-role > header {
+  display: block;
+  padding: 26px;
+  border-right: 1px solid var(--case-line);
+  border-bottom: 0;
+}
+
+.portfolio-case-memento .memento-role ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.portfolio-case-memento .memento-role li {
+  min-height: 110px;
+  padding: 23px;
+  color: var(--case-deep);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.portfolio-case-memento .memento-role li:nth-child(even) {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-role li:nth-child(n + 3) {
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-role li::marker {
+  color: var(--case-accent);
+}
+
+.portfolio-case-memento .memento-detail-actions {
+  display: flex;
+  gap: 34px;
+  align-items: center;
+  margin-top: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-homepage-link {
+  color: var(--case-deep);
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+@media (max-width: 1180px) {
+  .portfolio-case-memento .memento-case-overview,
+  .portfolio-case-memento .memento-role {
+    grid-template-columns: minmax(280px, .85fr) minmax(0, 1.15fr);
+  }
+
+  .portfolio-case-memento .memento-product-figure img {
+    min-height: 390px;
+  }
+
+  .portfolio-case-memento .memento-trace {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-case-memento .memento-trace-arrow {
+    min-height: 38px;
+    transform: rotate(90deg);
+  }
+
+  .portfolio-case-memento .memento-live-frame {
+    min-height: 590px;
+  }
+}
+
+/* Memento current cognitive-system case: restrained blue, source-first, versioned. */
+.portfolio-case-memento .memento-method-layout {
+  display: grid;
+  grid-template-columns: minmax(360px, .74fr) minmax(0, 1.26fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.portfolio-case-memento .memento-cognition-chain,
+.portfolio-case-memento .memento-product-evidence,
+.portfolio-case-memento .memento-revision-case,
+.portfolio-case-memento .memento-system-architecture,
+.portfolio-case-memento .memento-formal-gate,
+.portfolio-case-memento .memento-object-revision {
+  min-width: 0;
+  border: 1px solid var(--case-line);
+  border-top: 5px solid var(--case-accent);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento :is(
+  .memento-cognition-chain,
+  .memento-revision-case,
+  .memento-system-architecture,
+  .memento-formal-gate,
+  .memento-object-revision
+) > header {
+  padding: 18px 20px 16px;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento :is(
+  .memento-cognition-chain,
+  .memento-revision-case,
+  .memento-system-architecture,
+  .memento-formal-gate,
+  .memento-object-revision
+) > header small,
+.portfolio-case-memento :is(
+  .memento-cognition-chain,
+  .memento-product-evidence,
+  .memento-revision-case,
+  .memento-system-architecture,
+  .memento-formal-gate,
+  .memento-object-revision,
+  .memento-agent-workflow,
+  .memento-gate-flow
+) small {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.portfolio-case-memento :is(
+  .memento-cognition-chain,
+  .memento-system-architecture,
+  .memento-formal-gate,
+  .memento-object-revision
+) > header h5 {
+  margin-top: 7px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.portfolio-case-memento .memento-cognition-chain {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-case-memento .memento-cognition-chain ol {
+  flex: 1;
+  margin: 0;
+  padding: 0 20px;
+  list-style: none;
+}
+
+.portfolio-case-memento .memento-cognition-chain li {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 14px;
+  align-items: baseline;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-cognition-chain li b {
+  color: var(--case-deep);
+  font-size: 13px;
+}
+
+.portfolio-case-memento .memento-cognition-chain li span,
+.portfolio-case-memento .memento-chain-control span {
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.portfolio-case-memento .memento-chain-control {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 12px;
+  margin: 0 20px 18px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--case-accent);
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-chain-control b {
+  color: var(--case-deep);
+  font-size: 11px;
+}
+
+.portfolio-case-memento .memento-product-evidence {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-self: start;
+  margin: 0;
+  overflow: hidden;
+}
+
+.portfolio-case-memento .memento-product-evidence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.portfolio-case-memento .memento-product-evidence figcaption {
+  display: grid;
+  grid-template-columns: .88fr 1.15fr 1fr;
+  border-top: 1px solid var(--case-line);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-product-evidence figcaption div {
+  min-width: 0;
+  padding: 12px 14px;
+}
+
+.portfolio-case-memento .memento-product-evidence figcaption div + div {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-evidence figcaption b,
+.portfolio-case-memento .memento-product-evidence figcaption span {
+  display: block;
+}
+
+.portfolio-case-memento .memento-product-evidence figcaption b {
+  color: var(--case-deep);
+  font-size: 11px;
+}
+
+.portfolio-case-memento .memento-product-evidence figcaption span {
+  margin-top: 4px;
+  color: var(--case-muted);
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.portfolio-case-memento .memento-revision-case {
+  margin-top: 24px;
+}
+
+.portfolio-case-memento .memento-revision-case > header {
+  display: grid;
+  grid-template-columns: minmax(0, .72fr) minmax(0, 1.08fr) minmax(260px, .7fr);
+  gap: 20px;
+  align-items: baseline;
+}
+
+.portfolio-case-memento .memento-revision-case > header h4 {
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.portfolio-case-memento .memento-revision-case > header p {
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.55;
+  text-align: right;
+}
+
+.portfolio-case-memento .memento-revision-flow {
+  display: grid;
+  grid-template-columns: minmax(250px, 1.06fr) minmax(190px, .82fr) minmax(190px, .72fr) minmax(250px, 1fr);
+  align-items: stretch;
+}
+
+.portfolio-case-memento .memento-revision-flow > * {
+  min-width: 0;
+  padding: 18px;
+}
+
+.portfolio-case-memento .memento-revision-flow > * + * {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-revision-sources {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  padding: 0;
+}
+
+.portfolio-case-memento .memento-revision-sources article {
+  padding: 17px 18px;
+}
+
+.portfolio-case-memento .memento-revision-sources article + article {
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-revision-flow p {
+  margin-top: 8px;
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.portfolio-case-memento .memento-revision-reading {
+  background: color-mix(in srgb, var(--case-tint) 52%, white 48%);
+}
+
+.portfolio-case-memento .memento-revision-reading h5 {
+  margin-top: 18px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.28;
+}
+
+.portfolio-case-memento .memento-revision-evidence {
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-revision-reading.current {
+  border-left: 4px solid var(--case-accent);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-preview-status {
+  margin: 14px 0 20px;
+  border-left-color: var(--case-accent);
+  background: color-mix(in srgb, var(--case-tint) 82%, white 18%);
+}
+
+.portfolio-case-memento .portfolio-case-detail {
+  background: color-mix(in srgb, var(--case-tint) 35%, white 65%);
+}
+
+.portfolio-case-memento .memento-system-architecture,
+.portfolio-case-memento .memento-formal-gate,
+.portfolio-case-memento .memento-object-revision {
+  margin-top: 24px;
+}
+
+.portfolio-case-memento .memento-object-chain {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-case-memento .memento-object-chain li {
+  min-width: 0;
+  min-height: 150px;
+  padding: 16px 14px;
+}
+
+.portfolio-case-memento .memento-object-chain li + li {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-object-chain li:nth-child(even) {
+  background: color-mix(in srgb, var(--case-tint) 55%, white 45%);
+}
+
+.portfolio-case-memento .memento-object-chain small {
+  overflow-wrap: anywhere;
+}
+
+.portfolio-case-memento .memento-object-chain b,
+.portfolio-case-memento .memento-object-chain span {
+  display: block;
+}
+
+.portfolio-case-memento .memento-object-chain b {
+  margin-top: 18px;
+  color: var(--case-deep);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.portfolio-case-memento .memento-object-chain span {
+  margin-top: 8px;
+  color: var(--case-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.portfolio-case-memento .memento-agent-workflow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-agent-workflow article {
+  padding: 18px 20px;
+}
+
+.portfolio-case-memento .memento-agent-workflow article + article {
+  border-left: 1px solid var(--case-line);
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-agent-workflow h6,
+.portfolio-case-memento .memento-gate-flow h6 {
+  margin-top: 8px;
+  color: var(--case-deep);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.portfolio-case-memento .memento-agent-workflow p,
+.portfolio-case-memento .memento-gate-flow p {
+  margin-top: 7px;
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.portfolio-case-memento .memento-gate-flow {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr) minmax(0, .9fr);
+}
+
+.portfolio-case-memento .memento-gate-flow article {
+  min-width: 0;
+  min-height: 166px;
+  padding: 18px 20px;
+}
+
+.portfolio-case-memento .memento-gate-flow article + article {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-gate-flow article:nth-child(2) {
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-gate-flow article:nth-child(3) {
+  border-left: 4px solid var(--case-accent);
+}
+
+.portfolio-case-memento .memento-gate-flow article > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.portfolio-case-memento .memento-gate-flow article > div span {
+  padding: 4px 6px;
+  border: 1px solid var(--case-line);
+  background: var(--case-surface);
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 9px;
+}
+
+.portfolio-case-memento .memento-object-revision-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.portfolio-case-memento .memento-object-revision-grid article {
+  min-width: 0;
+  min-height: 104px;
+  padding: 17px;
+}
+
+.portfolio-case-memento .memento-object-revision-grid article + article {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-object-revision-grid b,
+.portfolio-case-memento .memento-object-revision-grid span {
+  display: block;
+}
+
+.portfolio-case-memento .memento-object-revision-grid b {
+  color: var(--case-deep);
+  font-size: 12px;
+}
+
+.portfolio-case-memento .memento-object-revision-grid span {
+  margin-top: 8px;
+  color: var(--case-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.portfolio-case-memento .memento-object-revision blockquote {
+  margin: 0;
+  padding: 16px 18px;
+  border-top: 1px solid var(--case-line);
+  border-left: 4px solid var(--case-accent);
+  background: var(--case-tint);
+  color: var(--case-deep);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.65;
+}
+
+.portfolio-case-memento .memento-trust-status {
+  grid-template-columns: minmax(0, 1.04fr) minmax(360px, .96fr);
+  border: 1px solid var(--case-line);
+  border-top: 5px solid var(--case-accent);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-boundaries,
+.portfolio-case-memento .memento-delivery-state {
+  padding: 20px;
+}
+
+.portfolio-case-memento .memento-boundaries h5,
+.portfolio-case-memento .memento-delivery-state h5,
+.portfolio-case-memento .memento-live-demo h5 {
+  font-family: var(--home-display);
+}
+
+.portfolio-case-memento .memento-boundary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 18px;
+  border-top: 1px solid var(--case-line);
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-boundary-grid article {
+  min-width: 0;
+  padding: 13px 14px;
+  border-right: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-boundary-grid article:last-child {
+  grid-column: 1 / -1;
+}
+
+.portfolio-case-memento .memento-boundary-grid b,
+.portfolio-case-memento .memento-boundary-grid span {
+  display: block;
+}
+
+.portfolio-case-memento .memento-boundary-grid b {
+  color: var(--case-deep);
+  font-size: 11px;
+}
+
+.portfolio-case-memento .memento-boundary-grid span {
+  margin-top: 6px;
+  color: var(--case-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.portfolio-case-memento .memento-delivery-state {
+  border-left-color: var(--case-line);
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-delivery-state dl div {
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.portfolio-case-memento .memento-live-demo {
+  margin-top: 34px;
+}
+
+.portfolio-case-memento .memento-live-frame {
+  min-height: 650px;
+  border-color: var(--case-line);
+  background-color: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-live-frame iframe {
+  background: var(--case-paper);
+}
+
+.portfolio-case-memento .memento-live-loading {
+  border: 1px solid var(--case-line);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-detail-actions {
+  border-color: var(--case-line);
+}
+
+.portfolio-case-memento .memento-outcome-evidence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 12px;
+  border-top: 1px solid var(--case-line);
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-outcome-evidence div {
+  min-width: 0;
+  padding: 12px 10px;
+  border-right: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-outcome-evidence b,
+.portfolio-case-memento .memento-outcome-evidence span {
+  display: block;
+}
+
+.portfolio-case-memento .memento-outcome-evidence b {
+  color: var(--case-accent);
+  font-size: 18px;
+}
+
+.portfolio-case-memento .memento-outcome-evidence span {
+  margin-top: 5px;
+  color: var(--case-muted);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+@media (max-width: 1180px) {
+  .portfolio-case-memento .memento-method-layout {
+    grid-template-columns: minmax(320px, .86fr) minmax(0, 1.14fr);
+  }
+
+  .portfolio-case-memento .memento-revision-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-case-memento .memento-revision-flow > :nth-child(3) {
+    border-top: 1px solid var(--case-line);
+    border-left: 0;
+  }
+
+  .portfolio-case-memento .memento-revision-flow > :nth-child(4) {
+    border-top: 1px solid var(--case-line);
+  }
+
+  .portfolio-case-memento .memento-object-chain {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portfolio-case-memento .memento-object-chain li:nth-child(4) {
+    border-left: 0;
+  }
+
+  .portfolio-case-memento .memento-object-chain li:nth-child(n + 4) {
+    border-top: 1px solid var(--case-line);
+  }
+
+  .portfolio-case-memento .memento-object-revision-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portfolio-case-memento .memento-object-revision-grid article:nth-child(4) {
+    border-top: 1px solid var(--case-line);
+    border-left: 0;
+  }
+
+  .portfolio-case-memento .memento-object-revision-grid article:nth-child(5) {
+    grid-column: span 2;
+    border-top: 1px solid var(--case-line);
+  }
+}
+
+@media (max-width: 820px) {
+  .portfolio-case-memento .memento-method-layout,
+  .portfolio-case-memento .memento-trust-status,
+  .portfolio-case-memento .memento-agent-workflow,
+  .portfolio-case-memento .memento-gate-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-case-memento .memento-revision-case > header {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-case-memento .memento-revision-case > header p {
+    text-align: left;
+  }
+
+  .portfolio-case-memento .memento-agent-workflow article + article,
+  .portfolio-case-memento .memento-gate-flow article + article,
+  .portfolio-case-memento .memento-delivery-state {
+    border-top: 1px solid var(--case-line);
+    border-left: 0;
+  }
+}
+
+/* Memento compact detail: one real relationship image and one modular axis. */
+.portfolio-case-memento .memento-product-axis {
+  margin-top: 16px;
+  border: 1px solid var(--case-line);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-product-axis > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: baseline;
+  padding: 14px 17px;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-axis > header > div > small {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.portfolio-case-memento .memento-product-axis > header h5 {
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.portfolio-case-memento .memento-product-axis > header p {
+  color: var(--case-muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.portfolio-case-memento .memento-product-axis > ol {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-case-memento .memento-product-axis > ol::before {
+  position: absolute;
+  top: 31px;
+  right: 12.5%;
+  left: 12.5%;
+  height: 1px;
+  background: var(--case-accent);
+  content: "";
+  opacity: .5;
+}
+
+.portfolio-case-memento .memento-product-axis > ol li {
+  position: relative;
+  min-width: 0;
+  min-height: 360px;
+  padding: 20px 16px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-case-memento .memento-product-axis > ol li + li {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-axis > ol li:nth-child(2),
+.portfolio-case-memento .memento-product-axis > ol li:nth-child(3) {
+  background: color-mix(in srgb, var(--case-tint) 52%, white 48%);
+}
+
+.portfolio-case-memento .memento-product-axis > ol li:nth-child(4) {
+  background: color-mix(in srgb, var(--case-accent) 6%, white 94%);
+}
+
+.portfolio-case-memento .memento-product-axis > ol li > span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border: 1px solid var(--case-accent);
+  background: var(--case-surface);
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.portfolio-case-memento .memento-product-axis > ol li > b,
+.portfolio-case-memento .memento-product-axis > ol li > p,
+.portfolio-case-memento .memento-product-axis > ol li > small {
+  display: block;
+}
+
+.portfolio-case-memento .memento-product-axis > ol li > b {
+  margin-top: 17px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.portfolio-case-memento .memento-product-axis > ol li > p {
+  margin-top: 8px;
+  color: var(--case-muted);
+  min-height: 43px;
+  font-size: 9.5px;
+  line-height: 1.58;
+}
+
+.portfolio-case-memento .memento-agent-logic {
+  min-height: 246px;
+  margin: 14px -16px 0;
+  padding: 12px 16px;
+  border-top: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+  background: color-mix(in srgb, var(--case-surface) 78%, var(--case-tint) 22%);
+}
+
+.portfolio-case-memento .memento-agent-logic > small,
+.portfolio-case-memento .memento-product-axis > ol li > footer small {
+  display: block;
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 1.4;
+}
+
+.portfolio-case-memento .memento-agent-logic > div {
+  display: grid;
+  grid-template-columns: 39px minmax(0, 1fr);
+  gap: 2px 7px;
+  margin-top: 8px;
+  padding: 7px 8px;
+  border: 1px solid color-mix(in srgb, var(--case-line) 84%, var(--case-accent) 16%);
+  background: color-mix(in srgb, white 90%, var(--case-tint) 10%);
+}
+
+.portfolio-case-memento .memento-agent-logic em {
+  grid-row: span 2;
+  align-self: start;
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 750;
+  letter-spacing: .04em;
+}
+
+.portfolio-case-memento .memento-agent-logic b {
+  color: var(--case-deep);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.portfolio-case-memento .memento-agent-logic p {
+  grid-column: 2;
+  color: var(--case-muted);
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.portfolio-case-memento .memento-agent-logic > i {
+  display: grid;
+  height: 9px;
+  place-items: center;
+  color: var(--case-accent);
+  font-size: 9px;
+  font-style: normal;
+  line-height: 1;
+}
+
+.portfolio-case-memento .memento-axis-objects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-content: flex-start;
+  min-height: 53px;
+  padding: 10px 0;
+}
+
+.portfolio-case-memento .memento-axis-objects > small {
+  flex-basis: 100%;
+  color: var(--case-muted);
+  font-family: var(--mono);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.portfolio-case-memento .memento-axis-objects span {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  padding: 3px 5px;
+  border: 1px solid color-mix(in srgb, var(--case-line) 80%, var(--case-accent) 20%);
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 7px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.portfolio-case-memento .memento-product-axis > ol li > footer {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+  margin: auto -16px 0;
+  padding: 10px 16px;
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-axis > ol li > footer b {
+  color: var(--case-deep);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.portfolio-case-memento .memento-product-axis > footer {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  border-top: 1px solid var(--case-line);
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-product-axis > footer > div {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 14px;
+  align-items: baseline;
+  padding: 12px 15px;
+}
+
+.portfolio-case-memento .memento-product-axis > footer > div + div {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-axis > footer small {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.portfolio-case-memento .memento-product-axis > footer b {
+  color: var(--case-deep);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+@media (max-width: 1000px) {
+  .portfolio-case-memento .memento-product-axis > ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-case-memento .memento-product-axis > ol::before {
+    display: none;
+  }
+
+  .portfolio-case-memento .memento-product-axis > ol li:nth-child(n + 3) {
+    border-top: 1px solid var(--case-line);
+  }
+}
+
+@media (max-width: 700px) {
+  .portfolio-case-memento .memento-product-axis > header,
+  .portfolio-case-memento .memento-product-axis > footer {
+    display: block;
+  }
+
+  .portfolio-case-memento .memento-product-axis > header p {
+    margin-top: 7px;
+  }
+
+  .portfolio-case-memento .memento-product-axis > ol {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-case-memento .memento-product-axis > ol li {
+    min-height: 0;
+  }
+
+  .portfolio-case-memento .memento-product-axis > ol li + li,
+  .portfolio-case-memento .memento-product-axis > footer > div + div {
+    border-top: 1px solid var(--case-line);
+    border-left: 0;
+  }
+}
+
+/* Memento ideal-state narrative: one product story, one outward product link. */
+.portfolio-case-memento .memento-ideal-overview {
+  display: grid;
+  grid-template-columns: minmax(340px, .74fr) minmax(0, 1.26fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.portfolio-case-memento .memento-value-sequence,
+.portfolio-case-memento .memento-product-evidence {
+  min-width: 0;
+  border: 1px solid var(--case-line);
+  border-top: 4px solid var(--case-accent);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-value-sequence {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-case-memento .memento-value-sequence > header {
+  padding: 20px 22px 18px;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento :is(
+  .memento-value-sequence,
+  .memento-ideal-loop,
+  .memento-story-act,
+  .memento-product-principles
+) small {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.portfolio-case-memento .memento-value-sequence h5 {
+  margin-top: 8px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.36;
+}
+
+.portfolio-case-memento .memento-value-sequence ol {
+  display: grid;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-case-memento .memento-value-sequence li {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 12px;
+  align-content: center;
+  min-height: 118px;
+  padding: 18px 22px;
+}
+
+.portfolio-case-memento .memento-value-sequence li + li {
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-value-sequence li.is-outcome {
+  min-height: 154px;
+  background: color-mix(in srgb, var(--case-tint) 72%, white 28%);
+}
+
+.portfolio-case-memento .memento-value-sequence li > span {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.portfolio-case-memento .memento-value-sequence b,
+.portfolio-case-memento .memento-value-sequence p,
+.portfolio-case-memento .memento-value-sequence li small {
+  display: block;
+}
+
+.portfolio-case-memento .memento-value-sequence b {
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.portfolio-case-memento .memento-value-sequence li small {
+  margin-top: 6px;
+}
+
+.portfolio-case-memento .memento-value-sequence p {
+  margin-top: 8px;
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.62;
+}
+
+.portfolio-case-memento .memento-ideal-loop {
+  margin-top: 24px;
+  padding: 22px 24px 18px;
+  border: 1px solid var(--case-line);
+  background: color-mix(in srgb, var(--case-tint) 58%, white 42%);
+}
+
+.portfolio-case-memento .memento-ideal-loop > header {
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+  gap: 24px;
+  align-items: baseline;
+}
+
+.portfolio-case-memento .memento-ideal-loop h4 {
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.portfolio-case-memento .memento-ideal-loop ol {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin: 20px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--case-soft);
+  list-style: none;
+}
+
+.portfolio-case-memento .memento-ideal-loop li {
+  position: relative;
+  padding: 18px 10px 4px 0;
+}
+
+.portfolio-case-memento .memento-ideal-loop li::before {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background: var(--case-accent);
+  content: "";
+}
+
+.portfolio-case-memento .memento-ideal-loop li > span,
+.portfolio-case-memento .memento-ideal-loop li > b {
+  display: block;
+}
+
+.portfolio-case-memento .memento-ideal-loop li > span {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 9px;
+}
+
+.portfolio-case-memento .memento-ideal-loop li > b {
+  margin-top: 5px;
+  color: var(--case-deep);
+  font-size: 11px;
+}
+
+.portfolio-case-memento .memento-ideal-loop > p {
+  margin-top: 18px;
+  padding-top: 13px;
+  border-top: 1px solid var(--case-line);
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.55;
+  text-align: right;
+}
+
+.portfolio-case-memento .memento-product-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-detail-link,
+.portfolio-case-memento .memento-product-demo-link {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  min-height: 64px;
+  padding: 13px 15px;
+  border: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.portfolio-case-memento .memento-product-detail-link {
+  background: var(--case-accent);
+  color: white;
+}
+
+.portfolio-case-memento .memento-product-demo-link {
+  border-left: 1px solid var(--case-accent);
+  background: color-mix(in srgb, var(--case-tint) 72%, white 28%);
+  color: var(--case-deep);
+}
+
+.portfolio-case-memento .memento-action-copy {
+  display: block;
+  min-width: 0;
+}
+
+.portfolio-case-memento .memento-action-copy small,
+.portfolio-case-memento .memento-action-copy b {
+  display: block;
+}
+
+.portfolio-case-memento .memento-action-copy small {
+  color: var(--case-accent);
+  font-size: 7px;
+  letter-spacing: .08em;
+}
+
+.portfolio-case-memento .memento-product-detail-link .memento-action-copy small {
+  color: rgba(255, 255, 255, .72);
+}
+
+.portfolio-case-memento .memento-action-copy b {
+  margin-top: 4px;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.portfolio-case-memento .memento-product-detail-link:is(:hover, :focus-visible) {
+  background: var(--case-deep);
+}
+
+.portfolio-case-memento .memento-product-demo-link:is(:hover, :focus-visible) {
+  background: var(--case-deep);
+  color: white;
+}
+
+.portfolio-case-memento .memento-action-arrow {
+  flex: none;
+  font-size: 16px;
+}
+
+@media (max-width: 820px) {
+  .portfolio-case-memento .memento-product-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+.portfolio-case-memento .portfolio-case-detail {
+  background: color-mix(in srgb, var(--case-paper) 76%, var(--case-tint) 24%);
+}
+
+.portfolio-case-memento .memento-story-act {
+  margin-top: 24px;
+  border: 1px solid var(--case-line);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-story-act > header {
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.08fr) minmax(260px, .72fr);
+  gap: 20px;
+  align-items: baseline;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-story-act > header h5,
+.portfolio-case-memento .memento-product-principles > header h5 {
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.34;
+}
+
+.portfolio-case-memento .memento-story-act > header p {
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.portfolio-case-memento .memento-fragment-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.portfolio-case-memento .memento-fragment-grid article {
+  min-height: 168px;
+  padding: 20px;
+}
+
+.portfolio-case-memento .memento-fragment-grid article + article {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-fragment-grid b,
+.portfolio-case-memento .memento-fragment-grid p {
+  display: block;
+}
+
+.portfolio-case-memento .memento-fragment-grid b {
+  margin-top: 28px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.portfolio-case-memento .memento-fragment-grid p {
+  margin-top: 9px;
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.58;
+}
+
+.portfolio-case-memento .memento-fragment-act > blockquote {
+  margin: 0;
+  padding: 16px 20px;
+  border-top: 1px solid var(--case-line);
+  border-left: 4px solid var(--case-accent);
+  background: var(--case-tint);
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.portfolio-case-memento .memento-cognition-journey {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-case-memento .memento-cognition-journey li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 10px;
+  min-height: 150px;
+  padding: 20px;
+}
+
+.portfolio-case-memento .memento-cognition-journey li + li {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-cognition-journey li:last-child {
+  background: color-mix(in srgb, var(--case-tint) 70%, white 30%);
+}
+
+.portfolio-case-memento .memento-cognition-journey li > span {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.portfolio-case-memento .memento-cognition-journey b,
+.portfolio-case-memento .memento-cognition-journey p {
+  display: block;
+}
+
+.portfolio-case-memento .memento-cognition-journey b {
+  color: var(--case-deep);
+  font-size: 13px;
+}
+
+.portfolio-case-memento .memento-cognition-journey p {
+  margin-top: 8px;
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.portfolio-case-memento .memento-understanding-example,
+.portfolio-case-memento .memento-work-continuity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 38px minmax(0, 1fr) 38px minmax(0, 1.12fr);
+  align-items: stretch;
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-understanding-example article,
+.portfolio-case-memento .memento-work-continuity article {
+  min-width: 0;
+  padding: 20px;
+}
+
+.portfolio-case-memento .memento-understanding-example > span,
+.portfolio-case-memento .memento-work-continuity > span {
+  display: grid;
+  place-items: center;
+  border-right: 1px solid var(--case-line);
+  border-left: 1px solid var(--case-line);
+  color: var(--case-accent);
+  font-size: 17px;
+}
+
+.portfolio-case-memento .memento-understanding-example p {
+  margin-top: 10px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.portfolio-case-memento .memento-understanding-example article.is-understanding,
+.portfolio-case-memento .memento-work-continuity article.is-memory {
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-work-continuity b,
+.portfolio-case-memento .memento-work-continuity p {
+  display: block;
+}
+
+.portfolio-case-memento .memento-work-continuity b {
+  margin-top: 18px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.portfolio-case-memento .memento-work-continuity p {
+  margin-top: 10px;
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.portfolio-case-memento .memento-work-continuity article.is-continuation {
+  background: color-mix(in srgb, var(--case-accent) 10%, white 90%);
+}
+
+.portfolio-case-memento .memento-return-trace {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding: 14px 20px;
+  border-top: 1px solid var(--case-line);
+  color: var(--case-muted);
+  font-size: 10px;
+}
+
+.portfolio-case-memento .memento-return-trace i {
+  flex: 1;
+  height: 1px;
+  background: var(--case-soft);
+}
+
+.portfolio-case-memento .memento-return-trace strong {
+  color: var(--case-accent);
+  font-weight: 700;
+}
+
+.portfolio-case-memento .memento-product-principles {
+  margin-top: 24px;
+  border: 1px solid var(--case-line);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-product-principles > header {
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+  gap: 20px;
+  align-items: baseline;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-principles > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.portfolio-case-memento .memento-product-principles article {
+  min-height: 154px;
+  padding: 20px;
+}
+
+.portfolio-case-memento .memento-product-principles article + article {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-principles article > span {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 10px;
+}
+
+.portfolio-case-memento .memento-product-principles article > b,
+.portfolio-case-memento .memento-product-principles article > p {
+  display: block;
+}
+
+.portfolio-case-memento .memento-product-principles article > b {
+  margin-top: 20px;
+  color: var(--case-deep);
+  font-size: 13px;
+}
+
+.portfolio-case-memento .memento-product-principles article > p {
+  margin-top: 8px;
+  color: var(--case-muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+@media (max-width: 1180px) {
+  .portfolio-case-memento .memento-ideal-overview {
+    grid-template-columns: minmax(320px, .86fr) minmax(0, 1.14fr);
+  }
+
+  .portfolio-case-memento .memento-story-act > header {
+    grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
+  }
+
+  .portfolio-case-memento .memento-story-act > header p {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 820px) {
+  .portfolio-case-memento .memento-ideal-overview,
+  .portfolio-case-memento .memento-ideal-loop > header,
+  .portfolio-case-memento .memento-story-act > header,
+  .portfolio-case-memento .memento-product-principles > header {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-case-memento .memento-story-act > header p {
+    grid-column: auto;
+  }
+
+  .portfolio-case-memento .memento-fragment-grid,
+  .portfolio-case-memento .memento-cognition-journey,
+  .portfolio-case-memento .memento-product-principles > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-case-memento .memento-fragment-grid article:nth-child(3),
+  .portfolio-case-memento .memento-cognition-journey li:nth-child(3),
+  .portfolio-case-memento .memento-product-principles article:nth-child(3) {
+    border-top: 1px solid var(--case-line);
+    border-left: 0;
+  }
+
+  .portfolio-case-memento .memento-fragment-grid article:nth-child(4),
+  .portfolio-case-memento .memento-cognition-journey li:nth-child(4) {
+    border-top: 1px solid var(--case-line);
+  }
+
+  .portfolio-case-memento .memento-product-principles article:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .portfolio-case-memento .memento-ideal-loop ol {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portfolio-case-memento .memento-understanding-example,
+  .portfolio-case-memento .memento-work-continuity {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-case-memento .memento-understanding-example > span,
+  .portfolio-case-memento .memento-work-continuity > span {
+    min-height: 34px;
+    border-top: 1px solid var(--case-line);
+    border-right: 0;
+    border-bottom: 1px solid var(--case-line);
+    border-left: 0;
+    transform: rotate(90deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .project-case-open,
   .portfolio-case-detail-toggle {
     scroll-behavior: auto;
+  }
+}
+
+/* Memento case detail: product-chain density aligned with the first three cases. */
+.portfolio-case-memento :is(
+  .memento-detail-pipeline,
+  .memento-understanding-case,
+  .memento-task-return,
+  .memento-continuity-figure,
+  .memento-product-surfaces
+) small {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.portfolio-case-memento .memento-detail-pipeline {
+  margin-top: 20px;
+  border: 1px solid var(--case-line);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-detail-pipeline > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--case-line);
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-detail-pipeline > header strong {
+  color: var(--case-deep);
+  font-size: 12px;
+}
+
+.portfolio-case-memento .memento-detail-pipeline > header span {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .04em;
+}
+
+.portfolio-case-memento .memento-detail-lanes {
+  display: grid;
+  grid-template-columns: .92fr 1.04fr 1.04fr;
+}
+
+.portfolio-case-memento .memento-detail-lane {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 18px;
+}
+
+.portfolio-case-memento .memento-detail-lane + .memento-detail-lane {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-detail-lane.understand {
+  background: color-mix(in srgb, var(--case-tint) 42%, white 58%);
+}
+
+.portfolio-case-memento .memento-detail-lane.return {
+  background: color-mix(in srgb, var(--case-accent) 7%, white 93%);
+}
+
+.portfolio-case-memento .memento-detail-lane > header {
+  min-height: 132px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-detail-lane h5 {
+  margin-top: 9px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.portfolio-case-memento .memento-detail-lane > header p,
+.portfolio-case-memento .memento-lane-decision p,
+.portfolio-case-memento .memento-current-task p {
+  margin-top: 8px;
+  color: var(--case-muted);
+  font-size: 10px;
+  line-height: 1.58;
+}
+
+.portfolio-case-memento .memento-detail-source-tags {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 12px;
+  border-top: 1px solid var(--case-line);
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-detail-source-tags span {
+  padding: 8px 4px;
+  border-right: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+  color: var(--case-accent);
+  font-size: 9px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.portfolio-case-memento .memento-fact-receipt,
+.portfolio-case-memento .memento-current-task,
+.portfolio-case-memento .memento-memory-pack {
+  margin-top: 12px;
+  padding: 13px;
+  border: 1px solid var(--case-line);
+  background: white;
+}
+
+.portfolio-case-memento .memento-fact-receipt blockquote {
+  margin: 10px 0 12px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 14px;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.portfolio-case-memento .memento-fact-receipt dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--case-line);
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-fact-receipt dl div {
+  min-width: 0;
+  padding: 7px;
+  border-right: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-fact-receipt dt {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.portfolio-case-memento .memento-fact-receipt dd {
+  margin-top: 4px;
+  color: var(--case-muted);
+  font-size: 8px;
+  line-height: 1.4;
+}
+
+.portfolio-case-memento .memento-understand-steps {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-case-memento .memento-understand-steps li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 8px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-understand-steps li > span {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.portfolio-case-memento .memento-understand-steps b,
+.portfolio-case-memento .memento-understand-steps p {
+  display: block;
+}
+
+.portfolio-case-memento .memento-understand-steps b {
+  color: var(--case-deep);
+  font-size: 11px;
+}
+
+.portfolio-case-memento .memento-understand-steps p {
+  margin-top: 4px;
+  color: var(--case-muted);
+  font-size: 9px;
+  line-height: 1.48;
+}
+
+.portfolio-case-memento .memento-current-task b,
+.portfolio-case-memento .memento-memory-pack > small,
+.portfolio-case-memento .memento-current-task > small {
+  display: block;
+}
+
+.portfolio-case-memento .memento-current-task b {
+  margin-top: 8px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.portfolio-case-memento .memento-memory-pack {
+  border-left: 4px solid var(--case-accent);
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-memory-pack > div {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-memory-pack > div b {
+  color: var(--case-accent);
+  font-size: 9px;
+}
+
+.portfolio-case-memento .memento-memory-pack > div span {
+  color: var(--case-deep);
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.portfolio-case-memento .memento-memory-pack em {
+  display: block;
+  margin-top: 9px;
+  color: var(--case-muted);
+  font-size: 8px;
+  font-style: normal;
+}
+
+.portfolio-case-memento .memento-lane-decision {
+  margin-top: auto;
+  padding: 12px 0;
+  border-top: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-lane-decision b {
+  color: var(--case-accent);
+  font-size: 9px;
+}
+
+.portfolio-case-memento .memento-detail-lane > footer {
+  padding: 11px 12px;
+  border-left: 3px solid var(--case-accent);
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-detail-lane > footer small,
+.portfolio-case-memento .memento-detail-lane > footer b {
+  display: block;
+}
+
+.portfolio-case-memento .memento-detail-lane > footer b {
+  margin-top: 4px;
+  color: var(--case-deep);
+  font-size: 11px;
+}
+
+.portfolio-case-memento .memento-pipeline-return {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 11px 16px;
+  border-top: 1px solid var(--case-line);
+  color: var(--case-muted);
+  font-size: 9px;
+}
+
+.portfolio-case-memento .memento-pipeline-return i {
+  flex: 1;
+  height: 1px;
+  background: var(--case-line);
+}
+
+.portfolio-case-memento .memento-pipeline-return strong {
+  color: var(--case-accent);
+}
+
+.portfolio-case-memento .memento-continuity-figure {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  margin: 18px 0 0;
+  border: 1px solid var(--case-line);
+  background: #f3efe4;
+}
+
+.portfolio-case-memento .memento-continuity-figure img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.portfolio-case-memento .memento-continuity-figure figcaption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 22px;
+  border-left: 1px solid var(--case-line);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento .memento-continuity-figure figcaption b,
+.portfolio-case-memento .memento-continuity-figure figcaption span {
+  display: block;
+}
+
+.portfolio-case-memento .memento-continuity-figure figcaption b {
+  margin-top: 12px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.48;
+}
+
+.portfolio-case-memento .memento-continuity-figure figcaption span {
+  margin-top: 18px;
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+.portfolio-case-memento .memento-understanding-case,
+.portfolio-case-memento .memento-task-return {
+  margin-top: 18px;
+  border: 1px solid var(--case-line);
+  background: var(--case-surface);
+}
+
+.portfolio-case-memento :is(.memento-understanding-case, .memento-task-return) > header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+  gap: 24px;
+  align-items: end;
+  padding: 17px 19px;
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento :is(.memento-understanding-case, .memento-task-return) > header h5 {
+  margin-top: 7px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.portfolio-case-memento :is(.memento-understanding-case, .memento-task-return) > header p {
+  color: var(--case-muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.portfolio-case-memento .memento-understanding-case-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(270px, .45fr);
+}
+
+.portfolio-case-memento .memento-understanding-case-body > ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-case-memento .memento-understanding-case-body > ol li {
+  min-width: 0;
+  min-height: 220px;
+  padding: 16px 13px;
+}
+
+.portfolio-case-memento .memento-understanding-case-body > ol li + li {
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-understanding-case-body > ol li.current {
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-understanding-case-body li span,
+.portfolio-case-memento .memento-understanding-case-body li b,
+.portfolio-case-memento .memento-understanding-case-body li small {
+  display: block;
+}
+
+.portfolio-case-memento .memento-understanding-case-body li span {
+  color: var(--case-accent);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.portfolio-case-memento .memento-understanding-case-body li b {
+  margin-top: 26px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.portfolio-case-memento .memento-understanding-case-body li small {
+  margin-top: 12px;
+  color: var(--case-muted);
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.45;
+}
+
+.portfolio-case-memento .memento-understanding-case-body > figure {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border-left: 1px solid var(--case-line);
+  background: #f3efe4;
+}
+
+.portfolio-case-memento .memento-understanding-case-body > figure img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.portfolio-case-memento .memento-understanding-case-body > figure figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10px 12px;
+  border-top: 1px solid var(--case-line);
+  background: rgba(255, 255, 255, .9);
+}
+
+.portfolio-case-memento .memento-understanding-case-body > figure figcaption b {
+  display: block;
+  margin-top: 4px;
+  color: var(--case-deep);
+  font-size: 10px;
+}
+
+.portfolio-case-memento .memento-task-return > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr) 30px minmax(0, 1fr) 30px minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.portfolio-case-memento .memento-task-return article {
+  min-width: 0;
+  min-height: 170px;
+  padding: 17px;
+}
+
+.portfolio-case-memento .memento-task-return article.memory {
+  background: var(--case-tint);
+}
+
+.portfolio-case-memento .memento-task-return article.work {
+  background: color-mix(in srgb, var(--case-accent) 8%, white 92%);
+}
+
+.portfolio-case-memento .memento-task-return article.trace {
+  border-left: 3px solid var(--case-accent);
+}
+
+.portfolio-case-memento .memento-task-return article b,
+.portfolio-case-memento .memento-task-return article p {
+  display: block;
+}
+
+.portfolio-case-memento .memento-task-return article b {
+  margin-top: 22px;
+  color: var(--case-deep);
+  font-family: var(--home-display);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.portfolio-case-memento .memento-task-return article p {
+  margin-top: 9px;
+  color: var(--case-muted);
+  font-size: 9px;
+  line-height: 1.48;
+}
+
+.portfolio-case-memento .memento-task-return > div > i {
+  display: grid;
+  place-items: center;
+  border-right: 1px solid var(--case-line);
+  border-left: 1px solid var(--case-line);
+  color: var(--case-accent);
+  font-size: 14px;
+  font-style: normal;
+}
+
+.portfolio-case-memento .memento-product-surfaces {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 12px;
+  border-top: 1px solid var(--case-line);
+  border-left: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-surfaces > div {
+  min-width: 0;
+  padding: 10px;
+  border-right: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+}
+
+.portfolio-case-memento .memento-product-surfaces b,
+.portfolio-case-memento .memento-product-surfaces span {
+  display: block;
+}
+
+.portfolio-case-memento .memento-product-surfaces b {
+  color: var(--case-deep);
+  font-size: 11px;
+}
+
+.portfolio-case-memento .memento-product-surfaces span {
+  margin-top: 5px;
+  color: var(--case-muted);
+  font-size: 8px;
+  line-height: 1.4;
+}
+
+@media (max-width: 1180px) {
+  .portfolio-case-memento .memento-detail-lanes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portfolio-case-memento .memento-understanding-case-body {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-case-memento .memento-understanding-case-body > figure {
+    border-top: 1px solid var(--case-line);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 820px) {
+  .portfolio-case-memento .memento-detail-lanes,
+  .portfolio-case-memento .memento-continuity-figure,
+  .portfolio-case-memento .memento-understanding-case-body > ol,
+  .portfolio-case-memento .memento-task-return > div,
+  .portfolio-case-memento :is(.memento-understanding-case, .memento-task-return) > header {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-case-memento .memento-detail-lane + .memento-detail-lane,
+  .portfolio-case-memento .memento-continuity-figure figcaption,
+  .portfolio-case-memento .memento-understanding-case-body > ol li + li {
+    border-top: 1px solid var(--case-line);
+    border-left: 0;
+  }
+
+  .portfolio-case-memento .memento-detail-lane > header,
+  .portfolio-case-memento .memento-understanding-case-body > ol li,
+  .portfolio-case-memento .memento-task-return article {
+    min-height: 0;
+  }
+
+  .portfolio-case-memento .memento-task-return > div > i {
+    min-height: 28px;
+    border-top: 1px solid var(--case-line);
+    border-right: 0;
+    border-bottom: 1px solid var(--case-line);
+    border-left: 0;
+    transform: rotate(90deg);
   }
 }

@@ -11,7 +11,7 @@
     "prepare:pages": "node scripts/prepare-pages.mjs",
     "start": "vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/memento"
   },
   "dependencies": {
     "react": "19.2.6",

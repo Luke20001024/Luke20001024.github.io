@@ -138,10 +138,6 @@ function AigcPositionPhone({ after = false }: { after?: boolean }) {
   );
 }
 
-function StoryArrow() {
-  return <div className="portfolio-story-arrow" aria-hidden="true"><i /></div>;
-}
-
 function DetailToggle({
   open,
   setOpen,
@@ -571,64 +567,144 @@ function QualityCase() {
 
 function MementoCase() {
   const [detail, setDetail] = useState(false);
+
   return (
     <CaseFrame
       id="memento"
       number="04"
-      eyebrow="MEMORY → CONTEXT"
-      title="Memento：事实先记录，上下文再授权"
-      titleNote={<blockquote className="portfolio-case-title-note">在当前窗口主动留下文字、备注、标签和截图，按日形成可回看的本地事实；在工作区实验中，需要长期复用时，再由用户决定什么可以进入Context</blockquote>}
+      eyebrow="PERSONAL COGNITIVE SECRETARY"
+      title="Memento：让每个 AI，都从同一个你开始"
+      titleNote={<blockquote className="portfolio-case-title-note">Memento 是一位运行在电脑里的自动笔记与认知秘书。它接住散落在不同窗口和关系里的意图，沿时间整理成对你的长期理解，再把相关记忆带回真实工作</blockquote>}
     >
       <section className="portfolio-method-section portfolio-memento-method" aria-labelledby="portfolio-memento-how-title">
         <header className="portfolio-method-section-head">
-          <div><small>怎么做</small><h4 id="portfolio-memento-how-title">从原窗口记录，到本地Dashboard回看</h4></div>
-          <p>默认区只展示v0.8.9已发布的记录与回看能力</p>
+          <div><small>产品终态</small><h4 id="portfolio-memento-how-title">让散落的意图，最终形成可以带回工作的个人记忆</h4></div>
+          <p>一次记录保留一个当下，跨时间的整理让这些当下逐渐认出同一个人</p>
         </header>
-        <div className="portfolio-method-overview portfolio-memento-overview">
-          <section className="portfolio-memento-public-flow" aria-labelledby="portfolio-memento-public-flow-title">
-            <header><small>已发布主链</small><h5 id="portfolio-memento-public-flow-title">先把事实留下，再回到Dashboard重新找到</h5></header>
-            <div className="portfolio-memento-public-route">
-              <ol>
-                <li><span>记录</span><div><b>在当前窗口主动留下内容</b><p>文字、备注、标签和截图/OCR进入Memento</p><small>产出｜发生在当下的原始记录</small></div></li>
-                <li><span>保存</span><div><b>按日保存在本地</b><p>正文进入当天Markdown，媒体保留原件</p><small>产出｜可追溯的日级事实</small></div></li>
-                <li><span>回看</span><div><b>从Dashboard重新找到</b><p>按日期和标签查看记录，并按需复制</p><small>产出｜可以重新使用的记录</small></div></li>
-              </ol>
-              <aside className="portfolio-memento-review-branch"><div><small>可选支路</small><b>回看时生成Daily Review</b></div><p>用户主动启用后，目标日文本交给已配置的Codex生成总结；总结与原始事实分层，不改写原记录</p></aside>
+
+        <div className="memento-ideal-overview">
+          <section className="memento-value-sequence" aria-labelledby="memento-value-title">
+            <header><small>三项核心价值</small><h5 id="memento-value-title">从此刻的意图，到下一次工作的连续理解</h5></header>
+            <ol>
+              <li><span>01</span><div><b>接住正在发生的意图</b><p>在对话、网页、文档和语音中，保留原文、时间、来源和当时语境</p></div></li>
+              <li><span>02</span><div><b>长期理解你的形状</b><p>让分散记录跨越时间，形成主题、形成依据和对你的当前理解</p></div></li>
+              <li className="is-outcome"><span>03</span><div><b>让每个 AI，都从同一个你开始</b><small>可调用的个人记忆</small><p>根据当前任务带回相关理解，让写作、研究、编程和每一次 AI 协作都能从已经形成的你继续</p></div></li>
+            </ol>
+          </section>
+
+          <figure className="memento-product-evidence">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/memento-cognitive-home-user-shot-20260823.png" alt="最新版 Memento 可操作认知主页，包含今天的时间河、认知地景和她理解的我" />
+            <figcaption>
+              <div><b>今天的时间河</b><span>看见意图如何进入同一条记录流</span></div>
+              <div><b>认知地景</b><span>看见记录如何跨时间形成长期主题</span></div>
+              <div><b>她理解的我</b><span>看见多个主题如何收束成当前理解</span></div>
+            </figcaption>
+            <div className="memento-product-actions" aria-label="Memento 产品入口">
+              <a className="memento-product-detail-link" href="./memento/Memento-4.0.html" target="_blank" rel="noreferrer" data-cursor="hover"><span className="memento-action-copy"><small>PRODUCT HOME</small><b>查看 Memento 产品主页</b></span><span className="memento-action-arrow" aria-hidden="true">↗</span></a>
+              <a className="memento-product-demo-link" href="./memento/Memento-Cognitive-Home-Standalone.html" target="_blank" rel="noreferrer" data-cursor="hover"><span className="memento-action-copy"><small>LIVE DEMO · 最新版本</small><b>直接体验 Memento Demo</b></span><span className="memento-action-arrow" aria-hidden="true">↗</span></a>
             </div>
-          </section>
-          <section className="portfolio-evidence-board portfolio-memento-board" aria-labelledby="portfolio-memento-case-title">
-            <header><div><small>已发布能力 · v0.8.9</small><h5 id="portfolio-memento-case-title">Memento Dashboard</h5></div><p>主动记录、本地按日保存，再按日期和标签回看</p></header>
-            <div className="portfolio-memento-dashboard"><iframe src="/demos/memento-v089-demo.html" title="Memento v0.8.9 Dashboard可操作演示" loading="lazy" /></div>
-            <p className="portfolio-memento-privacy">隐私边界：原始记录与Dashboard保存在本地；启用Daily Review时，目标日文本交给已配置的Codex；主动运行Context Agent时，本次选定的日级文本交给DeepSeek；Dashboard不持有API Key，也不直接调用模型</p>
-          </section>
+          </figure>
         </div>
       </section>
-      <DetailToggle open={detail} setOpen={setDetail} controls="portfolio-detail-memento" title="展开授权机制与验证边界" route="原始事实 → 理解候选 → 证据校验 → 五种决定 → 已确认Context → Context Pack" />
+
+      <section className="memento-ideal-loop" aria-labelledby="memento-ideal-loop-title">
+        <header><small>一份记忆的完整去向</small><h4 id="memento-ideal-loop-title">记录在时间中形成理解，理解在下一次工作中继续生长</h4></header>
+        <ol>
+          <li><span>01</span><b>接住意图</b></li>
+          <li><span>02</span><b>保存事实</b></li>
+          <li><span>03</span><b>整理记忆</b></li>
+          <li><span>04</span><b>形成理解</b></li>
+          <li><span>05</span><b>带回工作</b></li>
+          <li><span>06</span><b>交流继续回流</b></li>
+        </ol>
+        <p>让每个 AI 都从同一个你开始，也让每一次交流继续参与你的形成</p>
+      </section>
+
+      <DetailToggle open={detail} setOpen={setDetail} controls="portfolio-detail-memento" title="展开 Memento 的完整产品链路" route="接住并保存 → 整理记忆 → 形成理解 → 调用与回流" />
       <section className="portfolio-case-detail" id="portfolio-detail-memento" aria-labelledby="portfolio-detail-memento-title" tabIndex={-1} hidden={!detail}>
-        <header><div><small>完整执行链路 / 04</small><h4 id="portfolio-detail-memento-title">从原始事实，到用户授权的上下文</h4></div><p>v0.8.9负责留下和回看；下方授权链路属于工作区Context Agent实验，不是v0.8.9公开能力</p></header>
-        <div className="portfolio-memento-track"><article><small>公开基线 · v0.8.9</small><b>记录与回看已形成闭环</b><span>主动记录 → 本地日级事实 → Dashboard回看 / 复制</span></article><article><small>工作区实验</small><b>候选、证据与授权</b><span>完成工程合同与模型小样本验证，不属于v0.8.9公开能力</span></article><article><small>E3未运行</small><b>真实未来任务复用尚未验证</b><span>当前不能证明减少重复说明或改变用户信任</span></article></div>
-        <div className="portfolio-memento-flow">
-          <article className="memento-panel"><header className="memento-panel-head"><div><small>01 / 已发布记录层</small><h5>先保留原始事实</h5></div><span>v0.8.9</span></header><div className="memento-dashboard-redraw"><div className="memento-appbar"><b>Memento</b><span>今日 · 回看 · 归档</span></div><div className="memento-capture-strip"><span>主动记录</span><b>文本 · 备注 · 标签 · 截图/OCR</b><small>语音按系统条件启用</small></div><article className="memento-record"><small>2026-08-08.md · 本地事实</small><p>用户要求先看可验证的结果</p></article><article className="memento-record"><small>2026-08-09.md · 本地事实</small><p>用户再次要求先验证</p></article><div className="memento-record-rule"><b>事实层不被模型改写</b><span>正文留在日级Markdown，媒体保留原件</span></div></div></article>
-          <StoryArrow />
-          <article className="memento-panel"><header className="memento-panel-head"><div><small>02—04 / 工作区授权实验</small><h5>先核对证据，再让用户决定</h5></div><span>合成合同示例</span></header><div className="memento-candidate-body"><div className="memento-proof-row"><div><small>引文校验</small><b>08-08 L12 · 08-09 L04 · 逐字一致</b></div><div><small>来源完整性</small><b>两份来源hash均匹配</b></div><span className="memento-pass">通过</span></div><article className="memento-candidate-card"><div><small>合成合同示例 · 模拟模型输出</small><span>工作偏好 · 低不确定性</span></div><strong>“在做重要变更前先验证”</strong><p>通过只证明引文与来源完整，不代表候选判断正确，仍需用户决定</p></article><div className="memento-decision-label"><b>用户选择</b><span>本案点击“改一下”</span></div><div className="portfolio-decisions memento-decisions"><span>是的<small>confirm</small></span><span className="active">改一下<small>edit</small></span><span>限定范围<small>scope</small></span><span>只是这次<small>just_once</small></span><span>不要记住<small>reject</small></span></div><div className="memento-edit-result"><small>用户修改后的表述</small><b>“重要变更前，只做与风险匹配的验证”</b></div><div className="memento-decision-routes"><span><b>是的 / 改一下 / 限定范围</b>写入长期Context</span><span><b>只是这次</b>生成单次Context Pack，不进入长期Context，当前不会自动消费或过期</span><span><b>不要记住</b>只保存决定，不写入长期Context</span></div><p className="memento-close-boundary">关闭候选卡不等于同意或拒绝</p></div></article>
-          <StoryArrow />
-          <article className="memento-panel"><header className="memento-panel-head"><div><small>05 / 授权后的输出</small><h5>只复用用户明确授权的内容</h5></div><span>工作区MVP</span></header><div className="memento-output-body"><article className="memento-file-card confirmed"><div><small>已确认Context</small><span>状态 · 生效</span></div><b>重要变更前，只做与风险匹配的验证</b><p>决定：修改 · 范围：工程任务</p></article><div className="memento-output-arrow" aria-hidden="true">↓</div><article className="memento-file-card pack"><div><small>Context Pack · Markdown</small><span>手动复制</span></div><b># 工程任务</b><p>- 重要变更前，只做与风险匹配的验证</p><p>复制给下一次AI任务，当前不自动消费，来源失效时跳过</p></article><div className="memento-output-boundary"><b>Dashboard长期包</b><span>不含原始引文</span><b>命令行包</b><span>包含证据定位</span><b>能证明</b><span>候选、授权语义与Context Pack合同可执行</span><b>不能证明</b><span>尚未证明减少真实未来任务的重复说明</span></div></div></article>
-        </div>
-        <section className="portfolio-memento-validation"><header><small>验证状态</small><h5>工程合同、模型回归与真实用户价值分开看</h5></header><div><article><b>E0—E1通过</b><span>静态安全、离线合同与数据流</span></article><article><b>E2通过</b><span>Pro与Flash在同组7个合成回归中各7/7</span></article><article><b>E3未运行</b><span>尚未验证是否减少真实任务中的重复说明</span></article></div><p>Chrome手工端到端未运行；7/7不代表真实用户判断质量或长期稳定性</p></section>
+        <header><div><small>完整产品链路</small><h4 id="portfolio-detail-memento-title">一条意图，如何沿时间形成理解，再回到下一次工作</h4></div><p>完整关系图保留产品全貌，单轴讲清四段 Agent 实现逻辑</p></header>
+
+        <figure className="memento-continuity-figure">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/memento-value-triptych-master-v1.png" alt="散落记录沿时间形成个人理解，再进入写作、研究和编程等工作场景" />
+          <figcaption><small>完整关系</small><b>不同窗口里的局部意图，沿时间形成一个人，再以相关个人记忆回到真实工作</b><span>接住 → 理解 → 使用 → 回流</span></figcaption>
+        </figure>
+
+        <section className="memento-product-axis" aria-labelledby="memento-product-axis-title">
+          <header>
+            <div><small>四段 Agent · 一条主链</small><h5 id="memento-product-axis-title">从一个当下，到可以继续工作的个人记忆</h5></div>
+            <p>每一段直接展示 Agent 看见什么、如何判断、怎样行动，以及最终留下什么</p>
+          </header>
+          <ol>
+            <li>
+              <span>01</span>
+              <b>接住并保存当下</b>
+              <p>在聊天、网页、文档、截图和语音现场，先保存原文、时间、来源与资产。</p>
+              <div className="memento-agent-logic">
+                <small>实现逻辑 · 记录入口 Agent</small>
+                <div><em>看见</em><b>内容 + 来源 + 当前场景</b><p>同时读取原文、页面或对话来源，以及用户正在做什么。</p></div>
+                <i aria-hidden="true">↓</i>
+                <div><em>判断</em><b>这次记录应该去哪里</b><p>识别它是待理解的想法、可索引资源、稍后再读，还是只需归档。</p></div>
+                <i aria-hidden="true">↓</i>
+                <div><em>行动</em><b>先保存现场，再执行分流</b><p>任何理解都发生在原文落盘之后，避免 AI 改写覆盖真实来源。</p></div>
+              </div>
+              <div className="memento-axis-objects"><small>系统留痕</small><span>原始记录</span><span>分流决定</span><span>资源卡</span></div>
+              <footer><small>阶段产物</small><b>可追溯的本地事实</b></footer>
+            </li>
+            <li>
+              <span>02</span>
+              <b>整理成可追溯记忆</b>
+              <p>把一次表达整理成可读、可检索的记忆，同时保留它来自哪里、适用于什么范围。</p>
+              <div className="memento-agent-logic">
+                <small>实现逻辑 · 记忆整理 Agent</small>
+                <div><em>看见</em><b>原文 + 精确出处 + 相邻记录</b><p>逐句对应来源位置，同时读取同一时段内可能相关的记录。</p></div>
+                <i aria-hidden="true">↓</i>
+                <div><em>判断</em><b>哪些事实能合并，哪些边界要保留</b><p>识别人物、事件、判断和未确认信息，判断重复、支持、反例与适用范围。</p></div>
+                <i aria-hidden="true">↓</i>
+                <div><em>行动</em><b>拆分、去重并建立关系</b><p>形成可读记忆；每条结论都能回到对应原文，而不会脱离语境。</p></div>
+              </div>
+              <div className="memento-axis-objects"><small>系统留痕</small><span>逐条解释</span><span>记忆原子</span><span>关系版本</span></div>
+              <footer><small>阶段产物</small><b>带来源与边界的个人记忆</b></footer>
+            </li>
+            <li>
+              <span>03</span>
+              <b>跨时间形成理解</b>
+              <p>让反复出现的记忆形成长期主题，再由多个主题收束为少量当前理解。</p>
+              <div className="memento-agent-logic">
+                <small>实现逻辑 · 主题与理解 Agent</small>
+                <div><em>看见</em><b>跨时间记忆 + 已有主题</b><p>同时观察重复出现的选择、关系变化、矛盾证据和新的行为结果。</p></div>
+                <i aria-hidden="true">↓</i>
+                <div><em>判断</em><b>新建、强化、修订，还是保留张力</b><p>只有证据变化达到门槛才更新理解；冲突信息会并列保留，不被强行抹平。</p></div>
+                <i aria-hidden="true">↓</i>
+                <div><em>行动</em><b>形成主题，再收束当前理解</b><p>保存依据、反例、适用范围与变化原因，让长期理解可以继续生长。</p></div>
+              </div>
+              <div className="memento-axis-objects"><small>系统留痕</small><span>主题版本</span><span>当前理解</span><span>形成依据</span></div>
+              <footer><small>阶段产物</small><b>可回到证据的长期理解</b></footer>
+            </li>
+            <li>
+              <span>04</span>
+              <b>按任务调用并回流</b>
+              <p>围绕写作、研究或编程任务，只带回当前真正相关的个人理解、记忆与原文依据。</p>
+              <div className="memento-agent-logic">
+                <small>实现逻辑 · 任务上下文 Agent</small>
+                <div><em>看见</em><b>当前任务 + 可调用范围</b><p>读取任务目标、主题、时间范围与敏感边界，先确定这次允许使用什么。</p></div>
+                <i aria-hidden="true">↓</i>
+                <div><em>判断</em><b>哪些记忆与这次任务真正相关</b><p>按相关性和必要性筛选最小充分集合，避免把整份个人记忆交给外部 AI。</p></div>
+                <i aria-hidden="true">↓</i>
+                <div><em>行动</em><b>交付上下文，并把结果带回</b><p>记录本次读取；工作中的新决定、修正与结果重新进入记录入口。</p></div>
+              </div>
+              <div className="memento-axis-objects"><small>系统留痕</small><span>任务记忆包</span><span>读取记录</span><span>回流痕迹</span></div>
+              <footer><small>阶段产物</small><b>最小充分任务记忆与下一轮证据</b></footer>
+            </li>
+          </ol>
+          <footer>
+            <div><small>产品终态</small><b>让每个 AI 都从同一个你开始</b></div>
+            <div><small>我的工作</small><b>完整定义认知链、产品关系与任务调用体验</b></div>
+          </footer>
+        </section>
         <DetailClose controls="portfolio-detail-memento" setOpen={setDetail} />
       </section>
-      <StructuredOutcome
-        title="让重要判断先被留下、能被重新找到；是否进入长期Context，始终由用户决定"
-        values={[
-          { label: "记录连续性", text: "在意图发生处主动留下文字、截图等内容，并能按日期和标签重新找到" },
-          { label: "授权与边界", text: "原始事实、AI候选和用户决定彼此分层，未经确认的模型判断不能进入长期Context" },
-          { label: "未来AI协作", text: "工作区实验中，已确认Context可生成可复制的Context Pack；是否真的减少重复说明仍待E3验证" },
-        ]}
-        evidenceTitle="完成状态"
-        evidence={<ValueRows rows={[{ label: "已发布", text: "v0.8.9主动记录、本地按日事实与回看闭环" }, { label: "工作区实验", text: "候选、证据校验、五种决定与Context Pack；E0—E2通过" }, { label: "未验证", text: "E3真实未来任务复用与信任变化" }]} />}
-        roleTitle="个人项目 · 产品定义、系统设计与AI辅助实现"
-        roleItems={["定义接近0摩擦的记录入口与本地事实层", "设计Dashboard与可选Daily Review回看闭环", "设计候选、证据、五种决定与Context Pack合同", "完成实现、文档、测试与迭代验证"]}
-      />
     </CaseFrame>
   );
 }

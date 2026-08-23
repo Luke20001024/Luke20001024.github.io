@@ -49,15 +49,15 @@ const projects = [
     id: "memento",
     number: "04",
     title: "Memento",
-    focus: "碎片 → Context",
-    purpose: "将零散事实组织成可持续更新、由用户校准的长期 Context",
-    statement: "原窗口 → 本地事实 → 用户授权 Context",
-    resultLabel: "当前状态",
-    result: "独立构建 · 已形成记录闭环",
+    focus: "片段 → 可调用的个人记忆",
+    purpose: "接住散落在不同窗口和关系里的意图，沿时间形成长期理解，再把相关记忆带回真实工作",
+    statement: "接住意图 → 整理记忆 → 形成理解 → 带回工作",
+    resultLabel: "最终价值",
+    result: "让每个 AI，都从同一个你开始",
     directModules: "context memory",
     supportModules: "trust",
-    preview: "/assets/memento-dashboard.png",
-    previewAlt: "Memento记录与回看Dashboard",
+    preview: "/assets/memento-cognitive-home.webp",
+    previewAlt: "Memento认知主页，包含时间河、认知地景与她理解的我",
   },
 ] satisfies PortfolioProject[];
 
@@ -182,7 +182,7 @@ export default function Home() {
               </div>
               <div className="process-thesis">
                 <strong>把 AI 能力变成可用、可判断、可持续迭代的产品结果</strong>
-                <p>我在四个场景中持续处理四类 AI 产品问题：如何理解意图并动态表达服务价值，如何组织信息帮助用户决策，如何通过评测牵引策略迭代，以及如何利用 Context 形成持续的个性化理解</p>
+                <p>我在四个场景中持续处理四类 AI 产品问题：如何理解意图并动态表达服务价值，如何组织信息帮助用户决策，如何通过评测牵引策略迭代，以及如何让分散意图沿时间形成长期理解并回到真实工作</p>
               </div>
             </div>
 
