@@ -56,7 +56,7 @@ const projects = [
     result: "让每个 AI，都从同一个你开始",
     directModules: "context memory",
     supportModules: "trust",
-    preview: "/assets/memento-cognitive-home.webp",
+    preview: "/assets/memento-cognitive-home-user-shot-20260823.png",
     previewAlt: "Memento认知主页，包含时间河、认知地景与她理解的我",
   },
 ] satisfies PortfolioProject[];

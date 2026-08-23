@@ -327,7 +327,6 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   for (const asset of [
     "search-personalized-ad.webp",
     "ai-search-agentic.webp",
-    "memento-cognitive-home.webp",
     "memento-cognitive-home-user-shot-20260823.png",
     "memento-value-triptych-master-v1.png",
   ]) {
@@ -336,7 +335,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(page, /id: "aigc"[\s\S]*?preview: "\/assets\/search-personalized-ad\.webp"/);
   assert.match(page, /id: "search"[\s\S]*?preview: "\/assets\/ai-search-agentic\.webp"/);
   assert.match(page, /id: "evaluation"[\s\S]*?preview: null/);
-  assert.match(page, /id: "memento"[\s\S]*?preview: "\/assets\/memento-cognitive-home\.webp"/);
+  assert.match(page, /id: "memento"[\s\S]*?preview: "\/assets\/memento-cognitive-home-user-shot-20260823\.png"/);
   assert.match(page, /focus: "搜索意图 → 个性化表达"/);
   assert.match(page, /statement: "意图 → 服务判断 → 生成 → 准出 → 优选"/);
   assert.match(page, /focus: "复杂意图 → 决策框架"/);
