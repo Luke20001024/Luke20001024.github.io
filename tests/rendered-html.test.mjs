@@ -504,3 +504,41 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.doesNotMatch(packageJson, /"gsap"|"@gsap\/react"|"tailwindcss"|"@tailwindcss\/postcss"/);
   assert.doesNotMatch(page, /SkeletonPreview/);
 });
+
+test("keeps ArcBTI as a compact independent project with the intended gallery order", async () => {
+  const [component, styles, html] = await Promise.all([
+    readFile(new URL("../app/arcbti-side-project.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readFile(new URL("../dist/client/index.html", import.meta.url), "utf8"),
+  ]);
+  const orderedAssets = [
+    "arcbti-01-master.jpg",
+    "arcbti-02-draw.jpg",
+    "arcbti-03-personalities.jpg",
+    "arcbti-04-modes.jpg",
+    "arcbti-05-education.jpg",
+    "arcbti-06-share.jpg",
+  ];
+
+  assert.match(html, /id="side-project-arcbti"/);
+  assert.match(html, /如果建筑也有 MBTI/);
+  assert.match(html, /href="https:\/\/luke20001024\.github\.io\/AIBTI\/"[^>]*target="_blank"/);
+  assert.match(component, /role="listbox"/);
+  assert.match(styles, /\.arcbti-track\s*\{[^}]*scroll-snap-type:\s*x mandatory/s);
+  assert.match(component, /ArrowLeft/);
+  assert.match(component, /ArrowRight/);
+  assert.match(component, /onPointerMove/);
+  assert.doesNotMatch(component, /setInterval|autoplay/i);
+
+  let previousIndex = -1;
+  for (const asset of orderedAssets) {
+    const currentIndex = component.indexOf(asset);
+    assert.ok(currentIndex > previousIndex, `${asset} 应按确认顺序出现`);
+    previousIndex = currentIndex;
+    await access(new URL(`../public/assets/arcbti/${asset}`, import.meta.url));
+    await access(new URL(`../dist/client/assets/arcbti/${asset}`, import.meta.url));
+  }
+
+  await access(new URL("../public/assets/arcbti/arcbti-logo.png", import.meta.url));
+  await access(new URL("../dist/client/assets/arcbti/arcbti-logo.png", import.meta.url));
+});

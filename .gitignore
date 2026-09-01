@@ -70,6 +70,8 @@ yarn-error.log*
 !/public/assets/search-personalized-ad.webp
 !/public/assets/yiyang-particle-portrait-cobalt-engraving-v1-transparent.webp
 !/public/assets/yiyang-particle-portrait-transparent-v1.webp
+!/public/assets/arcbti/
+!/public/assets/arcbti/*
 
 # Memento target pages remain local until their standalone GitHub URLs are ready.
 /public/memento/

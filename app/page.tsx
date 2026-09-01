@@ -1,3 +1,4 @@
+import ArcBtiSideProject from "./arcbti-side-project";
 import PortfolioMotion from "./portfolio-motion";
 import ParticlePortrait from "./particle-portrait";
 import ProjectCaseShell, { type PortfolioProject } from "./project-cases";
@@ -254,6 +255,8 @@ export default function Home() {
             </div>
           </div>
         </article>
+
+        <ArcBtiSideProject />
       </section>
 
       <section className="contact-panel" id="contact" data-section="contact" data-theme="dark" aria-labelledby="contact-title">

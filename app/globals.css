@@ -1578,6 +1578,276 @@ em {
   background-color: color-mix(in srgb, var(--home-blue) 8%, transparent);
 }
 
+.arcbti-side-project {
+  position: relative;
+  scroll-margin-top: 72px;
+  padding: 54px 0 66px;
+  border-top: 1px solid var(--home-blue);
+  background: #f7f6f1;
+  color: var(--home-blue-deep);
+}
+
+.arcbti-frame {
+  border: 1px solid color-mix(in srgb, var(--home-blue) 44%, #d8d5cc 56%);
+  border-top: 5px solid var(--home-blue);
+  background: #fbfaf6;
+}
+
+.arcbti-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(350px, .82fr);
+  min-height: 270px;
+}
+
+.arcbti-heading,
+.arcbti-guide {
+  padding: 34px 38px 32px;
+}
+
+.arcbti-guide {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid color-mix(in srgb, var(--home-blue) 22%, #d8d5cc 78%);
+}
+
+.arcbti-eyebrow,
+.arcbti-guide dt,
+.arcbti-gallery-head span,
+.arcbti-gallery-tools,
+.arcbti-slide figcaption,
+.arcbti-signature {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.arcbti-eyebrow {
+  color: var(--home-blue-soft);
+}
+
+.arcbti-logo {
+  display: block;
+  width: 176px;
+  height: auto;
+  margin-top: 13px;
+  mix-blend-mode: multiply;
+}
+
+.arcbti-heading h2 {
+  margin-top: 18px;
+  color: var(--home-blue-deep);
+  font-family: var(--display);
+  font-size: clamp(42px, 3.4vw, 54px);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: .98;
+}
+
+.arcbti-description {
+  max-width: 720px;
+  margin-top: 18px;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.72;
+}
+
+.arcbti-guide dl {
+  display: grid;
+  gap: 0;
+}
+
+.arcbti-guide dl > div {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--home-blue) 18%, #d8d5cc 82%);
+}
+
+.arcbti-guide dl > div:first-child {
+  padding-top: 0;
+}
+
+.arcbti-guide dt {
+  color: var(--home-blue);
+  font-weight: 600;
+}
+
+.arcbti-guide dd {
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.62;
+}
+
+.arcbti-cta {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  margin-top: auto;
+  padding: 15px 18px;
+  border: 1px solid var(--home-blue);
+  background: var(--home-blue);
+  color: var(--home-paper);
+  font-size: 13px;
+  font-weight: 650;
+  transition: background-color .25s var(--ease), color .25s var(--ease);
+}
+
+.arcbti-cta i {
+  font-size: 17px;
+  font-style: normal;
+  transition: transform .3s var(--ease-out);
+}
+
+.arcbti-cta:hover,
+.arcbti-cta:focus-visible {
+  background: #fbfaf6;
+  color: var(--home-blue);
+}
+
+.arcbti-cta:hover i,
+.arcbti-cta:focus-visible i {
+  transform: translate(3px, -3px);
+}
+
+.arcbti-signature {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.arcbti-gallery-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 36px;
+  align-items: center;
+  padding: 16px 20px;
+  border-top: 1px solid color-mix(in srgb, var(--home-blue) 28%, #d8d5cc 72%);
+  border-bottom: 1px solid color-mix(in srgb, var(--home-blue) 28%, #d8d5cc 72%);
+  background: color-mix(in srgb, var(--home-blue) 4%, #fbfaf6 96%);
+}
+
+.arcbti-gallery-head > div:first-child {
+  display: flex;
+  gap: 26px;
+  align-items: baseline;
+  min-width: 0;
+}
+
+.arcbti-gallery-head span {
+  flex: 0 0 auto;
+  color: var(--home-blue);
+}
+
+.arcbti-gallery-head strong {
+  color: var(--ink-soft);
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -.01em;
+}
+
+.arcbti-gallery-tools {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.arcbti-gallery-tools output {
+  min-width: 62px;
+  color: var(--home-blue-soft);
+}
+
+.arcbti-gallery-tools button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid var(--home-blue);
+  border-radius: 0;
+  background: transparent;
+  color: var(--home-blue);
+  cursor: pointer;
+  font: inherit;
+  transition: background-color .2s var(--ease), color .2s var(--ease), opacity .2s var(--ease);
+}
+
+.arcbti-gallery-tools button + button {
+  border-left: 0;
+}
+
+.arcbti-gallery-tools button:hover:not(:disabled),
+.arcbti-gallery-tools button:focus-visible {
+  background: var(--home-blue);
+  color: var(--home-paper);
+}
+
+.arcbti-gallery-tools button:disabled {
+  cursor: default;
+  opacity: .28;
+}
+
+.arcbti-cta:focus-visible,
+.arcbti-track:focus-visible,
+.arcbti-gallery-tools button:focus-visible {
+  outline: 2px solid var(--home-blue);
+  outline-offset: 3px;
+}
+
+.arcbti-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 20px 20px 16px;
+  scroll-padding-left: 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--home-blue) transparent;
+  scrollbar-width: thin;
+  cursor: grab;
+  overscroll-behavior-inline: contain;
+  touch-action: pan-x pan-y;
+}
+
+.arcbti-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.arcbti-slide {
+  flex: 0 0 clamp(276px, 23.6vw, 344px);
+  scroll-snap-align: start;
+}
+
+.arcbti-slide img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: 1px solid color-mix(in srgb, var(--home-blue) 22%, #cfcac0 78%);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.arcbti-slide figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 2px 3px;
+  color: var(--home-blue-soft);
+}
+
+.arcbti-slide figcaption span {
+  color: var(--home-blue);
+}
+
+.arcbti-slide figcaption strong {
+  color: var(--ink-soft);
+  font-weight: 500;
+  text-align: right;
+  text-transform: none;
+}
+
 [data-section] {
   scroll-margin-top: 72px;
 }
@@ -2258,6 +2528,31 @@ em {
     font-size: 11px;
   }
 
+  .arcbti-side-project {
+    padding-block: 42px 54px;
+  }
+
+  .arcbti-intro {
+    grid-template-columns: minmax(0, 1.1fr) minmax(310px, .9fr);
+  }
+
+  .arcbti-heading,
+  .arcbti-guide {
+    padding: 28px;
+  }
+
+  .arcbti-heading h2 {
+    font-size: 42px;
+  }
+
+  .arcbti-description {
+    font-size: 12.5px;
+  }
+
+  .arcbti-slide {
+    flex-basis: 300px;
+  }
+
   .contact-grid {
     gap: 60px;
   }
@@ -2280,6 +2575,68 @@ em {
 
   .particle-lab-figure {
     width: 520px;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --shell: calc(100vw - 28px);
+  }
+
+  .arcbti-side-project {
+    padding-block: 30px 40px;
+  }
+
+  .arcbti-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .arcbti-heading,
+  .arcbti-guide {
+    padding: 24px 20px;
+  }
+
+  .arcbti-guide {
+    border-top: 1px solid color-mix(in srgb, var(--home-blue) 22%, #d8d5cc 78%);
+    border-left: 0;
+  }
+
+  .arcbti-heading h2 {
+    font-size: 38px;
+  }
+
+  .arcbti-description {
+    font-size: 13px;
+  }
+
+  .arcbti-cta {
+    margin-top: 22px;
+  }
+
+  .arcbti-gallery-head {
+    align-items: flex-end;
+    padding-inline: 14px;
+  }
+
+  .arcbti-gallery-head > div:first-child {
+    display: block;
+  }
+
+  .arcbti-gallery-head strong {
+    display: none;
+  }
+
+  .arcbti-gallery-tools output {
+    display: none;
+  }
+
+  .arcbti-track {
+    padding-inline: 14px;
+    scroll-padding-left: 14px;
+  }
+
+  .arcbti-slide {
+    flex-basis: min(78vw, 310px);
   }
 }
 

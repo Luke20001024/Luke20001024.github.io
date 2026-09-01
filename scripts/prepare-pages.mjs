@@ -6,6 +6,7 @@ const assetsRoot = resolve(siteRoot, "assets");
 const publicAssets = new Set([
   "ai-search-agentic.webp",
   "ai-search-standard.webp",
+  "arcbti",
   "dark-noise.png",
   "memento-dashboard.png",
   "memento-cognitive-home.webp",
