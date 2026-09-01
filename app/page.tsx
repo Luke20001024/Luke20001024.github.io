@@ -281,6 +281,22 @@ export default function Home() {
               <a href="weixin://dl/chat?Luke001024" data-cursor="hover" data-magnetic>
                 <span>WECHAT</span><strong>Luke001024</strong><i>↗</i>
               </a>
+              <div className="contact-xhs" aria-label="小红书账号与二维码">
+                <span>XIAOHONGSHU</span>
+                <div className="contact-xhs-account">
+                  <strong>63522297842</strong>
+                  <small>扫码在小红书找到我</small>
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element -- Keep this QR code portable in the static HTML package. */}
+                <img
+                  src="/assets/xiaohongshu-qr.jpg"
+                  width="420"
+                  height="420"
+                  loading="lazy"
+                  decoding="async"
+                  alt="小红书账号 63522297842 的二维码"
+                />
+              </div>
             </div>
           </div>
         </div>

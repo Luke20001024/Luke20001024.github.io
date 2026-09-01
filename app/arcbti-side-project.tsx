@@ -144,16 +144,28 @@ export default function ArcBtiSideProject() {
                   <dd>对建筑、城市、设计或人格测试感兴趣的人。</dd>
                 </div>
               </dl>
-              <a
-                className="arcbti-cta"
-                href="https://luke20001024.github.io/AIBTI/"
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="hover"
-              >
-                <span>去测我的建筑人格</span>
-                <i aria-hidden="true">↗</i>
-              </a>
+              <div className="arcbti-cta-group" aria-label="ArcBTI 体验入口">
+                <a
+                  className="arcbti-cta"
+                  href="https://luke20001024.github.io/AIBTI/"
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cursor="hover"
+                >
+                  <span>体验网页版本</span>
+                  <i aria-hidden="true">↗</i>
+                </a>
+                <a
+                  className="arcbti-cta arcbti-cta-secondary"
+                  href="https://www.xiaohongshu.com/s/poster?bgimg=https%3A%2F%2Fsns-redskillhub-s1.xhscdn.com%2Fred_app_image%2F1040g4m8324j54egu7k2g5qafs97tofkk7o36lao%3Fsign%3D55300bbaf9fe655ee9db8cb8e87d7fc2%26t%3D6c78399a&deeplink=xhsdiscover%3A%2F%2FminiTool%2F6a965adce29cdb0015d5e520%3Fsource%3Dh5%26page_key%3D28%26xhsMpScreenMode%3Dfull"
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cursor="hover"
+                >
+                  <span>小红书小工具</span>
+                  <i aria-hidden="true">↗</i>
+                </a>
+              </div>
               <p className="arcbti-signature">建筑爱好者 · 产品经理 · Vibecoder</p>
             </div>
           </header>

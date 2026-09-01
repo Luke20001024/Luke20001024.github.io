@@ -17,6 +17,7 @@ const publicAssets = new Set([
   "search-personalized-ad.webp",
   "yiyang-particle-portrait-cobalt-engraving-v1-transparent.webp",
   "yiyang-particle-portrait-transparent-v1.webp",
+  "xiaohongshu-qr.jpg",
 ]);
 
 for (const fileName of await readdir(assetsRoot)) {

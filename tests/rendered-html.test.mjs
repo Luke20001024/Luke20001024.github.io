@@ -254,6 +254,9 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.match(html, /href="weixin:\/\/dl\/chat\?Luke001024"/);
   assert.match(html, />18329134996</);
   assert.match(html, />Luke001024</);
+  assert.match(html, />63522297842</);
+  assert.match(html, /src="\/assets\/xiaohongshu-qr\.jpg"/);
+  assert.match(html, /小红书账号 63522297842 的二维码/);
   assert.match(html, /data-particle-surface="hero"/);
   assert.equal((html.match(/<canvas\b/g) ?? []).length, 1);
   assert.equal((html.match(/data-particle-canvas/g) ?? []).length, 1);
@@ -523,6 +526,10 @@ test("keeps ArcBTI as a compact independent project with the intended gallery or
   assert.match(html, /id="side-project-arcbti"/);
   assert.match(html, /如果建筑也有 MBTI/);
   assert.match(html, /href="https:\/\/luke20001024\.github\.io\/AIBTI\/"[^>]*target="_blank"/);
+  assert.match(html, /href="https:\/\/www\.xiaohongshu\.com\/s\/poster\?/);
+  assert.match(component, /miniTool%2F6a965adce29cdb0015d5e520/);
+  assert.match(component, /体验网页版本/);
+  assert.match(component, /小红书小工具/);
   assert.match(component, /role="listbox"/);
   assert.match(styles, /\.arcbti-track\s*\{[^}]*scroll-snap-type:\s*x mandatory/s);
   assert.match(component, /ArrowLeft/);
@@ -541,4 +548,6 @@ test("keeps ArcBTI as a compact independent project with the intended gallery or
 
   await access(new URL("../public/assets/arcbti/arcbti-logo.png", import.meta.url));
   await access(new URL("../dist/client/assets/arcbti/arcbti-logo.png", import.meta.url));
+  await access(new URL("../public/assets/xiaohongshu-qr.jpg", import.meta.url));
+  await access(new URL("../dist/client/assets/xiaohongshu-qr.jpg", import.meta.url));
 });
