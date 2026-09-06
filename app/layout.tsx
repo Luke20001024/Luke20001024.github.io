@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./project-cases.css";
+import "./project-reading.css";
+import "./home-composition.css";
 
 export const metadata: Metadata = {
   title: "Luke Shi 史翼洋｜AI 产品经理",

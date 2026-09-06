@@ -1,0 +1,130 @@
+/* Fit the opening composition to desktop height without page zoom or scroll locking. */
+@media (min-width: 900px) {
+  .hero-inner {
+    --hero-height: clamp(420px, calc(100dvh - 136px), 760px);
+    min-height: 0;
+    height: var(--hero-height);
+  }
+
+  .hero-facts {
+    top: clamp(86px, 11dvh, 98px);
+  }
+
+  .hero-title {
+    top: clamp(138px, 19dvh, 172px);
+    width: 76%;
+    font-size: clamp(64px, min(7vw, 12dvh), 108px);
+    line-height: .96;
+  }
+
+  .hero-portrait {
+    top: 8px;
+    right: 0;
+    /* Keep the fallback image and particle canvas on the same 2:3 surface. */
+    width: min(44%, calc((var(--hero-height) - 8px) / 1.5));
+    height: auto;
+    aspect-ratio: 2 / 3;
+  }
+
+  .hero-identity {
+    bottom: 48px;
+    width: min(460px, 48%);
+    padding-top: 10px;
+  }
+
+  .hero-identity > strong {
+    margin-top: 6px;
+  }
+
+  .hero-cta-row {
+    bottom: 50px;
+  }
+
+  .hero-scroll {
+    bottom: 16px;
+  }
+
+  .hero-career-head,
+  .career-education,
+  .career-internship-list li {
+    padding: 12px 14px 14px;
+  }
+
+  .hero-career-head {
+    padding-left: 0;
+  }
+
+  .hero-career-head h2 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .career-summary {
+    margin-top: 8px;
+  }
+
+  .career-summary > span:first-child,
+  .career-entry-meta,
+  .career-dates,
+  .career-summary .career-dates {
+    font-size: 10px;
+    letter-spacing: .025em;
+  }
+
+  .career-entry-meta,
+  .career-tenure {
+    flex-wrap: wrap;
+    gap: 2px 8px;
+  }
+
+  .career-education > p,
+  .career-internship-list p {
+    font-size: 11px;
+  }
+}
+
+/* The project introduction is a scan-friendly bridge into the four cases. */
+.process-head {
+  padding-block: 40px 24px;
+}
+
+.process-thesis strong {
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.process-question-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.process-question-list li {
+  min-width: 0;
+}
+
+.process-question-list b,
+.process-question-list span {
+  display: block;
+}
+
+.process-question-list b {
+  color: var(--home-paper);
+  font-weight: 650;
+}
+
+.process-question-list span {
+  color: rgba(251, 251, 255, .8);
+  font-size: 13px;
+}
+
+.portfolio-case-title-note strong,
+.portfolio-aigc-title-note strong {
+  color: var(--case-deep);
+  font-weight: 700;
+}

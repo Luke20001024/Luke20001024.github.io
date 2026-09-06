@@ -57,8 +57,8 @@ const projects = [
     result: "让每个 AI，都从同一个你开始",
     directModules: "context memory",
     supportModules: "trust",
-    preview: "/assets/memento-cognitive-home-user-shot-20260823.png",
-    previewAlt: "Memento认知主页，包含时间河、认知地景与她理解的我",
+    preview: "/assets/memento-public-home-20260906.png",
+    previewAlt: "Memento 在线体验版认知主页，使用合成示例展示时间河、认知地景与她理解的我",
   },
 ] satisfies PortfolioProject[];
 
@@ -183,7 +183,12 @@ export default function Home() {
               </div>
               <div className="process-thesis">
                 <strong>把 AI 能力变成可用、可判断、可持续迭代的产品结果</strong>
-                <p>我在四个场景中持续处理四类 AI 产品问题：如何理解意图并动态表达服务价值，如何组织信息帮助用户决策，如何通过评测牵引策略迭代，以及如何让分散意图沿时间形成长期理解并回到真实工作</p>
+                <ul className="process-question-list" aria-label="四类产品问题">
+                  <li><b>意图表达</b><span>理解需求，把服务价值说清楚</span></li>
+                  <li><b>决策支持</b><span>组织信息，帮助比较与选择</span></li>
+                  <li><b>质量治理</b><span>用评测牵引模型与策略迭代</span></li>
+                  <li><b>长期记忆</b><span>沿时间形成理解，带回真实工作</span></li>
+                </ul>
               </div>
             </div>
 

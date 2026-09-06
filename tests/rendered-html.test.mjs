@@ -1,6 +1,23 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
+
+test("publishes only canonical Memento redirects at both legacy portfolio entrypoints", async () => {
+  const redirects = [
+    ["Memento-4.0.html", "https://luke20001024.github.io/Memento/"],
+    ["Memento-Cognitive-Home-Standalone.html", "https://luke20001024.github.io/Memento/demo/dashboard.html"],
+  ];
+  const root = new URL("../dist/client/memento/", import.meta.url);
+  assert.deepEqual((await readdir(root)).sort(), redirects.map(([file]) => file).sort());
+  for (const [file, destination] of redirects) {
+    const html = await readFile(new URL(file, root), "utf8");
+    assert.ok(html.includes(`<meta http-equiv="refresh" content="0; url=${destination}">`));
+    assert.ok(html.includes(`<link rel="canonical" href="${destination}">`));
+    assert.ok(html.includes(`<a href="${destination}">`));
+    assert.ok(Buffer.byteLength(html, "utf8") < 1200);
+    assert.doesNotMatch(html, /<script\b|<iframe\b|MementoRuntimeConfig|dashboard\.js|127\.0\.0\.1|AISecretary/);
+  }
+});
 
 async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -93,7 +110,7 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.match(html, /AIGC个性化生成/);
   assert.match(html, /aria-label="位于Top 4的通用商品广告"/);
   assert.match(html, /aria-label="位于Top 1的个性化场景广告"/);
-  assert.match(html, /把能够满足需求、却没有表达清楚的广告，转化为可被识别、优选和投放的高相关图文供给/);
+  assert.match(html, /把广告服务能力，转化为高相关图文供给/);
   assert.doesNotMatch(html, /案例关系复现|这项策略最终带来了什么/);
   assert.match(html, /AI Search/);
   assert.match(html, /质量评测与规模化/);
@@ -204,7 +221,13 @@ test("server-renders the complete first-delivery narrative", async () => {
   assert.doesNotMatch(html, /class="project-material-link"|项目材料 PDF/);
   assert.equal((html.match(/class="project-case-open"/g) ?? []).length, 4);
   assert.equal((html.match(/<span>查看案例<\/span><i aria-hidden="true">↘<\/i>/g) ?? []).length, 4);
-  assert.equal((html.match(/href="#portfolio-case-(?:aigc|search|evaluation|memento)"/g) ?? []).length, 4);
+  const overviewCaseLinks = [...html.matchAll(/<a\b[^>]*class="project-case-open"[^>]*>/g)].map(([tag]) => tag);
+  assert.deepEqual(overviewCaseLinks.map((tag) => tag.match(/href="([^"]+)"/)?.[1]), [
+    "#portfolio-case-aigc",
+    "#portfolio-case-search",
+    "#portfolio-case-evaluation",
+    "#portfolio-case-memento",
+  ]);
   assert.equal((html.match(/aria-label="查看(?:AIGC个性化生成|AI Search|质量评测与规模化|Memento)项目案例"/g) ?? []).length, 4);
   assert.equal((html.match(/class="portfolio-case-study portfolio-case-(?:aigc|search|evaluation|memento)"/g) ?? []).length, 4);
   for (const id of ["aigc", "search", "evaluation", "memento"]) {
@@ -237,8 +260,8 @@ test("server-renders the complete first-delivery narrative", async () => {
   ]) {
     assert.match(html, new RegExp(restoredDetail.replaceAll("+", "\\+")));
   }
-  assert.equal((html.match(/href="\.\/memento\/Memento-4\.0\.html"/g) ?? []).length, 1);
-  assert.equal((html.match(/href="\.\/memento\/Memento-Cognitive-Home-Standalone\.html"/g) ?? []).length, 1);
+  assert.equal((html.match(/href="https:\/\/luke20001024\.github\.io\/Memento\/"/g) ?? []).length, 1);
+  assert.equal((html.match(/href="https:\/\/luke20001024\.github\.io\/Memento\/demo\/dashboard\.html"/g) ?? []).length, 1);
   assert.doesNotMatch(html, /\/demos\/memento-cognitive-home\.html|固定 20 天演示数据/);
   assert.doesNotMatch(html, /CandidateMemory|CONTEXT_AGENT|no_candidate|当前交付|仍待真实验收/);
   assert.match(html, /P00 5%/);
@@ -287,7 +310,8 @@ test("keeps the reference-led composition and interaction wired in", async () =>
     access(new URL("../public/assets/ai-search-standard.webp", import.meta.url)),
     access(new URL("../public/assets/ai-search-agentic.webp", import.meta.url)),
     access(new URL("../public/assets/memento-cognitive-home.webp", import.meta.url)),
-    access(new URL("../public/assets/memento-cognitive-home-user-shot-20260823.png", import.meta.url)),
+    access(new URL("../public/assets/memento-public-home-20260906.png", import.meta.url)),
+    access(new URL("../dist/client/assets/memento-public-home-20260906.png", import.meta.url)),
     access(new URL("../public/assets/memento-value-triptych-master-v1.png", import.meta.url)),
   ]);
   const projectSource = `${page}\n${projectCases}`;
@@ -330,7 +354,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   for (const asset of [
     "search-personalized-ad.webp",
     "ai-search-agentic.webp",
-    "memento-cognitive-home-user-shot-20260823.png",
+    "memento-public-home-20260906.png",
     "memento-value-triptych-master-v1.png",
   ]) {
     assert.match(projectSource, new RegExp(asset.replace(".", "\\.")));
@@ -338,7 +362,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.match(page, /id: "aigc"[\s\S]*?preview: "\/assets\/search-personalized-ad\.webp"/);
   assert.match(page, /id: "search"[\s\S]*?preview: "\/assets\/ai-search-agentic\.webp"/);
   assert.match(page, /id: "evaluation"[\s\S]*?preview: null/);
-  assert.match(page, /id: "memento"[\s\S]*?preview: "\/assets\/memento-cognitive-home-user-shot-20260823\.png"/);
+  assert.match(page, /id: "memento"[\s\S]*?preview: "\/assets\/memento-public-home-20260906\.png"/);
   assert.match(page, /focus: "搜索意图 → 个性化表达"/);
   assert.match(page, /statement: "意图 → 服务判断 → 生成 → 准出 → 优选"/);
   assert.match(page, /focus: "复杂意图 → 决策框架"/);
@@ -353,8 +377,8 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.equal((projectCases.match(/aria-labelledby="portfolio-detail-(?:aigc|search|evaluation|memento)-title"/g) ?? []).length, 4);
   assert.doesNotMatch(projectCases, /window\.location|location\.hash/);
   assert.doesNotMatch(projectCases, /aria-live=/);
-  assert.match(projectCases, /\.\/memento\/Memento-4\.0\.html/);
-  assert.match(projectCases, /\.\/memento\/Memento-Cognitive-Home-Standalone\.html/);
+  assert.match(projectCases, /https:\/\/luke20001024\.github\.io\/Memento\//);
+  assert.match(projectCases, /https:\/\/luke20001024\.github\.io\/Memento\/demo\/dashboard\.html/);
   assert.doesNotMatch(projectCases, /\/demos\/memento-cognitive-home\.html/);
   assert.equal((projectCases.match(/<CaseFrame\b/g) ?? []).length, 4);
   assert.match(projectCases, /<CaseFrame\s+id="aigc"/);
@@ -370,7 +394,7 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.equal((projectCases.match(/跨策略人审执行底座/g) ?? []).length, 1);
   assert.doesNotMatch(projectCases, /className="portfolio-quality-scale"/);
   assert.match(projectCases, /memento-ideal-overview/);
-  assert.match(projectCases, /memento-cognitive-home-user-shot-20260823\.png/);
+  assert.match(projectCases, /memento-public-home-20260906\.png/);
   assert.match(projectCases, /查看 Memento 产品主页[\s\S]*直接体验 Memento Demo/);
   assert.match(projectCases, /memento-continuity-figure/);
   assert.match(projectCases, /memento-product-axis/);
@@ -508,6 +532,92 @@ test("keeps the reference-led composition and interaction wired in", async () =>
   assert.doesNotMatch(page, /SkeletonPreview/);
 });
 
+test("provides a native four-case reading index and ordered return routes", async () => {
+  const response = await render();
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const projects = [
+    { id: "aigc", number: "01", title: "AIGC个性化生成", caseTitle: "AIGC个性化生成" },
+    { id: "search", number: "02", title: "AI Search", caseTitle: "AI搜索结果卡" },
+    { id: "evaluation", number: "03", title: "质量评测与规模化", caseTitle: "质量评测与规模化" },
+    { id: "memento", number: "04", title: "Memento", caseTitle: "Memento：让每个 AI，都从同一个你开始" },
+  ];
+  const index = html.match(/<nav\b[^>]*id="project-case-index"[^>]*>[\s\S]*?<\/nav>/)?.[0];
+  assert.ok(index, "案例目录应为可原生访问的 nav");
+  assert.match(index, /class="case-reading-index"/);
+  assert.match(index, /aria-label="项目案例目录"/);
+  assert.match(index, /tabindex="-1"/i);
+  assert.equal((html.match(/id="project-case-index"/g) ?? []).length, 1);
+  const caseGroupPosition = html.indexOf('class="project-cases"');
+  const indexPosition = html.indexOf(index);
+  assert.ok(caseGroupPosition >= 0 && indexPosition > caseGroupPosition);
+  assert.ok(indexPosition < html.indexOf('id="portfolio-case-aigc"'), "目录应出现在四案之前");
+  const indexLinks = [...index.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
+  assert.equal(indexLinks.length, 4);
+
+  for (const [position, project] of projects.entries()) {
+    assert.match(indexLinks[position], new RegExp(`href="#portfolio-case-${project.id}"`));
+    assert.ok(indexLinks[position].includes(project.number));
+    assert.ok(indexLinks[position].includes(project.title));
+    assert.doesNotMatch(indexLinks[position], /href="#portfolio-detail-/);
+    assert.equal((html.match(new RegExp(`id="portfolio-case-${project.id}"`, "g")) ?? []).length, 1);
+    const frameTag = html.match(new RegExp(`<section\\b[^>]*id="portfolio-case-${project.id}"[^>]*>`))?.[0];
+    assert.ok(frameTag);
+    assert.match(frameTag, /tabindex="-1"/i);
+    assert.match(frameTag, new RegExp(`aria-labelledby="portfolio-case-${project.id}-title"`));
+    assert.doesNotMatch(frameTag, /\shidden(?:\s|=|>)/);
+
+    const frameStart = html.indexOf(frameTag);
+    const nextFrame = projects[position + 1];
+    const frameEnd = nextFrame ? html.indexOf(`id="portfolio-case-${nextFrame.id}"`) : html.length;
+    const frame = html.slice(frameStart, frameEnd);
+    const footers = [...frame.matchAll(/<nav\b[^>]*class="case-reading-footer"[^>]*>[\s\S]*?<\/nav>/g)].map(([nav]) => nav);
+    assert.equal(footers.length, 1, `${project.id} 应有一个章节导览`);
+    const footer = footers[0];
+    assert.ok(footer.includes(`aria-label="${project.caseTitle}案例导览"`));
+    const returnLinks = [...footer.matchAll(/<a\b[^>]*href="#project-case-index"[^>]*>[\s\S]*?<\/a>/g)];
+    assert.equal(returnLinks.length, 1);
+    assert.match(returnLinks[0][0], /返回项目目录/);
+    const nextLinks = [...footer.matchAll(/<a\b[^>]*class="case-reading-next"[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
+    assert.equal(nextLinks.length, nextFrame ? 1 : 0);
+    if (nextFrame) {
+      assert.match(nextLinks[0], new RegExp(`href="#portfolio-case-${nextFrame.id}"`));
+      assert.ok(nextLinks[0].includes(nextFrame.title));
+    }
+
+    const detailTag = frame.match(new RegExp(`<section\\b[^>]*id="portfolio-detail-${project.id}"[^>]*>`))?.[0];
+    assert.ok(detailTag);
+    assert.match(detailTag, /\shidden(?:\s|=|>)/, "新增目录不得自动展开完整执行链路");
+    const toggleTag = frame.match(new RegExp(`<button\\b[^>]*aria-controls="portfolio-detail-${project.id}"[^>]*>`))?.[0];
+    assert.ok(toggleTag);
+    assert.match(toggleTag, /aria-expanded="false"/);
+  }
+});
+
+test("keeps reading refinements local, keyboard-visible and in normal document flow", async () => {
+  const [readingStyles, caseStyles, layout, projectCases] = await Promise.all([
+    readFile(new URL("../app/project-reading.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/project-cases.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/project-cases.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(layout, /import "\.\/project-reading\.css"/);
+  assert.ok(layout.indexOf('import "./project-reading.css"') > layout.indexOf('import "./project-cases.css"'));
+  assert.match(readingStyles, /\.case-reading-index\s*\{[^}]*scroll-margin-top:\s*[^;]+;/s);
+  assert.match(readingStyles, /\.case-reading-footer/);
+  assert.match(readingStyles, /\.case-reading-next/);
+  assert.match(readingStyles, /:focus-visible[^{}]*\{[^}]*outline:\s*(?!0(?:\s|;)|none)[^;]+;/s);
+  assert.match(caseStyles + readingStyles, /\.portfolio-case-study\s*\{[^}]*scroll-margin-top:\s*[^;]+;/s);
+  assert.doesNotMatch(readingStyles, /(?:100s?vh|position:\s*(?:sticky|fixed)|linear-gradient|radial-gradient|box-shadow)/);
+  assert.doesNotMatch(readingStyles, /\.(?:hero[\w-]*|particle[\w-]*|site-header|site-identity)\b/);
+  assert.doesNotMatch(projectCases, /preventDefault\s*\(|history\.(?:pushState|replaceState)|scrollIntoView\s*\(/);
+  const closeHandler = projectCases.match(/function DetailClose\b[\s\S]*?\n}\n/)?.[0];
+  assert.ok(closeHandler);
+  assert.match(closeHandler, /setOpen\(false\)/);
+  assert.match(closeHandler, /requestAnimationFrame/);
+  assert.match(closeHandler, /document\.querySelector<HTMLButtonElement>\(`\[aria-controls="\$\{controls\}"\]`\)\?\.focus\(\)/);
+});
+
 test("keeps ArcBTI as a compact independent project with the intended gallery order", async () => {
   const [component, styles, html] = await Promise.all([
     readFile(new URL("../app/arcbti-side-project.tsx", import.meta.url), "utf8"),
@@ -550,4 +660,74 @@ test("keeps ArcBTI as a compact independent project with the intended gallery or
   await access(new URL("../dist/client/assets/arcbti/arcbti-logo.png", import.meta.url));
   await access(new URL("../public/assets/xiaohongshu-qr.jpg", import.meta.url));
   await access(new URL("../dist/client/assets/xiaohongshu-qr.jpg", import.meta.url));
+});
+
+test("surfaces case outcomes before optional depth while retaining evidence and role boundaries", async () => {
+  const response = await render();
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const source = await readFile(new URL("../app/project-cases.tsx", import.meta.url), "utf8");
+  const cases = [
+    { id: "aigc", next: "search", outcomeClass: "portfolio-aigc-outcome", title: "把广告服务能力，转化为高相关图文供给", values: ["+23.16%", "+11.13%", "+25.39%"], role: "搜索个性化产品侧负责人", boundary: "数字来自Query个性化策略生效范围内的实验结果，不归因到这条狗零食素材，也不证明单张图片必然提升全局排名" },
+    { id: "search", next: "evaluation", outcomeClass: "portfolio-structured-outcome", title: "帮助选择，也承接可验证的商业供给", values: ["83%", "96%"], role: "AI卡生成能力与评估体系建设", boundary: "用于解除首版开实验的质量阻塞，不归因到单张卡，也不等于线上决策效率或商业增量" },
+    { id: "evaluation", next: "memento", outcomeClass: "portfolio-structured-outcome", title: "让质量结论推动上线与下一轮迭代", values: ["P00 5%", "P0 8%", "P00 0%", "P0 1%", "30+", "200 → 10k", "80k+"], role: "生成质量与评测负责人", boundary: "支撑10+项策略；不是AI Search单项目样本量，也不是机器产能" },
+  ];
+
+  for (const project of cases) {
+    const frameStart = html.indexOf(`id="portfolio-case-${project.id}"`);
+    const frameEnd = html.indexOf(`id="portfolio-case-${project.next}"`);
+    assert.ok(frameStart >= 0 && frameEnd > frameStart);
+    const frame = html.slice(frameStart, frameEnd);
+    const outcomeStart = frame.indexOf(`class="${project.outcomeClass}"`);
+    const toggleStart = frame.indexOf('class="portfolio-case-detail-toggle"');
+    const detailStart = frame.indexOf(`id="portfolio-detail-${project.id}"`);
+    assert.ok(outcomeStart >= 0 && outcomeStart < toggleStart && toggleStart < detailStart,
+      `${project.id} 应先显示结果和职责，再展开执行细节`);
+    assert.equal(frame.split(`class="${project.outcomeClass}"`).length - 1, 1);
+    const overview = frame.slice(0, toggleStart);
+    assert.ok(overview.includes(project.title));
+    assert.ok(overview.includes(project.role));
+    assert.ok(overview.includes(project.boundary));
+    assert.match(overview, /结果与职责[\s\S]*为谁带来什么[\s\S]*我的角色/);
+    const roleList = overview.match(/class="portfolio-(?:aigc|structured)-role"[\s\S]*?<ul>([\s\S]*?)<\/ul>/)?.[1];
+    assert.ok(roleList);
+    assert.equal((roleList.match(/<li>/g) ?? []).length, 4, "原有职责清单应完整保留");
+    for (const value of project.values) assert.ok(overview.includes(value), `${project.id} 保留 ${value}`);
+  }
+
+  const titleNotes = [...html.matchAll(/<blockquote class="portfolio-(?:aigc-title-note|case-title-note)">([\s\S]*?)<\/blockquote>/g)]
+    .map(([, note]) => note);
+  assert.equal(titleNotes.length, 4);
+  for (const note of titleNotes) {
+    assert.match(note, /<strong>.+<\/strong>/);
+    assert.ok([...note.replace(/<[^>]+>/g, "")].length <= 70, "案例前言保持短句和一个重点");
+  }
+  assert.match(titleNotes[0], /高相关素材不足的高商业价值搜索词/);
+  assert.match(titleNotes[0], /不改变商品事实/);
+  assert.match(html, /准入、巡检与归因，形成持续治理闭环/);
+  assert.doesNotMatch(html, /质量不是一次打分，而是一条/);
+  assert.match(source, /id="portfolio-detail-memento"[^>]*hidden=\{!detail\}>[\s\S]*className="memento-ideal-loop"[\s\S]*className="memento-continuity-figure"[\s\S]*className="memento-product-axis"[\s\S]*<DetailClose controls="portfolio-detail-memento"/);
+  assert.equal((source.match(/className="memento-ideal-loop"/g) ?? []).length, 1);
+});
+
+test("fits the desktop opening with a height-aware composition without zooming or scroll locking", async () => {
+  const [composition, layout, page] = await Promise.all([
+    readFile(new URL("../app/home-composition.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+  ]);
+  const importPosition = layout.indexOf('import "./home-composition.css"');
+  assert.ok(importPosition > layout.indexOf('import "./project-reading.css"'));
+  assert.match(composition, /@media\s*\(min-width:\s*900px\)/);
+  assert.match(composition, /--hero-height:\s*clamp\([^;]*calc\(100dvh\s*-\s*136px\)[^;]*\);/s);
+  assert.match(composition, /\.hero-inner\s*\{[^}]*min-height:\s*0;[^}]*height:\s*var\(--hero-height\);/s);
+  assert.match(composition, /\.hero-portrait\s*\{[^}]*width:\s*min\(44%,\s*calc\(\(var\(--hero-height\)\s*-\s*8px\)\s*\/\s*1\.5\)\);[^}]*height:\s*auto;[^}]*aspect-ratio:\s*2\s*\/\s*3;/s);
+  assert.match(composition, /\.hero-career-head,[\s\S]*?padding:\s*12px\s+14px\s+14px/);
+  assert.doesNotMatch(composition, /(?:^|[;{\s])zoom\s*:|\bscale\s*\(|overflow(?:-y)?\s*:\s*hidden|position\s*:\s*sticky/);
+  const questions = page.match(/<ul className="process-question-list" aria-label="四类产品问题">([\s\S]*?)<\/ul>/)?.[1];
+  assert.ok(questions, "用有语义的列表组织四类产品问题");
+  assert.equal((questions.match(/<li>/g) ?? []).length, 4);
+  for (const label of ["意图表达", "决策支持", "质量治理", "长期记忆"]) {
+    assert.ok(questions.includes(`<b>${label}</b>`));
+  }
 });

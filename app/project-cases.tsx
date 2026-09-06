@@ -23,6 +23,30 @@ type ProjectCaseShellProps = {
   children: ReactNode;
 };
 
+const caseNavigation: Array<Pick<PortfolioProject, "id" | "number" | "title">> = [
+  { id: "aigc", number: "01", title: "AIGC个性化生成" },
+  { id: "search", number: "02", title: "AI Search" },
+  { id: "evaluation", number: "03", title: "质量评测与规模化" },
+  { id: "memento", number: "04", title: "Memento" },
+];
+
+function CaseReadingIndex() {
+  return (
+    <nav className="case-reading-index" id="project-case-index" aria-label="项目案例目录" tabIndex={-1}>
+      <p>案例目录 <span>选择项目，直接阅读</span></p>
+      <ol>
+        {caseNavigation.map((project) => (
+          <li key={project.id}>
+            <a className={`case-index-${project.id}`} href={`#portfolio-case-${project.id}`} data-cursor="hover">
+              <span>{project.number}</span><strong>{project.title}</strong><i aria-hidden="true">↘</i>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
 function ProjectEvidence({ project }: { project: PortfolioProject }) {
   return (
     <article
@@ -211,9 +235,9 @@ function StructuredOutcome({
 }) {
   return (
     <section className="portfolio-structured-outcome">
-      <header><small>最终作用</small><h4>{title}</h4></header>
+      <header><small>结果与职责</small><h4>{title}</h4></header>
       <div className="portfolio-structured-outcome-grid">
-        <section><small>三层价值</small><ValueRows rows={values} /></section>
+        <section><small>为谁带来什么</small><ValueRows rows={values} /></section>
         <section className="portfolio-structured-results"><small>{evidenceTitle}</small>{evidence}</section>
         <section className="portfolio-structured-role"><small>我的角色</small><strong>{roleTitle}</strong><ul>{roleItems.map((item) => <li key={item}>{item}</li>)}</ul></section>
       </div>
@@ -236,6 +260,7 @@ function CaseFrame({
   titleNote?: ReactNode;
   children: ReactNode;
 }) {
+  const nextCase = caseNavigation[caseNavigation.findIndex((project) => project.id === id) + 1];
   return (
     <section
       className={`portfolio-case-study portfolio-case-${id}`}
@@ -251,6 +276,15 @@ function CaseFrame({
           {titleNote}
         </header>
         {children}
+        <nav className="case-reading-footer" aria-label={`${title}案例导览`}>
+          <a href="#project-case-index" data-cursor="hover"><span aria-hidden="true">↑</span> 返回项目目录</a>
+          {nextCase && (
+            <a className="case-reading-next" href={`#portfolio-case-${nextCase.id}`} data-cursor="hover">
+              <small>下一项目 · {nextCase.number} / 04</small>
+              <strong>{nextCase.title} <span aria-hidden="true">→</span></strong>
+            </a>
+          )}
+        </nav>
       </div>
     </section>
   );
@@ -264,7 +298,7 @@ function AigcCase() {
       number="01"
       eyebrow="PERSONALIZED GENERATION"
       title="AIGC个性化生成"
-      titleNote={<blockquote className="portfolio-aigc-title-note">面向高商业价值、但高相关素材不足的搜索词：先判断商品能不能承接用户需求；能承接，再在不改变商品事实的前提下，把“为什么相关”写进图片和标题</blockquote>}
+      titleNote={<blockquote className="portfolio-aigc-title-note">针对高相关素材不足的高商业价值搜索词，先判断商品能否满足需求。<strong>不改变商品事实，把“为什么适合”表达清楚。</strong></blockquote>}
     >
 
       <section className="portfolio-aigc-how" aria-labelledby="portfolio-aigc-how-title">
@@ -310,6 +344,21 @@ function AigcCase() {
         </div>
       </section>
 
+      <section className="portfolio-aigc-outcome" aria-labelledby="portfolio-aigc-outcome-title">
+        <header>
+          <small>结果与职责</small>
+          <h4 id="portfolio-aigc-outcome-title">把广告服务能力，转化为高相关图文供给</h4>
+        </header>
+        <div className="portfolio-aigc-outcome-grid">
+          <section><small>为谁带来什么</small><ValueRows rows={[
+            { label: "用户", text: "更直接看见商品与当前搜索意图的关系，少一步从通用广告中自行推断" },
+            { label: "广告主", text: "同一商品面向不同搜索词形成多套图文候选，增加可投素材与消耗机会" },
+            { label: "平台", text: "让能承接、但原素材没表达出来的广告更容易被相关性模型识别与优选" },
+          ]} /></section>
+          <section className="portfolio-aigc-results"><small>策略生效范围结果</small><div className="portfolio-metrics"><div><b>+23.16%</b><span>Advv</span></div><div><b>+11.13%</b><span>CTR2</span></div><div><b>+25.39%</b><span>CVR</span></div></div><p>数字来自Query个性化策略生效范围内的实验结果，不归因到这条狗零食素材，也不证明单张图片必然提升全局排名</p></section>
+          <section className="portfolio-aigc-role"><small>我的角色</small><strong>搜索个性化产品侧负责人</strong><ul><li>定义意图与广告服务边界</li><li>设计生成策略与事实约束</li><li>推动图文生成、质量评测与素材优选</li><li>负责实验评估与全量上线</li></ul></section>
+        </div>
+      </section>
       <DetailToggle open={detail} setOpen={setDetail} controls="portfolio-detail-aigc" title="展开这个案例的完整执行链路" route="搜索词聚合 → 服务判断 → 参考图匹配 → 图文生成 → 质量评测 → 候选入库 → 在线召回 → 相关性优选" />
       <section className="portfolio-case-detail" id="portfolio-detail-aigc" aria-labelledby="portfolio-detail-aigc-title" tabIndex={-1} hidden={!detail}>
         <header><div><small>完整执行链路 / 01</small><h4 id="portfolio-detail-aigc-title">从“能不能承接”，到可在线选择的图文候选</h4></div><p>离线完成判断、生成、质检和建库；在线请求只做召回与优选</p></header>
@@ -371,21 +420,6 @@ function AigcCase() {
         <div className="aigc-mechanism-notes"><div><small>产品判断</small><b>离线准备供给，在线只做选择</b><p>不是搜索时现场生图</p></div><div><small>质量边界</small><b>图片质检与Title支路分开</b><p>图片通过后再汇成候选</p></div><div><small>证据范围</small><b>同一CID内优选，不等于全局排名</b><p>狗零食用于说明机制，策略指标不归因单条素材</p></div></div>
         <DetailClose controls="portfolio-detail-aigc" setOpen={setDetail} />
       </section>
-      <section className="portfolio-aigc-outcome" aria-labelledby="portfolio-aigc-outcome-title">
-        <header>
-          <small>最终作用</small>
-          <h4 id="portfolio-aigc-outcome-title">把能够满足需求、却没有表达清楚的广告，转化为可被识别、优选和投放的高相关图文供给</h4>
-        </header>
-        <div className="portfolio-aigc-outcome-grid">
-          <section><small>三方价值</small><ValueRows rows={[
-            { label: "用户", text: "更直接看见商品与当前搜索意图的关系，少一步从通用广告中自行推断" },
-            { label: "广告主", text: "同一商品面向不同搜索词形成多套图文候选，增加可投素材与消耗机会" },
-            { label: "平台", text: "让能承接、但原素材没表达出来的广告更容易被相关性模型识别与优选" },
-          ]} /></section>
-          <section className="portfolio-aigc-results"><small>策略生效范围结果</small><div className="portfolio-metrics"><div><b>+23.16%</b><span>Advv</span></div><div><b>+11.13%</b><span>CTR2</span></div><div><b>+25.39%</b><span>CVR</span></div></div><p>数字来自Query个性化策略生效范围内的实验结果，不归因到这条狗零食素材，也不证明单张图片必然提升全局排名</p></section>
-          <section className="portfolio-aigc-role"><small>我的角色</small><strong>搜索个性化产品侧负责人</strong><ul><li>定义意图与广告服务边界</li><li>设计生成策略与事实约束</li><li>推动图文生成、质量评测与素材优选</li><li>负责实验评估与全量上线</li></ul></section>
-        </div>
-      </section>
     </CaseFrame>
   );
 }
@@ -398,7 +432,7 @@ function SearchCase() {
       number="02"
       eyebrow="AI SEARCH"
       title="AI搜索结果卡"
-      titleNote={<blockquote className="portfolio-case-title-note">面对“该怎么选”这类复杂搜索，先理解Query与意图，召回能承接需求的商品与事实，再由Planner规划、Writer生成，最后通过评测决定是否准出</blockquote>}
+      titleNote={<blockquote className="portfolio-case-title-note">把复杂搜索中的商品与内容，组织成<strong>可理解、可比较的结果卡。</strong></blockquote>}
     >
       <section className="portfolio-method-section portfolio-search-method" aria-labelledby="portfolio-search-how-title">
         <header className="portfolio-method-section-head">
@@ -430,6 +464,18 @@ function SearchCase() {
           </section>
         </div>
       </section>
+      <StructuredOutcome
+        title="帮助选择，也承接可验证的商业供给"
+        values={[
+          { label: "用户决策", text: "减少从混排内容中自行提炼标准、比较候选的负担，帮助缩小下一步选择" },
+          { label: "商业供给", text: "让可验证的商品与广告事实进入总结与结构化推荐，参与复杂决策场景" },
+          { label: "平台承接", text: "跑通AI Search原生商业承接的首版链路，并用事实边界和质量准出控制结果" },
+        ]}
+        evidenceTitle="首版离线人工评估"
+        evidence={<><div className="portfolio-metrics two"><div><b>83%</b><span>Good Case</span></div><div><b>96%</b><span>结构有效率</span></div></div><p>用于解除首版开实验的质量阻塞，不归因到单张卡，也不等于线上决策效率或商业增量</p></>}
+        roleTitle="AI卡生成能力与评估体系建设"
+        roleItems={["定义搜索任务圈选与事实边界", "设计卡片信息组织与生成策略", "设计Planner/Writer协作与Judge Model准出", "用离线评估解除首版质量阻塞"]}
+      />
       <DetailToggle open={detail} setOpen={setDetail} controls="portfolio-detail-search" title="展开这张AI卡的完整生成链路" route="理解需求 → 召回供给 → 组织表达 → 评测准出" />
       <section className="portfolio-case-detail" id="portfolio-detail-search" aria-labelledby="portfolio-detail-search-title" tabIndex={-1} hidden={!detail}>
         <header><div><small>完整执行链路 / 02</small><h4 id="portfolio-detail-search-title">一张AI结果卡，如何从Query走到准出</h4></div><p>理解需求 → 召回供给 → 组织表达 → 评测准出</p></header>
@@ -473,18 +519,6 @@ function SearchCase() {
         </section>
         <DetailClose controls="portfolio-detail-search" setOpen={setDetail} />
       </section>
-      <StructuredOutcome
-        title="把分散的商品与内容事实，组织成用户可以直接理解、比较和继续选择的AI结果卡"
-        values={[
-          { label: "用户决策", text: "减少从混排内容中自行提炼标准、比较候选的负担，帮助缩小下一步选择" },
-          { label: "商业供给", text: "让可验证的商品与广告事实进入总结与结构化推荐，参与复杂决策场景" },
-          { label: "平台承接", text: "跑通AI Search原生商业承接的首版链路，并用事实边界和质量准出控制结果" },
-        ]}
-        evidenceTitle="首版离线人工评估"
-        evidence={<><div className="portfolio-metrics two"><div><b>83%</b><span>Good Case</span></div><div><b>96%</b><span>结构有效率</span></div></div><p>用于解除首版开实验的质量阻塞，不归因到单张卡，也不等于线上决策效率或商业增量</p></>}
-        roleTitle="AI卡生成能力与评估体系建设"
-        roleItems={["定义搜索任务圈选与事实边界", "设计卡片信息组织与生成策略", "设计Planner/Writer协作与Judge Model准出", "用离线评估解除首版质量阻塞"]}
-      />
     </CaseFrame>
   );
 }
@@ -497,11 +531,11 @@ function QualityCase() {
       number="03"
       eyebrow="QUALITY GOVERNANCE"
       title="质量评测与规模化"
-      titleNote={<blockquote className="portfolio-case-title-note">把模型输出中的不确定性，转成能决定通过、返工和阻断的质量规则；上线后再把问题送回规则、模型或策略，进入下一轮评测</blockquote>}
+      titleNote={<blockquote className="portfolio-case-title-note">用可执行的质量规则<strong>决定上线、返工与阻断</strong>，让线上问题回到下一轮修改。</blockquote>}
     >
       <section className="portfolio-method-section portfolio-quality-method" aria-labelledby="portfolio-quality-how-title">
         <header className="portfolio-method-section-head portfolio-quality-cycle-head">
-          <div><small>怎么做</small><h4 id="portfolio-quality-how-title">质量不是一次打分，而是一条回到下一轮的治理闭环</h4></div>
+          <div><small>怎么做</small><h4 id="portfolio-quality-how-title">准入、巡检与归因，形成持续治理闭环</h4></div>
           <p>标准决定什么能上线，线上问题决定下一轮具体改什么</p>
         </header>
         <div className="portfolio-quality-cycle-layout">
@@ -530,6 +564,18 @@ function QualityCase() {
           </section>
         </div>
       </section>
+      <StructuredOutcome
+        title="让质量结论推动上线与下一轮迭代"
+        values={[
+          { label: "用户与广告主", text: "减少事实错误、无关表达和高风险内容进入线上结果，保护搜索体验与品牌安全" },
+          { label: "业务", text: "让质量结论直接支撑实验、全量上线或及时阻断，AI Search因此恢复全量放量" },
+          { label: "研发与运营", text: "把问题定位到规则、模型或策略，形成下一轮可以重新评测的修改" },
+        ]}
+        evidenceTitle="跨策略人审执行底座"
+        evidence={<><div className="portfolio-quality-scale-metrics"><div><b>30+</b><span>统一标准的评测人员</span></div><div><b>200 → 10k</b><span>日评测能力</span></div><div><b>80k+</b><span>累计人审样本</span></div></div><p>支撑10+项策略；不是AI Search单项目样本量，也不是机器产能</p></>}
+        roleTitle="生成质量与评测负责人"
+        roleItems={["定义质量标准、严重度与风险红线", "推动事前准入、线上巡检与归因", "重建AI Search卡片标准和标注口径", "建立跨策略评测执行与自动化能力"]}
+      />
       <DetailToggle open={detail} setOpen={setDetail} controls="portfolio-detail-evaluation" title="展开这个治理案例的完整闭环" route="标准定义 → 事前准入 → 线上巡检 → 归因修改 → 重新送评" />
       <section className="portfolio-case-detail" id="portfolio-detail-evaluation" aria-labelledby="portfolio-detail-evaluation-title" tabIndex={-1} hidden={!detail}>
         <header><div><small>完整执行链路 / 03</small><h4 id="portfolio-detail-evaluation-title">从一条问题样本，到下一轮可验证的修改</h4></div><p>完整闭环回答由谁判断、按什么判断、结论怎样改变上线和下一轮</p></header>
@@ -549,18 +595,6 @@ function QualityCase() {
         </div>
         <DetailClose controls="portfolio-detail-evaluation" setOpen={setDetail} />
       </section>
-      <StructuredOutcome
-        title="让质量结论直接决定什么能上线、什么应阻断，以及下一轮具体改什么"
-        values={[
-          { label: "用户与广告主", text: "减少事实错误、无关表达和高风险内容进入线上结果，保护搜索体验与品牌安全" },
-          { label: "业务", text: "让质量结论直接支撑实验、全量上线或及时阻断，AI Search因此恢复全量放量" },
-          { label: "研发与运营", text: "把问题定位到规则、模型或策略，形成下一轮可以重新评测的修改" },
-        ]}
-        evidenceTitle="跨策略人审执行底座"
-        evidence={<><div className="portfolio-quality-scale-metrics"><div><b>30+</b><span>统一标准的评测人员</span></div><div><b>200 → 10k</b><span>日评测能力</span></div><div><b>80k+</b><span>累计人审样本</span></div></div><p>支撑10+项策略；不是AI Search单项目样本量，也不是机器产能</p></>}
-        roleTitle="生成质量与评测负责人"
-        roleItems={["定义质量标准、严重度与风险红线", "推动事前准入、线上巡检与归因", "重建AI Search卡片标准和标注口径", "建立跨策略评测执行与自动化能力"]}
-      />
     </CaseFrame>
   );
 }
@@ -574,7 +608,7 @@ function MementoCase() {
       number="04"
       eyebrow="PERSONAL COGNITIVE SECRETARY"
       title="Memento：让每个 AI，都从同一个你开始"
-      titleNote={<blockquote className="portfolio-case-title-note">Memento 是一位运行在电脑里的自动笔记与认知秘书。它接住散落在不同窗口和关系里的意图，沿时间整理成对你的长期理解，再把相关记忆带回真实工作</blockquote>}
+      titleNote={<blockquote className="portfolio-case-title-note">电脑里的自动笔记与认知秘书：<strong>接住散落的意图，整理长期理解，再带回工作。</strong></blockquote>}
     >
       <section className="portfolio-method-section portfolio-memento-method" aria-labelledby="portfolio-memento-how-title">
         <header className="portfolio-method-section-head">
@@ -594,36 +628,36 @@ function MementoCase() {
 
           <figure className="memento-product-evidence">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/memento-cognitive-home-user-shot-20260823.png" alt="最新版 Memento 可操作认知主页，包含今天的时间河、认知地景和她理解的我" />
+            <img src="/assets/memento-public-home-20260906.png" alt="Memento 在线体验版认知主页实拍，使用合成示例展示今天的时间河、认知地景和她理解的我" />
             <figcaption>
               <div><b>今天的时间河</b><span>看见意图如何进入同一条记录流</span></div>
               <div><b>认知地景</b><span>看见记录如何跨时间形成长期主题</span></div>
               <div><b>她理解的我</b><span>看见多个主题如何收束成当前理解</span></div>
             </figcaption>
             <div className="memento-product-actions" aria-label="Memento 产品入口">
-              <a className="memento-product-detail-link" href="./memento/Memento-4.0.html" target="_blank" rel="noreferrer" data-cursor="hover"><span className="memento-action-copy"><small>PRODUCT HOME</small><b>查看 Memento 产品主页</b></span><span className="memento-action-arrow" aria-hidden="true">↗</span></a>
-              <a className="memento-product-demo-link" href="./memento/Memento-Cognitive-Home-Standalone.html" target="_blank" rel="noreferrer" data-cursor="hover"><span className="memento-action-copy"><small>LIVE DEMO · 最新版本</small><b>直接体验 Memento Demo</b></span><span className="memento-action-arrow" aria-hidden="true">↗</span></a>
+              <a className="memento-product-detail-link" href="https://luke20001024.github.io/Memento/" target="_blank" rel="noreferrer" data-cursor="hover"><span className="memento-action-copy"><small>PRODUCT HOME</small><b>查看 Memento 产品主页</b></span><span className="memento-action-arrow" aria-hidden="true">↗</span></a>
+              <a className="memento-product-demo-link" href="https://luke20001024.github.io/Memento/demo/dashboard.html" target="_blank" rel="noreferrer" data-cursor="hover"><span className="memento-action-copy"><small>LIVE DEMO · 最新版本</small><b>直接体验 Memento Demo</b></span><span className="memento-action-arrow" aria-hidden="true">↗</span></a>
             </div>
           </figure>
         </div>
       </section>
 
-      <section className="memento-ideal-loop" aria-labelledby="memento-ideal-loop-title">
-        <header><small>一份记忆的完整去向</small><h4 id="memento-ideal-loop-title">记录在时间中形成理解，理解在下一次工作中继续生长</h4></header>
-        <ol>
-          <li><span>01</span><b>接住意图</b></li>
-          <li><span>02</span><b>保存事实</b></li>
-          <li><span>03</span><b>整理记忆</b></li>
-          <li><span>04</span><b>形成理解</b></li>
-          <li><span>05</span><b>带回工作</b></li>
-          <li><span>06</span><b>交流继续回流</b></li>
-        </ol>
-        <p>让每个 AI 都从同一个你开始，也让每一次交流继续参与你的形成</p>
-      </section>
-
       <DetailToggle open={detail} setOpen={setDetail} controls="portfolio-detail-memento" title="展开 Memento 的完整产品链路" route="接住并保存 → 整理记忆 → 形成理解 → 调用与回流" />
       <section className="portfolio-case-detail" id="portfolio-detail-memento" aria-labelledby="portfolio-detail-memento-title" tabIndex={-1} hidden={!detail}>
         <header><div><small>完整产品链路</small><h4 id="portfolio-detail-memento-title">一条意图，如何沿时间形成理解，再回到下一次工作</h4></div><p>完整关系图保留产品全貌，单轴讲清四段 Agent 实现逻辑</p></header>
+
+        <section className="memento-ideal-loop" aria-labelledby="memento-ideal-loop-title">
+          <header><small>一份记忆的完整去向</small><h4 id="memento-ideal-loop-title">记录在时间中形成理解，理解在下一次工作中继续生长</h4></header>
+          <ol>
+            <li><span>01</span><b>接住意图</b></li>
+            <li><span>02</span><b>保存事实</b></li>
+            <li><span>03</span><b>整理记忆</b></li>
+            <li><span>04</span><b>形成理解</b></li>
+            <li><span>05</span><b>带回工作</b></li>
+            <li><span>06</span><b>交流继续回流</b></li>
+          </ol>
+          <p>让每个 AI 都从同一个你开始，也让每一次交流继续参与你的形成</p>
+        </section>
 
         <figure className="memento-continuity-figure">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -725,6 +759,7 @@ export default function ProjectCaseShell({ projects, children }: ProjectCaseShel
         {children}
       </div>
       <div className="project-cases" data-theme="light" aria-label="四项完整项目案例">
+        <CaseReadingIndex />
         <AigcCase />
         <SearchCase />
         <QualityCase />
